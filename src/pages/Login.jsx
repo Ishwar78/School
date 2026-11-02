@@ -1,14 +1,11 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   BookOpen,
-  Check,
   Eye,
   EyeOff,
   GraduationCap,
-  Landmark,
   LockKeyhole,
   Mail,
   ShieldCheck,
@@ -17,8 +14,6 @@ import {
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useSchool } from "../context/SchoolContext";
-import { readAdditionalAccounts } from "../data/demoAccounts";
 import "./Login.css";
 
 const roles = [
@@ -39,9 +34,14 @@ const roles = [
   }
 ];
 
+const portalUsers = [
+  { id: 1, name: "Aarav Sharma", email: "student@eduflow.com", password: "student123", role: "student" },
+  { id: 2, name: "Priya Sharma", email: "parent@eduflow.com", password: "parent123", role: "parent" },
+  { id: 3, name: "Ananya Gupta", email: "teacher@eduflow.com", password: "teacher123", role: "teacher" },
+];
+
 export default function Login() {
   const navigate = useNavigate();
-  const school = useSchool();
 
   const [role, setRole] = useState("Student");
   const [email, setEmail] = useState("");
@@ -58,19 +58,7 @@ export default function Login() {
     event.preventDefault();
     setMessage("");
 
-    let users;
-
-    try {
-      users = [...school.users, ...readAdditionalAccounts()];
-    } catch (error) {
-      console.error("Unable to load saved demo accounts.", error);
-      setMessage(
-        "Saved demo accounts could not be loaded. Please contact the administrator.",
-      );
-      return;
-    }
-
-    const user = users.find(
+    const user = portalUsers.find(
       (item) =>
         item.email?.toLowerCase() === email.trim().toLowerCase() &&
         item.password === password
@@ -83,27 +71,14 @@ export default function Login() {
 
     if (user.role !== role.toLowerCase()) {
       setMessage(
-        `This account belongs to the ${user.role} dashboard. Please select the correct role.`
+        `This account belongs to the ${user.role} role. Please select the correct role.`
       );
       return;
     }
 
-    const loggedInUser = {
-      id: user.id,
-      recordId: user.recordId,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      classId: user.classId,
-      childId: user.childId
-    };
-
-    localStorage.setItem(
-      "eduflowUser",
-      JSON.stringify(loggedInUser)
+    setMessage(
+      "Student, Parent & Teacher dashboards are currently in development. Please use the Admin Portal."
     );
-
-    navigate(`/dashboard/${user.role}`, { replace: true });
   }
 
   return (
@@ -114,9 +89,7 @@ export default function Login() {
         <div className="login-container">
 
           {/* LEFT SIDE */}
-
           <section className="login-showcase">
-
             <div className="login-showcase-copy">
               <span className="login-eyebrow">
                 YOUR EDUCATION PLATFORM
@@ -134,7 +107,6 @@ export default function Login() {
               </p>
 
               <div className="login-benefits">
-
                 <div className="login-benefit">
                   <span className="login-benefit-icon yellow">
                     <Users size={22} />
@@ -167,7 +139,6 @@ export default function Login() {
                     <small>Clear information, better communication</small>
                   </div>
                 </div>
-
               </div>
 
               <div className="login-handwritten">
@@ -177,7 +148,6 @@ export default function Login() {
             </div>
 
             {/* PHOTO COLLAGE */}
-
             <div className="login-collage">
               <span className="login-shape login-shape-one" />
               <span className="login-shape login-shape-two" />
@@ -211,11 +181,9 @@ export default function Login() {
                 />
               </div>
             </div>
-
           </section>
 
           {/* RIGHT SIDE */}
-
           <section className="login-form-side">
             <div className="login-card">
 
@@ -232,7 +200,6 @@ export default function Login() {
               </div>
 
               {/* ROLE SELECTION */}
-
               <div className="login-role-heading">
                 <strong>Continue as</strong>
                 <span>Choose your role</span>
@@ -254,7 +221,6 @@ export default function Login() {
                       aria-pressed={active}
                     >
                       <Icon size={25} strokeWidth={1.9} />
-
                       <strong>{item.name}</strong>
                       <small>{item.description}</small>
                     </button>
@@ -263,7 +229,6 @@ export default function Login() {
               </div>
 
               {/* LOGIN FORM */}
-
               <form className="login-form" onSubmit={handleSubmit}>
 
                 <label htmlFor="login-email">
@@ -272,7 +237,6 @@ export default function Login() {
 
                 <div className="login-input">
                   <Mail size={19} />
-
                   <input
                     id="login-email"
                     type="email"
@@ -290,7 +254,6 @@ export default function Login() {
 
                 <div className="login-input">
                   <LockKeyhole size={19} />
-
                   <input
                     id="login-password"
                     type={showPassword ? "text" : "password"}
@@ -318,7 +281,7 @@ export default function Login() {
                 </div>
 
                 <p className="login-demo-note">
-                  Demo mode — use one of your test accounts to sign in.
+                  Demo mode — use test accounts to sign in.
                 </p>
 
                 {message && (
@@ -350,14 +313,13 @@ export default function Login() {
               </div>
 
               {/* EXPLORE */}
-
               <div className="login-divider">
                 <span>OR EXPLORE EDUFLOW</span>
               </div>
 
-              <Link to="/features" className="login-explore">
+              <Link to="/about" className="login-explore">
                 <BookOpen size={19} />
-                Discover our features
+                Discover our school
                 <ArrowRight size={18} />
               </Link>
 

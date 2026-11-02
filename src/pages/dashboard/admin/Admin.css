@@ -94,7 +94,7 @@
   border-radius: 10px;
   background: transparent;
   color: #d0def2;
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 600;
   text-align: left;
 }
@@ -125,7 +125,7 @@
   color: #b9cbe6;
   padding: 10px;
   text-align: left;
-  font-size: 13px;
+  font-size: 16px;
 }
 .dashboard .submenu button:hover,
 .dashboard .submenu button.current {
@@ -985,7 +985,7 @@
 }
 .dashboard td {
   padding: 15px 16px;
-  font-size: 13px;
+  font-size: 15px;
   border-top: 1px solid #edf1f7;
   color: #344967;
 }

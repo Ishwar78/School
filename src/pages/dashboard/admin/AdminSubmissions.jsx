@@ -1,85 +1,66 @@
 import React, { useState } from "react";
-
-import { useSubmission } from "../../../context/SubmissionContext";
-import { useAssignment } from "../../../context/AssignmentContext";
-import { useStudent } from "../../../context/StudentContext";
 import FilterPanel from "./FilterPanel";
 import { applyFilters } from "./filterUtils";
-import { Table } from "../shared/UI";
-import {
-  SECTION_OPTIONS,
-  SUBMISSION_STATUS_OPTIONS,
-} from "../shared/schoolOptions";
+const CLASS_OPTIONS = [
+  "1-A", "1-B", "2-A", "2-B", "3-A", "3-B", "4-A", "4-B", "5-A", "5-B",
+  "6-A", "6-B", "7-A", "7-B", "8-A", "8-B", "9-A", "9-B", "10-A", "10-B",
+  "11-A", "11-B", "12-A", "12-B"
+];
+
+const initialSubmissions = [
+  {
+    id: "sub-1",
+    studentName: "Aarav Sharma",
+    assignmentTitle: "Thermodynamics Numerical Problems",
+    classId: "10-A",
+    date: "2026-11-02",
+    status: "Submitted",
+    marks: "23 / 25",
+    content: "Solved questions 1-15 with step-by-step explanations.",
+    feedback: "Excellent problem solving.",
+  },
+  {
+    id: "sub-2",
+    studentName: "Diya Patel",
+    assignmentTitle: "Quadratic Equations Worksheet",
+    classId: "10-A",
+    date: "2026-11-01",
+    status: "Graded",
+    marks: "19 / 20",
+    content: "Worksheet completed and attached.",
+    feedback: "Very good work, check sign in question 4.",
+  },
+  {
+    id: "sub-3",
+    studentName: "Rohan Verma",
+    assignmentTitle: "Essay: The Role of Technology in Education",
+    classId: "9-A",
+    date: "2026-11-01",
+    status: "Submitted",
+    marks: "Pending",
+    content: "Submitted essay on digital classroom transformation.",
+    feedback: "Under review.",
+  },
+];
 
 export default function AdminSubmissions() {
-  const { data: submissions } = useSubmission();
-  const { data: assignments } = useAssignment();
-  const { data: students } = useStudent();
+  const [submissions] = useState(initialSubmissions);
   const [search, setSearch] = useState("");
   const [values, setValues] = useState({});
   const [sort, setSort] = useState("newest");
 
-  const assignmentFor = (submission) =>
-    assignments.items.find(
-      (assignment) =>
-        String(assignment.id) === String(submission.assignmentId),
-    );
-  const studentName = (studentId) =>
-    students.items.find((student) => String(student.id) === String(studentId))
-      ?.name || "Unknown student";
   const filters = [
-    {
-      key: "classId",
-      label: "Class",
-      includeDynamic: true,
-      value: (submission) => assignmentFor(submission)?.classId,
-    },
-    {
-      key: "section",
-      label: "Section",
-      options: SECTION_OPTIONS,
-      value: (submission) =>
-        String(assignmentFor(submission)?.classId || "").split("-")[1],
-    },
-    {
-      key: "assignmentId",
-      label: "Assignment",
-      includeDynamic: true,
-      value: (submission) => assignmentFor(submission)?.title,
-    },
-    {
-      key: "studentId",
-      label: "Student",
-      includeDynamic: true,
-      value: (submission) => studentName(submission.studentId),
-    },
-    { key: "status", label: "Submission status", options: SUBMISSION_STATUS_OPTIONS },
-    { key: "date", label: "Submission date", type: "date" },
-    {
-      key: "reviewState",
-      label: "Reviewed",
-      options: ["Reviewed", "Unreviewed"],
-      value: (submission) =>
-        submission.reviewedAt ||
-        ["Checked", "Resubmit"].includes(submission.status)
-          ? "Reviewed"
-          : "Unreviewed",
-    },
+    { key: "classId", label: "Class", options: CLASS_OPTIONS },
+    { key: "status", label: "Status", options: ["Submitted", "Graded", "Pending"] },
   ];
-  const searchable = [
-    "content",
-    "date",
-    "status",
-    { value: (submission) => studentName(submission.studentId) },
-    { value: (submission) => assignmentFor(submission)?.title },
-  ];
+
   const filtered = applyFilters(
-    submissions.items,
+    submissions,
     search,
     filters,
     values,
     sort,
-    searchable,
+    ["studentName", "assignmentTitle", "classId", "status"]
   );
 
   return (
@@ -87,55 +68,64 @@ export default function AdminSubmissions() {
       <div className="module-head">
         <div>
           <span className="eyebrow">SCHOOL RECORDS</span>
-          <h1>Student submissions</h1>
-          <p>View shared submission progress, student answers and review status across the school.</p>
+          <h1>Student Submissions</h1>
+          <p>View student assignment submissions, answers and evaluation details.</p>
         </div>
       </div>
+
       <FilterPanel
         search={search}
         setSearch={setSearch}
         filters={filters}
         values={values}
         setValues={setValues}
-        items={submissions.items}
+        items={submissions}
         count={filtered.length}
-        total={submissions.items.length}
+        total={submissions.length}
         sort={sort}
         setSort={setSort}
-        searchPlaceholder="Search submissions, students or assignments..."
+        searchPlaceholder="Search by student, assignment or class..."
       />
-      {filtered.length ? (
-        <Table
-          headers={["Student", "Assignment", "Class", "Submitted", "Status", "Marks", "Review details"]}
-          rows={filtered.map((submission) => {
-            const assignment = assignmentFor(submission);
-            const latest =
-              submission.attempts?.[submission.attempts.length - 1];
-            const attachments =
-              latest?.attachments || submission.attachments || [];
 
-            return [
-              studentName(submission.studentId),
-              assignment?.title || "Assignment unavailable",
-              assignment?.classId || "—",
-              submission.date || "—",
-              submission.status || "Submitted",
-              submission.marks === "" || submission.marks == null
-                ? "—"
-                : `${submission.marks} / ${assignment?.maxMarks ?? "—"}`,
-              <details className="admin-submission-details">
-                <summary>Answer and review</summary>
-                <p><b>Answer:</b> {latest?.content ?? submission.content ?? "No written answer."}</p>
-                <p><b>Feedback:</b> {submission.feedback || "No feedback yet."}</p>
-                <p><b>Files:</b> {attachments.length ? attachments.map((file) => file.filename).join(", ") : "None"}</p>
-                {assignment && <p><b>Instructions:</b> {assignment.description || "None provided."}</p>}
-              </details>,
-            ];
-          })}
-        />
-      ) : (
-        <p className="role-empty">{submissions.items.length ? "No submissions match the current filters." : "No student submissions have been received yet."}</p>
-      )}
+      <div className="panel table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Assignment</th>
+              <th>Class</th>
+              <th>Submission Date</th>
+              <th>Status</th>
+              <th>Marks</th>
+              <th>Details &amp; Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.map((item) => (
+              <tr key={item.id}>
+                <td><strong>{item.studentName}</strong></td>
+                <td>{item.assignmentTitle}</td>
+                <td>{item.classId}</td>
+                <td>{item.date}</td>
+                <td>
+                  <span className={`status ${item.status === "Graded" ? "active" : "pending"}`}>
+                    {item.status}
+                  </span>
+                </td>
+                <td><strong>{item.marks}</strong></td>
+                <td>
+                  <small className="muted">{item.content}</small>
+                  {item.feedback && (
+                    <div style={{ marginTop: "4px", color: "#0f766e" }}>
+                      <small><strong>Note:</strong> {item.feedback}</small>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

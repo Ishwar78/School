@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   GraduationCap,
   Users,
@@ -13,86 +13,89 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-import { useStudent } from "../../../context/StudentContext";
-import { useTeacher } from "../../../context/TeacherContext";
-import { useParent } from "../../../context/ParentContext";
-import { useClass } from "../../../context/ClassContext";
-import { useAttendance } from "../../../context/AttendanceContext";
-import { useAssignment } from "../../../context/AssignmentContext";
-import { useFee } from "../../../context/FeeContext";
-import { useReport } from "../../../context/ReportContext";
-import { useAnnouncement } from "../../../context/AnnouncementContext";
-
 export default function AdminOverview({ navigate }) {
-  const students = useStudent().data.items,
-    teachers = useTeacher().data.items,
-    parents = useParent().data.items,
-    classes = useClass().data.items;
-  const attendance = useAttendance().data.items,
-    assignments = useAssignment().data.items,
-    fees = useFee().data.items,
-    reports = useReport().data.items,
-    announcements = useAnnouncement().data.items;
+  const [stats] = useState({
+    students: 1240,
+    teachers: 86,
+    parents: 1150,
+    classes: 34,
+    presentStudents: 1182,
+    absentStudents: 58,
+    pendingFees: 48500,
+    openReports: 3,
+    assignments: 24,
+  });
 
-  const today = new Date().toLocaleDateString("en-CA");
-
-  const todayAttendance = attendance.filter((a) => a.date === today);
-
-  const pending = fees.reduce(
-    (sum, fee) => sum + Math.max(0, Number(fee.total) - Number(fee.paid)),
-    0,
-  );
+  const [announcements] = useState([
+    {
+      id: 1,
+      title: "Annual Sports Day Registration Open",
+      date: "2026-11-05",
+      audience: "All Students & Parents",
+      priority: "High",
+    },
+    {
+      id: 2,
+      title: "Half-Yearly Examination Timetable Released",
+      date: "2026-11-03",
+      audience: "Classes 6-12",
+      priority: "Important",
+    },
+    {
+      id: 3,
+      title: "Parent-Teacher Meeting Scheduled",
+      date: "2026-11-01",
+      audience: "All Parents",
+      priority: "Normal",
+    },
+  ]);
 
   const cards = [
     {
       label: "Total Students",
-      value: students.length,
+      value: stats.students,
       icon: GraduationCap,
       color: "blue",
     },
     {
       label: "Total Teachers",
-      value: teachers.length,
+      value: stats.teachers,
       icon: Users,
       color: "yellow",
     },
     {
       label: "Total Parents",
-      value: parents.length,
+      value: stats.parents,
       icon: UserRound,
       color: "purple",
     },
     {
       label: "Active Classes",
-      value: classes.length,
+      value: stats.classes,
       icon: School,
       color: "green",
     },
     {
-      label: "Present Students",
-      value: todayAttendance.filter(
-        (a) => a.role === "student" && a.status === "Present",
-      ).length,
+      label: "Present Today",
+      value: stats.presentStudents,
       icon: CalendarCheck,
       color: "green",
     },
     {
-      label: "Absent Students",
-      value: todayAttendance.filter(
-        (a) => a.role === "student" && a.status === "Absent",
-      ).length,
+      label: "Absent Today",
+      value: stats.absentStudents,
       icon: CalendarCheck,
       color: "yellow",
     },
     {
       label: "Pending Fees",
-      value: `₹${pending.toLocaleString("en-IN")}`,
+      value: `₹${stats.pendingFees.toLocaleString("en-IN")}`,
       icon: Wallet,
       color: "blue",
     },
     {
       label: "Open Reports",
-      value: reports.filter((r) => r.status !== "Resolved").length,
+      value: stats.openReports,
       icon: FileText,
       color: "purple",
     },
@@ -181,29 +184,19 @@ export default function AdminOverview({ navigate }) {
             </div>
             <Bell size={20} />
           </div>
-          {announcements
-            .slice(-4)
-            .reverse()
-            .map((a) => (
-              <div className="simple-row" key={a.id}>
-                <div>
-                  <strong>{a.title}</strong>
-                  <small>
-                    {a.date} · {a.audience}
-                  </small>
-                </div>
-                <span className="status pending">{a.priority}</span>
+          {announcements.map((a) => (
+            <div className="simple-row" key={a.id}>
+              <div>
+                <strong>{a.title}</strong>
+                <small>
+                  {a.date} &middot; {a.audience}
+                </small>
               </div>
-            ))}
-          {!announcements.length && (
-            <div className="empty-state">
-              <Bell size={30} />
-              <h3>No announcements yet</h3>
-              <p>Published updates will appear here.</p>
+              <span className="status pending">{a.priority}</span>
             </div>
-          )}
+          ))}
           <p className="muted">
-            {assignments.length} assignments · {reports.length} reports
+            {stats.assignments} assignments &middot; {stats.openReports} open reports
           </p>
         </section>
       </div>

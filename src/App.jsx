@@ -1,15 +1,7 @@
-
 import React from "react";
-
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // VEDA WEBSITE PAGES
-
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Academics from "./pages/Academics";
@@ -28,137 +20,54 @@ import AdminLogin from "./pages/AdminLogin";
 import { PrivacyPolicy, TermsConditions } from "./pages/Legal";
 
 // SHARED COMPONENTS
-
 import ScrollToTop from "./components/ScrollToTop";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// DASHBOARDS
-
-import StudentDashboard from "./pages/dashboard/student/StudentDashboard";
-import ParentDashboard from "./pages/dashboard/parent/ParentDashboard";
-import TeacherDashboard from "./pages/dashboard/teacher/TeacherDashboard";
+// ADMIN DASHBOARD ONLY
 import AdminDashboard from "./pages/dashboard/admin/AdminDashboard";
-
-// SHARED CONTEXT
-
-import { SchoolProvider } from "./context/SchoolContext";
-
-// DASHBOARD STYLES
 
 export default function App() {
   return (
-    <BrowserRouter future={{ v7_startTransition:  true, v7_relativeSplatPath: true }}>
-      <SchoolProvider>
-        <ScrollToTop />
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <ScrollToTop />
+      <Routes>
+        {/* PUBLIC WEBSITE */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/academics" element={<Academics />} />
+        <Route path="/fee-structure" element={<FeeStructure />} />
+        <Route path="/classes" element={<Classes />} />
+        <Route path="/faculty" element={<Faculty />} />
+        <Route path="/facilities" element={<Facilities />} />
+        <Route path="/admissions" element={<Admissions />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route path="/blog-news" element={<News />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/login" element={<Login />} />
 
-        <Routes>
+        {/* DEDICATED ADMIN LOGIN */}
+        <Route path="/admin/login-school" element={<AdminLogin />} />
+        <Route path="/admin/login" element={<Navigate to="/admin/login-school" replace />} />
+        <Route path="/admin" element={<Navigate to="/admin/login-school" replace />} />
 
-          {/* VEDA PUBLIC WEBSITE */}
+        {/* DASHBOARD ROUTE (ONLY ADMIN) */}
+        <Route path="/dashboard" element={<Navigate to="/dashboard/admin" replace />} />
+        <Route
+          path="/dashboard/admin/*"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route path="/" element={<Home />} />
-
-          <Route path="/about" element={<About />} />
-
-          <Route path="/academics" element={<Academics />} />
-
-          <Route path="/fee-structure" element={<FeeStructure />} />
-
-          <Route path="/classes" element={<Classes />} />
-
-          <Route path="/faculty" element={<Faculty />} />
-
-          <Route path="/facilities" element={<Facilities />} />
-
-          <Route path="/admissions" element={<Admissions />} />
-
-          <Route path="/blog" element={<Blog />} />
-
-          <Route path="/blog/:slug" element={<BlogDetail />} />
-
-          <Route path="/blog-news" element={<News />} />
-
-          <Route path="/gallery" element={<Gallery />} />
-
-          <Route path="/contact" element={<Contact />} />
-
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-
-          <Route path="/terms" element={<TermsConditions />} />
-
-          <Route path="/login" element={<Login />} />
-
-          {/* DEDICATED ADMIN LOGIN */}
-          <Route path="/admin/login-school" element={<AdminLogin />} />
-          <Route path="/admin/login" element={<Navigate to="/admin/login-school" replace />} />
-          <Route path="/admin" element={<Navigate to="/admin/login-school" replace />} />
-
-
-          {/* DASHBOARD REDIRECT */}
-
-          <Route
-            path="/dashboard"
-            element={<ProtectedRoute />}
-          />
-
-
-          {/* STUDENT DASHBOARD */}
-
-          <Route
-            path="/dashboard/student/*"
-            element={
-              <ProtectedRoute role="student">
-                <StudentDashboard />
-              </ProtectedRoute>
-            }
-          />
-
-
-          {/* PARENT DASHBOARD */}
-
-          <Route
-            path="/dashboard/parent/*"
-            element={
-              <ProtectedRoute role="parent">
-                <ParentDashboard />
-              </ProtectedRoute>
-            }
-          />
-
-
-          {/* TEACHER DASHBOARD */}
-
-          <Route
-            path="/dashboard/teacher/*"
-            element={
-              <ProtectedRoute role="teacher">
-                <TeacherDashboard />
-              </ProtectedRoute>
-            }
-          />
-
-
-          {/* ADMIN DASHBOARD */}
-
-          <Route
-            path="/dashboard/admin/*"
-            element={
-              <ProtectedRoute role="admin">
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-
-
-          {/* UNKNOWN ROUTES */}
-
-          <Route
-            path="*"
-            element={<Navigate to="/" replace />}
-          />
-
-        </Routes>
-
-      </SchoolProvider>
+        {/* UNKNOWN ROUTES */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </BrowserRouter>
   );
 }

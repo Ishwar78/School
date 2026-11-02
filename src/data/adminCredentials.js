@@ -3,8 +3,8 @@
 export const DEFAULT_ADMIN = {
   id: "admin-master",
   name: "School Administrator",
-  email: "admin@eduflow.com",
-  password: "admin123",
+  email: "SchoolAdmin@gmail.com",
+  password: "SchoolAdmin@234@#",
   role: "admin",
   schoolName: "VEDA International School",
 };
@@ -42,4 +42,3 @@ export function authenticateAdmin(email, password) {
 
   return null;
 }
-

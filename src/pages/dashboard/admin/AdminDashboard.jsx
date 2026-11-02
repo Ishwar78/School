@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, Bell, Search } from "lucide-react";
+import { Menu, Bell } from "lucide-react";
 import AdminSidebar from "./AdminSidebar";
 import AdminOverview from "./AdminOverview";
 import StudentInfo from "./StudentInfo";
@@ -7,7 +7,8 @@ import TeacherInfo from "./TeacherInfo";
 import ParentInfo from "./ParentInfo";
 import LinkedStudents from "./LinkedStudents";
 import ManageClasses from "./ManageClasses";
-import AttendancePage from "./AttendancePage";
+import StudentAttendance from "./StudentAttendance";
+import TeacherAttendance from "./TeacherAttendance";
 import Assignments from "./Assignments";
 import AdminSubmissions from "./AdminSubmissions";
 import Fees from "./Fees";
@@ -16,21 +17,14 @@ import Information from "./Information";
 import AdminAccounts from "./AdminAccounts";
 import AdminResults from "./AdminResults";
 import AdminTimetable from "./AdminTimetable";
-import useSchool from "../shared/useSchool";
 import "./Admin.css";
 
 const pages = {
   overview: ["Admin Overview", AdminOverview],
   students: ["Student Information", StudentInfo],
-  studentAttendance: [
-    "Student Attendance",
-    () => <AttendancePage role="student" />,
-  ],
+  studentAttendance: ["Student Attendance", StudentAttendance],
   teachers: ["Teacher Information", TeacherInfo],
-  teacherAttendance: [
-    "Teacher Attendance",
-    () => <AttendancePage role="teacher" />,
-  ],
+  teacherAttendance: ["Teacher Attendance", TeacherAttendance],
   classes: ["Class Management", ManageClasses],
   timetable: ["Timetable Management", AdminTimetable],
   assignments: ["Assignments & Homework", Assignments],
@@ -45,11 +39,10 @@ const pages = {
 };
 
 export default function AdminDashboard() {
-  const school = useSchool();
   const [page, setPage] = useState("overview");
   const [open, setOpen] = useState(false);
 
-  const [title, Component] = pages[page];
+  const [title, Component] = pages[page] || pages.overview;
 
   return (
     <div className="dashboard">
@@ -76,8 +69,6 @@ export default function AdminDashboard() {
           </div>
 
           <div className="topbar-actions">
-            <span className="topbar-search">
-            </span>
             <button
               className="icon-button"
               onClick={() => setPage("announcements")}
@@ -93,11 +84,6 @@ export default function AdminDashboard() {
           </div>
         </header>
         <main className="content">
-          {school.storageErrors.map((message) => (
-            <p className="storage-warning" role="alert" key={message}>
-              {message}
-            </p>
-          ))}
           <Component navigate={setPage} />
         </main>
       </div>

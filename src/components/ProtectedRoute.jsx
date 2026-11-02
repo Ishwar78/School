@@ -1,29 +1,22 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-import { readAuthenticatedUser } from "../pages/dashboard/shared/identity";
+function readAuthenticatedUser() {
+  try {
+    const raw = localStorage.getItem("eduflowUser");
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
 
-const dashboardRoles = ["admin", "teacher", "student", "parent"];
-
-export default function ProtectedRoute({ role, children }) {
+export default function ProtectedRoute({ children }) {
   const user = readAuthenticatedUser();
-  const userRole =
-    typeof user?.role === "string" ? user.role.toLowerCase() : "";
-  const isAuthenticated =
-    user?.id != null &&
-    typeof user.email === "string" &&
-    user.email.length > 0 &&
-    dashboardRoles.includes(userRole);
+  const userRole = typeof user?.role === "string" ? user.role.toLowerCase() : "";
+  const isAuthenticated = Boolean(user && userRole === "admin");
 
   if (!isAuthenticated) {
-    if (role === "admin") {
-      return <Navigate to="/admin/login-school" replace />;
-    }
-    return <Navigate to="/login" replace />;
-  }
-
-  if (!role || role !== userRole) {
-    return <Navigate to={`/dashboard/${userRole}`} replace />;
+    return <Navigate to="/admin/login-school" replace />;
   }
 
   return children;

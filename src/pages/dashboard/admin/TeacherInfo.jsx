@@ -1,27 +1,68 @@
-import React, { useMemo, useState } from "react";
+
+import React, { useEffect, useMemo, useState } from "react";
 import {
-  ChevronDown,
   Eye,
   Pencil,
-  Shield,
-  UserRound,
+  Trash2,
   X,
+  Plus,
+  Search,
+  Users,
+  CheckCircle,
+  Clock,
+  ShieldCheck,
+  BookOpen,
+  GraduationCap,
+  UserRound,
+  ChevronDown
 } from "lucide-react";
 
-import { useTeacher } from "../../../context/TeacherContext";
-import { useClass } from "../../../context/ClassContext";
-import FilterPanel from "./FilterPanel";
-import { applyFilters } from "./filterUtils";
-import { teacherFilters } from "./moduleFilters";
-import {
-  getTeacherRole,
-  getTeacherSubjects,
-  TEACHER_ROLE_OPTIONS,
-} from "../shared/school";
-import {
-  DEPARTMENT_OPTIONS,
-  SUBJECT_OPTIONS,
-} from "../shared/schoolOptions";
+import "./TeacherInfo.css";
+
+const CLASS_OPTIONS = [
+  "1st", "2nd", "3rd", "4th", "5th", "6th",
+  "7th", "8th", "9th", "10th", "11th", "12th"
+];
+
+const SECTION_OPTIONS = ["A", "B", "C", "D"];
+
+const DEPARTMENT_OPTIONS = [
+  "Science",
+  "Mathematics",
+  "English",
+  "Social Studies",
+  "Hindi",
+  "Arts & Sports",
+  "Computer Science",
+  "Administration"
+];
+
+const SUBJECT_OPTIONS = [
+  "Mathematics",
+  "English",
+  "Science",
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "Social Studies",
+  "Hindi",
+  "Computer Science",
+  "Physical Education",
+  "Arts",
+  "Sanskrit"
+];
+
+const ROLE_OPTIONS = [
+  "Class Teacher",
+  "Senior PGT",
+  "TGT",
+  "PRT",
+  "Head of Department",
+  "Lab Assistant",
+  "Subject Teacher"
+];
+
+const STATUS_OPTIONS = ["Active", "Inactive", "Pending"];
 
 const emptyTeacher = {
   employee: "",
@@ -31,19 +72,23 @@ const emptyTeacher = {
   department: "",
   subjects: [],
   classes: [],
-  classTeacherClasses: [],
-  status: "Active",
+  role: "Subject Teacher",
+  qualification: "",
+  experience: "",
+  joiningDate: "",
+  dob: "",
+  gender: "",
+  address: "",
+  aadhaar: "",
+  emergencyContact: "",
+  password: "",
+  confirmPassword: "",
+  status: "Active"
 };
 
-function values(value) {
-  if (Array.isArray(value)) return value.map(String);
-  return String(value || "")
-    .split(",")
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
+const initialTeachers = [];
 
-function initials(name) {
+function getInitials(name) {
   return String(name || "Teacher")
     .split(/\s+/)
     .slice(0, 2)
@@ -52,421 +97,1268 @@ function initials(name) {
     .toUpperCase();
 }
 
-function teacherDraft(teacher) {
-  return { role: getTeacherRole(teacher) };
+function getTeacherClasses(teacher) {
+  if (Array.isArray(teacher.classes)) {
+    return teacher.classes;
+  }
+
+  return teacher.classes
+    ? String(teacher.classes).split(",").map((v) => v.trim()).filter(Boolean)
+    : [];
+}
+
+function getTeacherSubjects(teacher) {
+  if (Array.isArray(teacher.subjects)) {
+    return teacher.subjects;
+  }
+
+  return teacher.subject ? [teacher.subject] : [];
+}
+
+function formatClasses(classes) {
+  return getTeacherClasses({ classes }).join(", ");
 }
 
 export default function TeacherInfo() {
-  const { data: teacherData } = useTeacher();
-  const { data: classData } = useClass();
-  const [search, setSearch] = useState("");
-  const [filterValues, setFilterValues] = useState({});
-  const [sort, setSort] = useState("newest");
-  const [menuId, setMenuId] = useState("");
-  const [drawerTeacher, setDrawerTeacher] = useState(null);
-  const [draft, setDraft] = useState(null);
-  const [formError, setFormError] = useState("");
+  const [teachers, setTeachers] = useState(() => {
+    try {
+      const saved = localStorage.getItem("veda_admin_teachers");
+      return saved ? JSON.parse(saved) : initialTeachers;
+    } catch {
+      return initialTeachers;
+    }
+  });
+
+  const [form, setForm] = useState(emptyTeacher);
+  const [editingId, setEditingId] = useState(null);
+
+  const [showForm, setShowForm] = useState(false);
   const [detailsTeacher, setDetailsTeacher] = useState(null);
-  const [editingTeacher, setEditingTeacher] = useState(null);
-  const [showTeacherForm, setShowTeacherForm] = useState(false);
-  const [editForm, setEditForm] = useState(emptyTeacher);
 
-  const subjects = useMemo(
-    () =>
-      [...new Set([
-        ...SUBJECT_OPTIONS,
-        ...teacherData.items.flatMap((teacher) =>
-          values(teacher.subjects || teacher.subject),
-        ),
-      ])],
-    [teacherData.items],
-  );
-  const classes = useMemo(
-    () =>
-      classData.items
-        .map((schoolClass) => ({
-          id: String(schoolClass.classId || schoolClass.id ||
-            `${schoolClass.grade}-${schoolClass.section}`),
-          label: String(schoolClass.classId || schoolClass.id ||
-            `${schoolClass.grade}-${schoolClass.section}`),
-        }))
-        .filter((schoolClass) => schoolClass.id && schoolClass.id !== "undefined"),
-    [classData.items],
-  );
-  const filteredTeachers = applyFilters(
-    teacherData.items,
-    search,
-    teacherFilters,
-    filterValues,
-    sort,
-    [
-      "name",
-      "email",
-      "employee",
-      { key: "subjects", value: getTeacherSubjects },
-      "classes",
-      { key: "role", value: getTeacherRole },
-    ],
-  );
+  const [search, setSearch] = useState("");
+  const [filterClass, setFilterClass] = useState("");
+  const [filterDepartment, setFilterDepartment] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
 
-  function openRoles(teacher) {
-    setDrawerTeacher(teacher);
-    setDraft(teacherDraft(teacher));
-    setMenuId("");
-  }
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedSection, setSelectedSection] = useState("");
 
-  function closeRoles() {
-    setDrawerTeacher(null);
-    setDraft(null);
-  }
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  function saveRoles(event) {
-    event.preventDefault();
-    if (!drawerTeacher || !draft) return;
-    teacherData.update(drawerTeacher.id, {
-      role: draft.role,
-      roles: undefined,
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        "veda_admin_teachers",
+        JSON.stringify(teachers)
+      );
+    } catch (err) {
+      console.error("Unable to save teacher records", err);
+    }
+  }, [teachers]);
+
+  // DASHBOARD COUNTS
+
+  const totalTeachers = teachers.length;
+
+  const activeTeachers = teachers.filter(
+    (teacher) => (teacher.status || "Active") === "Active"
+  ).length;
+
+  const inactiveTeachers = teachers.filter(
+    (teacher) => teacher.status === "Inactive"
+  ).length;
+
+  // SEARCH AND FILTER
+
+  const filteredTeachers = useMemo(() => {
+    return teachers.filter((teacher) => {
+      const searchText = search.toLowerCase();
+
+      const matchesSearch =
+        (teacher.name || "").toLowerCase().includes(searchText) ||
+        (teacher.email || "").toLowerCase().includes(searchText) ||
+        (teacher.employee || "").toLowerCase().includes(searchText) ||
+        (teacher.phone || "").includes(searchText) ||
+        getTeacherSubjects(teacher).join(" ").toLowerCase().includes(searchText) ||
+        getTeacherClasses(teacher).join(" ").toLowerCase().includes(searchText);
+
+      const matchesClass =
+        !filterClass ||
+        getTeacherClasses(teacher).includes(filterClass);
+
+      const matchesDepartment =
+        !filterDepartment ||
+        teacher.department === filterDepartment;
+
+      const matchesStatus =
+        !filterStatus ||
+        (teacher.status || "Active") === filterStatus;
+
+      return (
+        matchesSearch &&
+        matchesClass &&
+        matchesDepartment &&
+        matchesStatus
+      );
     });
-    closeRoles();
-  }
+  }, [
+    teachers,
+    search,
+    filterClass,
+    filterDepartment,
+    filterStatus
+  ]);
 
-  function startEdit(teacher) {
-    setEditingTeacher(teacher);
-    setShowTeacherForm(true);
-    setEditForm({
+  // FORM CHANGE
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+
+    setError("");
+  };
+
+  const editField = (name, value) => {
+    setForm((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+
+    setError("");
+  };
+
+  // ADD ASSIGNED CLASS + SECTION
+
+  const addClassAssignment = () => {
+    if (!selectedClass || !selectedSection) {
+      setError("Please select both Class and Section.");
+      return;
+    }
+
+    const classValue = `${selectedClass}-${selectedSection}`;
+
+    if (form.classes.includes(classValue)) {
+      setError("This class and section is already assigned.");
+      return;
+    }
+
+    setForm((prev) => ({
+      ...prev,
+      classes: [...prev.classes, classValue]
+    }));
+
+    setSelectedClass("");
+    setSelectedSection("");
+    setError("");
+  };
+
+  const removeClassAssignment = (classValue) => {
+    setForm((prev) => ({
+      ...prev,
+      classes: prev.classes.filter(
+        (item) => item !== classValue
+      )
+    }));
+  };
+
+  // SUBJECT SELECTION
+
+  const toggleSubject = (subject) => {
+    setForm((prev) => ({
+      ...prev,
+      subjects: prev.subjects.includes(subject)
+        ? prev.subjects.filter((item) => item !== subject)
+        : [...prev.subjects, subject]
+    }));
+
+    setError("");
+  };
+
+  // OPEN ADD FORM
+
+  const openAddForm = () => {
+    setForm(emptyTeacher);
+    setEditingId(null);
+    setSelectedClass("");
+    setSelectedSection("");
+    setError("");
+    setShowPassword(false);
+    setShowForm(true);
+    setDetailsTeacher(null);
+  };
+
+  // EDIT TEACHER
+
+  const startEdit = (teacher) => {
+    setForm({
       ...emptyTeacher,
       ...teacher,
+      classes: getTeacherClasses(teacher),
       subjects: getTeacherSubjects(teacher),
-      classes: values(teacher.classes),
-      classTeacherClasses: Array.isArray(teacher.classTeacherClasses)
-        ? values(teacher.classTeacherClasses)
-        : getTeacherRole(teacher) === "Class Teacher"
-          ? classData.items
-            .filter(
-              (schoolClass) =>
-                String(schoolClass.teacherId) === String(teacher?.id),
-            )
-            .map((schoolClass) =>
-              String(
-                schoolClass.classId ||
-                  schoolClass.id ||
-                  `${schoolClass.grade}-${schoolClass.section}`,
-              ),
-            )
-          : [],
+      password: "",
+      confirmPassword: ""
     });
-    setFormError("");
-    setMenuId("");
-  }
 
-  function saveTeacher(event) {
-    event.preventDefault();
-    const name = editForm.name.trim();
-    const email = editForm.email.trim();
-    if (!name || !email) {
-      setFormError("Enter the teacher's name and email.");
-      return;
-    }
+    setEditingId(teacher.id);
+    setSelectedClass("");
+    setSelectedSection("");
+    setError("");
+    setShowPassword(false);
+    setShowForm(true);
+    setDetailsTeacher(null);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  // SAVE TEACHER
+
+  const saveTeacher = (e) => {
+    e.preventDefault();
+    setError("");
+
     if (
-      !Array.isArray(editForm.classes) ||
-      !Array.isArray(editForm.subjects) ||
-      !Array.isArray(editForm.classTeacherClasses) ||
-      editForm.classes.some(
-        (classId) => !classes.some((schoolClass) => schoolClass.id === classId),
-      ) ||
-      editForm.subjects.some((subject) => !subjects.includes(subject)) ||
-      editForm.classTeacherClasses.some(
-        (classId) => !editForm.classes.includes(classId),
-      )
+      !form.employee.trim() ||
+      !form.name.trim() ||
+      !form.email.trim() ||
+      !form.phone.trim()
     ) {
-      setFormError("Check that assigned classes and subjects are valid.");
+      setError("Please fill all required teacher details.");
       return;
     }
-    const duplicateEmail = teacherData.items.some(
+
+    if (!/^\d{10}$/.test(form.phone.replace(/\D/g, "").slice(-10))) {
+      setError("Please enter a valid 10 digit mobile number.");
+      return;
+    }
+
+    if (form.aadhaar && !/^\d{12}$/.test(form.aadhaar)) {
+      setError("Please enter a valid 12 digit Aadhaar number.");
+      return;
+    }
+
+    if (!form.department) {
+      setError("Please select a department.");
+      return;
+    }
+
+    if (form.classes.length === 0) {
+      setError("Please assign at least one class and section.");
+      return;
+    }
+
+    if (form.subjects.length === 0) {
+      setError("Please select at least one subject.");
+      return;
+    }
+
+    if (!editingId && !form.password) {
+      setError("Please enter teacher password.");
+      return;
+    }
+
+    if (!editingId && !form.confirmPassword) {
+      setError("Please confirm teacher password.");
+      return;
+    }
+
+    if (
+      form.password &&
+      form.password !== form.confirmPassword
+    ) {
+      setError("Password and Confirm Password do not match.");
+      return;
+    }
+
+    const duplicateEmployee = teachers.some(
       (teacher) =>
-        String(teacher.id) !== String(editingTeacher?.id) &&
-        String(teacher.email || "").toLowerCase() === email.toLowerCase(),
+        teacher.id !== editingId &&
+        teacher.employee.toLowerCase() === form.employee.trim().toLowerCase()
     );
-    if (duplicateEmail) {
-      setFormError("That email address is already assigned to another teacher.");
+
+    if (duplicateEmployee) {
+      setError("This Teacher ID is already registered.");
       return;
     }
-    const classTeacherClasses = values(editForm.classTeacherClasses).filter(
-      (classId) => editForm.classes.includes(classId),
+
+    const duplicateEmail = teachers.some(
+      (teacher) =>
+        teacher.id !== editingId &&
+        teacher.email.toLowerCase() === form.email.trim().toLowerCase()
     );
-    const changes = {
-      ...editForm,
-      role: editingTeacher ? getTeacherRole(editingTeacher) : "Subject Teacher",
-      roles: undefined,
-      name,
-      email,
-      subjects: [...editForm.subjects],
-      subject: editForm.subjects.join(", "),
-      classes: [...editForm.classes],
-      classTeacherClasses,
-    };
-    if (editingTeacher) {
-      teacherData.update(editingTeacher.id, changes);
-      classData.items.forEach((schoolClass) => {
-        const classId = String(
-          schoolClass.classId ||
-            schoolClass.id ||
-            `${schoolClass.grade}-${schoolClass.section}`,
-        );
-        if (
-          String(schoolClass.teacherId || "") === String(editingTeacher.id) &&
-          !classTeacherClasses.includes(classId)
-        ) {
-          classData.update(schoolClass.id, { teacherId: "" });
-        }
-      });
+
+    if (duplicateEmail) {
+      setError("This email is already registered with another teacher.");
+      return;
     }
-    else
-      teacherData.add(changes);
-    setEditingTeacher(null);
-    setShowTeacherForm(false);
-    setFormError("");
-  }
 
-  function toggleStatus(teacher) {
-    teacherData.update(teacher.id, {
-      status: (teacher.status || "Active") === "Active" ? "Inactive" : "Active",
-    });
-    setMenuId("");
-  }
+    const teacherData = {
+      ...form,
+      id: editingId || "tch-" + Date.now(),
+      employee: form.employee.trim(),
+      name: form.name.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      subjects: [...form.subjects],
+      classes: [...form.classes],
+      createdAt: editingId
+        ? teachers.find((t) => t.id === editingId)?.createdAt
+        : new Date().toISOString()
+    };
 
-  function editField(key, value) {
-    setEditForm((current) => ({ ...current, [key]: value }));
-  }
+    // Never store passwords in localStorage.
+    // Send passwords securely to backend and hash using BCrypt.
+    delete teacherData.password;
+    delete teacherData.confirmPassword;
+
+    if (editingId) {
+      setTeachers((prev) =>
+        prev.map((teacher) =>
+          teacher.id === editingId ? teacherData : teacher
+        )
+      );
+    } else {
+      setTeachers((prev) => [teacherData, ...prev]);
+    }
+
+    setForm(emptyTeacher);
+    setEditingId(null);
+    setShowForm(false);
+    setError("");
+  };
+
+  // DELETE TEACHER
+
+  const deleteTeacher = (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this teacher?"
+    );
+
+    if (!confirmed) return;
+
+    setTeachers((prev) =>
+      prev.filter((teacher) => teacher.id !== id)
+    );
+
+    setDetailsTeacher(null);
+  };
+
+  // CHANGE STATUS
+
+  const toggleStatus = (teacher) => {
+    setTeachers((prev) =>
+      prev.map((item) =>
+        item.id === teacher.id
+          ? {
+              ...item,
+              status:
+                (item.status || "Active") === "Active"
+                  ? "Inactive"
+                  : "Active"
+            }
+          : item
+      )
+    );
+  };
+
+  const closeForm = () => {
+    setShowForm(false);
+    setEditingId(null);
+    setForm(emptyTeacher);
+    setError("");
+  };
+
+  const renderInput = (
+    label,
+    name,
+    type = "text",
+    required = false,
+    placeholder = ""
+  ) => (
+    <div className="teacher-field" key={name}>
+      <label>
+        {label}
+        {required && <span className="teacher-required">*</span>}
+      </label>
+
+      <input
+        type={type}
+        name={name}
+        value={form[name] || ""}
+        onChange={handleChange}
+        required={required}
+        placeholder={placeholder || `Enter ${label}`}
+      />
+    </div>
+  );
+
+  const renderSelect = (
+    label,
+    name,
+    options,
+    required = false
+  ) => (
+    <div className="teacher-field" key={name}>
+      <label>
+        {label}
+        {required && <span className="teacher-required">*</span>}
+      </label>
+
+      <select
+        name={name}
+        value={form[name] || ""}
+        onChange={handleChange}
+        required={required}
+      >
+        <option value="">Select {label}</option>
+
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 
   return (
-    <section className="teacher-management">
-      <header className="teacher-management-heading">
-        <div>
-          <span className="eyebrow">PEOPLE & ACCESS</span>
-          <h1>Teachers</h1>
-          <p>Manage teacher profiles, teaching assignments and roles.</p>
-        </div>
-        <button
-          type="button"
-          className="primary-btn"
-          onClick={() => startEdit(null)}
-        >
-          + Add Teacher
-        </button>
-      </header>
+    <div className="teacher-management">
 
-      <section className="teacher-directory-card">
-        <FilterPanel
-          search={search}
-          setSearch={setSearch}
-          filters={teacherFilters}
-          values={filterValues}
-          setValues={setFilterValues}
-          items={teacherData.items}
-          count={filteredTeachers.length}
-          total={teacherData.items.length}
-          sort={sort}
-          setSort={setSort}
-          searchPlaceholder="Search name, email, subject or class"
-        />
-        <div className="teacher-management-table-wrap">
-          <table className="teacher-management-table">
+      {/* PAGE HEADER */}
+
+      <div className="teacher-page-header">
+        <div>
+          <span className="teacher-eyebrow">
+            VEDA INTERNATIONAL SCHOOL
+          </span>
+
+          <h1>Teacher Information</h1>
+
+          <p>
+            Register, manage and maintain complete teacher records.
+          </p>
+        </div>
+
+        {!showForm && (
+          <button
+            className="teacher-primary-btn"
+            onClick={openAddForm}
+          >
+            <Plus size={18} />
+            Add New Teacher
+          </button>
+        )}
+      </div>
+
+      {/* DASHBOARD CARDS */}
+
+      <div className="teacher-stats">
+
+        <div className="teacher-stat-card">
+          <div className="teacher-stat-icon navy">
+            <Users size={23} />
+          </div>
+          <div>
+            <span>Total Teachers</span>
+            <h2>{totalTeachers}</h2>
+          </div>
+        </div>
+
+        <div className="teacher-stat-card">
+          <div className="teacher-stat-icon green">
+            <CheckCircle size={23} />
+          </div>
+          <div>
+            <span>Active Teachers</span>
+            <h2>{activeTeachers}</h2>
+          </div>
+        </div>
+
+        <div className="teacher-stat-card">
+          <div className="teacher-stat-icon orange">
+            <Clock size={23} />
+          </div>
+          <div>
+            <span>Inactive Teachers</span>
+            <h2>{inactiveTeachers}</h2>
+          </div>
+        </div>
+
+      </div>
+
+      {/* ADD / EDIT TEACHER FORM */}
+
+      {showForm && (
+        <div className="teacher-form-card">
+
+          <div className="teacher-form-header">
+            <div>
+              <span className="teacher-eyebrow">
+                TEACHER REGISTRATION
+              </span>
+
+              <h2>
+                {editingId ? "Update Teacher Details" : "Add New Teacher"}
+              </h2>
+
+              <p>
+                Enter teacher personal, academic and professional information.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              className="teacher-close-btn"
+              onClick={closeForm}
+            >
+              <X size={19} />
+            </button>
+          </div>
+
+          {error && (
+            <div className="teacher-error">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={saveTeacher}>
+
+            {/* PERSONAL DETAILS */}
+
+            <div className="teacher-form-section">
+
+              <div className="teacher-section-heading">
+                <div className="teacher-section-icon">
+                  <UserRound size={21} />
+                </div>
+
+                <div>
+                  <h3>Personal Information</h3>
+                  <p>Basic teacher details and contact information</p>
+                </div>
+              </div>
+
+              <div className="teacher-form-grid">
+
+                {renderInput(
+                  "Teacher ID",
+                  "employee",
+                  "text",
+                  true
+                )}
+
+                {renderInput(
+                  "Full Name",
+                  "name",
+                  "text",
+                  true
+                )}
+
+                {renderInput(
+                  "Email Address",
+                  "email",
+                  "email",
+                  true
+                )}
+
+                {renderInput(
+                  "Mobile Number",
+                  "phone",
+                  "tel",
+                  true
+                )}
+
+                {renderInput(
+                  "Date of Birth",
+                  "dob",
+                  "date"
+                )}
+
+                {renderSelect(
+                  "Gender",
+                  "gender",
+                  ["Male", "Female", "Other"]
+                )}
+
+                {renderInput(
+                  "Aadhaar Card Number",
+                  "aadhaar",
+                  "text",
+                  false,
+                  "Enter 12 digit Aadhaar number"
+                )}
+
+                {renderInput(
+                  "Emergency Contact",
+                  "emergencyContact",
+                  "tel"
+                )}
+
+                <div className="teacher-field full-width">
+                  <label>Residential Address</label>
+
+                  <textarea
+                    name="address"
+                    rows="3"
+                    value={form.address}
+                    onChange={handleChange}
+                    placeholder="Enter complete address"
+                  />
+                </div>
+
+              </div>
+            </div>
+
+            {/* PROFESSIONAL DETAILS */}
+
+            <div className="teacher-form-section">
+
+              <div className="teacher-section-heading">
+                <div className="teacher-section-icon">
+                  <GraduationCap size={22} />
+                </div>
+
+                <div>
+                  <h3>Professional Information</h3>
+                  <p>Department, qualification and experience</p>
+                </div>
+              </div>
+
+              <div className="teacher-form-grid">
+
+                {renderSelect(
+                  "Department",
+                  "department",
+                  DEPARTMENT_OPTIONS,
+                  true
+                )}
+
+                {renderSelect(
+                  "Teacher Role",
+                  "role",
+                  ROLE_OPTIONS,
+                  true
+                )}
+
+                {renderInput(
+                  "Qualification",
+                  "qualification",
+                  "text"
+                )}
+
+                {renderInput(
+                  "Experience (Years)",
+                  "experience",
+                  "number"
+                )}
+
+                {renderInput(
+                  "Joining Date",
+                  "joiningDate",
+                  "date"
+                )}
+
+                {renderSelect(
+                  "Teacher Status",
+                  "status",
+                  STATUS_OPTIONS
+                )}
+
+              </div>
+            </div>
+
+            {/* SUBJECT SELECTION */}
+
+            <div className="teacher-form-section">
+
+              <div className="teacher-section-heading">
+                <div className="teacher-section-icon">
+                  <BookOpen size={21} />
+                </div>
+
+                <div>
+                  <h3>Teaching Subjects</h3>
+                  <p>Select one or multiple teaching subjects</p>
+                </div>
+              </div>
+
+              <div className="teacher-checkbox-grid">
+
+                {SUBJECT_OPTIONS.map((subject) => (
+                  <label
+                    key={subject}
+                    className={`teacher-checkbox-item ${
+                      form.subjects.includes(subject) ? "selected" : ""
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={form.subjects.includes(subject)}
+                      onChange={() => toggleSubject(subject)}
+                    />
+
+                    <span>{subject}</span>
+                  </label>
+                ))}
+
+              </div>
+            </div>
+
+            {/* CLASS AND SECTION ASSIGNMENT */}
+
+            <div className="teacher-form-section">
+
+              <div className="teacher-section-heading">
+                <div className="teacher-section-icon">
+                  <GraduationCap size={21} />
+                </div>
+
+                <div>
+                  <h3>Class & Section Assignment</h3>
+                  <p>
+                    Assign one or multiple classes and their sections
+                  </p>
+                </div>
+              </div>
+
+              <div className="teacher-class-assignment">
+
+                <div className="teacher-field">
+                  <label>Select Class <span className="teacher-required">*</span></label>
+
+                  <select
+                    value={selectedClass}
+                    onChange={(e) => setSelectedClass(e.target.value)}
+                  >
+                    <option value="">Select Class</option>
+
+                    {CLASS_OPTIONS.map((cls) => (
+                      <option key={cls} value={cls}>
+                        {cls} Class
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="teacher-field">
+                  <label>Select Section <span className="teacher-required">*</span></label>
+
+                  <select
+                    value={selectedSection}
+                    onChange={(e) => setSelectedSection(e.target.value)}
+                  >
+                    <option value="">Select Section</option>
+
+                    {SECTION_OPTIONS.map((section) => (
+                      <option key={section} value={section}>
+                        Section {section}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <button
+                  type="button"
+                  className="teacher-add-class-btn"
+                  onClick={addClassAssignment}
+                >
+                  <Plus size={17} />
+                  Add Class
+                </button>
+
+              </div>
+
+              <div className="teacher-assigned-classes">
+
+                <div className="teacher-assigned-heading">
+                  <strong>Assigned Classes</strong>
+
+                  <span>{form.classes.length} Selected</span>
+                </div>
+
+                {form.classes.length > 0 ? (
+                  <div className="teacher-class-tags">
+
+                    {form.classes.map((classValue) => (
+                      <div
+                        className="teacher-class-tag"
+                        key={classValue}
+                      >
+                        <span>{classValue}</span>
+
+                        <button
+                          type="button"
+                          onClick={() => removeClassAssignment(classValue)}
+                          aria-label={`Remove ${classValue}`}
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                    ))}
+
+                  </div>
+                ) : (
+                  <p className="teacher-no-class">
+                    No class assigned yet. Select class and section above.
+                  </p>
+                )}
+
+              </div>
+
+            </div>
+
+            {/* LOGIN DETAILS */}
+
+            <div className="teacher-form-section">
+
+              <div className="teacher-section-heading">
+                <div className="teacher-section-icon security">
+                  <ShieldCheck size={21} />
+                </div>
+
+                <div>
+                  <h3>Teacher Login Details</h3>
+                  <p>Set password for teacher portal access</p>
+                </div>
+              </div>
+
+              {editingId && (
+                <p className="teacher-password-note">
+                  Leave both password fields blank if you do not want
+                  to change the existing password.
+                </p>
+              )}
+
+              <div className="teacher-form-grid">
+
+                {renderInput(
+                  "Password",
+                  "password",
+                  "password",
+                  !editingId,
+                  "Enter teacher password"
+                )}
+
+                {renderInput(
+                  "Confirm Password",
+                  "confirmPassword",
+                  "password",
+                  !editingId,
+                  "Re-enter teacher password"
+                )}
+
+              </div>
+            </div>
+
+            {/* FORM BUTTONS */}
+
+            <div className="teacher-form-actions">
+
+              <button
+                type="button"
+                className="teacher-cancel-btn"
+                onClick={closeForm}
+              >
+                Cancel
+              </button>
+
+              <button
+                type="submit"
+                className="teacher-primary-btn"
+              >
+                {editingId ? "Update Teacher" : "Save Teacher"}
+                <span>→</span>
+              </button>
+
+            </div>
+
+          </form>
+        </div>
+      )}
+
+      {/* TEACHER DIRECTORY */}
+
+      <div className="teacher-list-card">
+
+        <div className="teacher-list-header">
+
+          <div>
+            <span className="teacher-eyebrow">
+              RECORD MANAGEMENT
+            </span>
+
+            <h2>All Teachers</h2>
+
+            <p>
+              View, search and manage registered teachers.
+            </p>
+          </div>
+
+          <span className="teacher-count-badge">
+            {filteredTeachers.length} Teachers
+          </span>
+
+        </div>
+
+        {/* SEARCH AND FILTERS */}
+
+        <div className="teacher-toolbar">
+
+          <div className="teacher-search">
+            <Search size={18} />
+
+            <input
+              type="text"
+              placeholder="Search teacher, email, ID, subject..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+
+          <select
+            value={filterClass}
+            onChange={(e) => setFilterClass(e.target.value)}
+          >
+            <option value="">All Classes</option>
+
+            {CLASS_OPTIONS.flatMap((cls) =>
+              SECTION_OPTIONS.map((section) => (
+                <option key={`${cls}-${section}`} value={`${cls}-${section}`}>
+                  {cls} - {section}
+                </option>
+              ))
+            )}
+          </select>
+
+          <select
+            value={filterDepartment}
+            onChange={(e) => setFilterDepartment(e.target.value)}
+          >
+            <option value="">All Departments</option>
+
+            {DEPARTMENT_OPTIONS.map((department) => (
+              <option key={department} value={department}>
+                {department}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">All Status</option>
+
+            {STATUS_OPTIONS.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+
+        </div>
+
+        {/* TEACHER TABLE */}
+
+        <div className="teacher-table-wrapper">
+
+          <table className="teacher-table">
+
             <thead>
               <tr>
                 <th>Teacher</th>
+                <th>Teacher ID</th>
+                <th>Department</th>
                 <th>Subjects</th>
-                <th>Assigned classes</th>
+                <th>Assigned Classes</th>
                 <th>Role</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
+
             <tbody>
-              {filteredTeachers.map((teacher) => (
-                <tr key={teacher.id}>
-                  <td>
-                    <div className="teacher-identity-cell">
-                      <span className="teacher-avatar">{initials(teacher.name)}</span>
-                      <span>
-                        <strong>{teacher.name}</strong>
-                        <small>{teacher.email || "No email"}</small>
-                      </span>
-                    </div>
-                  </td>
-                  <td>{getTeacherSubjects(teacher).join(", ") || "—"}</td>
-                  <td>{values(teacher.classes).join(", ") || "—"}</td>
-                  <td>
-                    <div className="teacher-role-badges">
-                      <span className="teacher-role-badge">
-                        {getTeacherRole(teacher)}
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <span className={`teacher-status-badge ${(teacher.status || "Active").toLowerCase()}`}>
-                      {teacher.status || "Active"}
-                    </span>
-                  </td>
-                  <td>
-                    <div className="teacher-action-menu">
-                      <button
-                        type="button"
-                        className="teacher-action-trigger"
-                        aria-expanded={menuId === String(teacher.id)}
-                        onClick={() =>
-                          setMenuId((current) =>
-                            current === String(teacher.id) ? "" : String(teacher.id),
-                          )
-                        }
-                      >
-                        Actions <ChevronDown size={15} />
-                      </button>
-                      {menuId === String(teacher.id) && (
-                        <div className="teacher-action-options">
-                          <button type="button" onClick={() => {
-                            setDetailsTeacher(teacher);
-                            setMenuId("");
-                          }}>
-                            <Eye size={15} /> View Details
-                          </button>
-                          <button type="button" onClick={() => openRoles(teacher)}>
-                            <Shield size={15} /> Manage Role
-                          </button>
-                          <button type="button" onClick={() => startEdit(teacher)}>
-                            <Pencil size={15} /> Edit Teacher
-                          </button>
-                          <button type="button" onClick={() => toggleStatus(teacher)}>
-                            <UserRound size={15} />
-                            {(teacher.status || "Active") === "Active" ? "Deactivate" : "Activate"}
-                          </button>
+
+              {filteredTeachers.length > 0 ? (
+
+                filteredTeachers.map((teacher) => (
+
+                  <tr key={teacher.id}>
+
+                    <td>
+                      <div className="teacher-identity">
+
+                        <div className="teacher-avatar">
+                          {getInitials(teacher.name)}
                         </div>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              {!filteredTeachers.length && (
-                <tr>
-                  <td colSpan="6" className="teacher-empty-row">
-                    No teachers match the current search and status filter.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-        <p className="teacher-record-count">
-          Showing {filteredTeachers.length} of {teacherData.items.length} teachers
-        </p>
-      </section>
 
-      {drawerTeacher && draft && (
-        <div className="teacher-drawer-backdrop" onMouseDown={(event) => {
-          if (event.target === event.currentTarget) closeRoles();
-        }}>
-          <aside className="teacher-roles-drawer" aria-label={`Manage role for ${drawerTeacher.name}`}>
-            <header className="teacher-drawer-header">
-              <h2>Manage Role</h2>
-              <button type="button" aria-label="Close" onClick={closeRoles}><X /></button>
-            </header>
-            <form className="teacher-drawer-form" onSubmit={saveRoles}>
-              <div className="teacher-drawer-scroll">
-                <section className="teacher-drawer-person">
-                  <span className="teacher-avatar large">{initials(drawerTeacher.name)}</span>
-                  <div>
-                    <h3>{drawerTeacher.name}</h3>
-                    <p>{drawerTeacher.email}</p>
-                  </div>
-                </section>
+                        <div>
+                          <strong>{teacher.name}</strong>
+                          <small>{teacher.email}</small>
+                        </div>
 
-                <section className="teacher-drawer-section">
-                  <h3>Select Teacher Role</h3>
-                  <div className="teacher-role-choice-list">
-                    {TEACHER_ROLE_OPTIONS.map((role) => (
-                      <label
-                        className={`teacher-role-choice ${draft.role === role.key ? "selected" : ""}`}
-                        key={role.key}
+                      </div>
+                    </td>
+
+                    <td>{teacher.employee}</td>
+
+                    <td>{teacher.department || "—"}</td>
+
+                    <td>
+                      <div className="teacher-table-subjects">
+                        {getTeacherSubjects(teacher).join(", ") || "—"}
+                      </div>
+                    </td>
+
+                    <td>
+                      <div className="teacher-table-classes">
+                        {getTeacherClasses(teacher).map((cls) => (
+                          <span key={cls}>{cls}</span>
+                        ))}
+                      </div>
+                    </td>
+
+                    <td>
+                      <span className="teacher-role-badge">
+                        {teacher.role || "Subject Teacher"}
+                      </span>
+                    </td>
+
+                    <td>
+                      <span
+                        className={`teacher-status-badge ${(teacher.status || "Active").toLowerCase()}`}
                       >
-                        <input
-                          type="radio"
-                          name={`teacher-role-${drawerTeacher.id}`}
-                          value={role.key}
-                          required
-                          checked={draft.role === role.key}
-                          onChange={() =>
-                            setDraft((current) => ({
-                              ...current,
-                              role: role.key,
-                            }))
-                          }
-                        />
-                        <span><strong>{role.key}</strong><small>{role.description}</small></span>
-                      </label>
-                    ))}
-                  </div>
-                </section>
-              </div>
-              <footer className="teacher-drawer-footer">
-                <button type="button" className="secondary-btn" onClick={closeRoles}>Cancel</button>
-                <button type="submit" className="primary-btn">Save Changes</button>
-              </footer>
-            </form>
-          </aside>
+                        {teacher.status || "Active"}
+                      </span>
+                    </td>
+
+                    <td>
+                      <div className="teacher-row-actions">
+
+                        <button
+                          title="View Details"
+                          className="teacher-view-btn"
+                          onClick={() => setDetailsTeacher(teacher)}
+                        >
+                          <Eye size={15} />
+                        </button>
+
+                        <button
+                          title="Edit Teacher"
+                          className="teacher-edit-btn"
+                          onClick={() => startEdit(teacher)}
+                        >
+                          <Pencil size={15} />
+                        </button>
+
+                        <button
+                          title="Delete Teacher"
+                          className="teacher-delete-btn"
+                          onClick={() => deleteTeacher(teacher.id)}
+                        >
+                          <Trash2 size={15} />
+                        </button>
+
+                        <button
+                          title="Activate / Deactivate"
+                          className="teacher-status-btn"
+                          onClick={() => toggleStatus(teacher)}
+                        >
+                          <ShieldCheck size={15} />
+                        </button>
+
+                      </div>
+                    </td>
+
+                  </tr>
+
+                ))
+
+              ) : (
+
+                <tr>
+                  <td colSpan="8">
+
+                    <div className="teacher-empty">
+
+                      <Users size={43} />
+
+                      <h3>No Teachers Found</h3>
+
+                      <p>
+                        No teacher records match your current search or filters.
+                      </p>
+
+                      {!showForm && (
+                        <button
+                          className="teacher-primary-btn"
+                          onClick={openAddForm}
+                        >
+                          <Plus size={17} />
+                          Add Teacher
+                        </button>
+                      )}
+
+                    </div>
+
+                  </td>
+                </tr>
+
+              )}
+
+            </tbody>
+
+          </table>
+
         </div>
-      )}
+
+        <div className="teacher-record-footer">
+          Showing {filteredTeachers.length} of {teachers.length} teachers
+        </div>
+
+      </div>
+
+      {/* TEACHER DETAILS MODAL */}
 
       {detailsTeacher && (
-        <div className="teacher-modal-backdrop" onMouseDown={(event) => {
-          if (event.target === event.currentTarget) setDetailsTeacher(null);
-        }}>
-          <section className="teacher-details-modal" role="dialog" aria-modal="true" aria-labelledby="teacher-details-title">
-            <header><h2 id="teacher-details-title">Teacher Details</h2><button type="button" aria-label="Close details" onClick={() => setDetailsTeacher(null)}><X /></button></header>
-            <div className="teacher-detail-grid">
-              <span>Full name</span><strong>{detailsTeacher.name}</strong>
-              <span>Email</span><strong>{detailsTeacher.email || "—"}</strong>
-              <span>Department</span><strong>{detailsTeacher.department || "—"}</strong>
-              <span>Subjects</span><strong>{getTeacherSubjects(detailsTeacher).join(", ") || "—"}</strong>
-              <span>Classes</span><strong>{values(detailsTeacher.classes).join(", ") || "—"}</strong>
-              <span>Role</span><strong>{getTeacherRole(detailsTeacher)}</strong>
-              <span>Status</span><strong>{detailsTeacher.status || "Active"}</strong>
+        <div
+          className="teacher-modal-overlay"
+          onClick={() => setDetailsTeacher(null)}
+        >
+
+          <div
+            className="teacher-details-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <div className="teacher-modal-header">
+
+              <div>
+                <span className="teacher-eyebrow">
+                  VEDA INTERNATIONAL SCHOOL
+                </span>
+
+                <h2>Teacher Profile</h2>
+              </div>
+
+              <button
+                className="teacher-close-btn"
+                onClick={() => setDetailsTeacher(null)}
+              >
+                <X size={19} />
+              </button>
+
             </div>
-            <button type="button" className="primary-btn" onClick={() => setDetailsTeacher(null)}>Done</button>
-          </section>
+
+            <div className="teacher-profile-top">
+
+              <div className="teacher-profile-avatar">
+                {getInitials(detailsTeacher.name)}
+              </div>
+
+              <div>
+                <h3>{detailsTeacher.name}</h3>
+
+                <p>
+                  Teacher ID: {detailsTeacher.employee}
+                </p>
+
+                <span className="teacher-role-badge">
+                  {detailsTeacher.role}
+                </span>
+              </div>
+
+            </div>
+
+            <div className="teacher-detail-section">
+
+              <h3>Personal Information</h3>
+
+              <div className="teacher-detail-grid">
+
+                <TeacherDetail label="Full Name" value={detailsTeacher.name} />
+                <TeacherDetail label="Teacher ID" value={detailsTeacher.employee} />
+                <TeacherDetail label="Email" value={detailsTeacher.email} />
+                <TeacherDetail label="Mobile Number" value={detailsTeacher.phone} />
+                <TeacherDetail label="Date of Birth" value={detailsTeacher.dob} />
+                <TeacherDetail label="Gender" value={detailsTeacher.gender} />
+                <TeacherDetail label="Aadhaar Number" value={detailsTeacher.aadhaar} />
+                <TeacherDetail label="Emergency Contact" value={detailsTeacher.emergencyContact} />
+
+              </div>
+
+              <TeacherDetail
+                label="Residential Address"
+                value={detailsTeacher.address}
+                full
+              />
+
+            </div>
+
+            <div className="teacher-detail-section">
+
+              <h3>Professional Information</h3>
+
+              <div className="teacher-detail-grid">
+
+                <TeacherDetail label="Department" value={detailsTeacher.department} />
+                <TeacherDetail label="Role" value={detailsTeacher.role} />
+                <TeacherDetail label="Qualification" value={detailsTeacher.qualification} />
+                <TeacherDetail label="Experience" value={detailsTeacher.experience ? `${detailsTeacher.experience} Years` : ""} />
+                <TeacherDetail label="Joining Date" value={detailsTeacher.joiningDate} />
+                <TeacherDetail label="Status" value={detailsTeacher.status} />
+                <TeacherDetail label="Subjects" value={getTeacherSubjects(detailsTeacher).join(", ")} />
+                <TeacherDetail label="Assigned Classes" value={formatClasses(detailsTeacher.classes)} />
+
+              </div>
+
+            </div>
+
+            <div className="teacher-modal-footer">
+
+              <button
+                className="teacher-cancel-btn"
+                onClick={() => setDetailsTeacher(null)}
+              >
+                Close
+              </button>
+
+              <button
+                className="teacher-primary-btn"
+                onClick={() => startEdit(detailsTeacher)}
+              >
+                <Pencil size={15} />
+                Edit Teacher
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
       )}
 
-      {showTeacherForm && (
-        <div className="teacher-modal-backdrop" onMouseDown={(event) => {
-          if (event.target === event.currentTarget) {
-            setEditingTeacher(null);
-            setShowTeacherForm(false);
-            setEditForm(emptyTeacher);
-            setFormError("");
-          }
-        }}>
-          <section className="teacher-details-modal teacher-edit-modal" role="dialog" aria-modal="true" aria-labelledby="teacher-edit-title">
-            <header><h2 id="teacher-edit-title">{editingTeacher ? "Edit Teacher" : "Add Teacher"}</h2><button type="button" aria-label="Close teacher form" onClick={() => {
-              setEditingTeacher(null);
-              setShowTeacherForm(false);
-              setEditForm(emptyTeacher);
-              setFormError("");
-            }}><X /></button></header>
-            <form className="teacher-edit-form" onSubmit={saveTeacher}>
-              {formError && <p className="teacher-form-error" role="alert">{formError}</p>}
-              <label>Teacher ID<input required value={editForm.employee || ""} onChange={(event) => editField("employee", event.target.value)} /></label>
-              <label>Full name<input required value={editForm.name || ""} onChange={(event) => editField("name", event.target.value)} /></label>
-              <label>Email<input required type="email" value={editForm.email || ""} onChange={(event) => editField("email", event.target.value)} /></label>
-              <label>Phone<input type="tel" value={editForm.phone || ""} onChange={(event) => editField("phone", event.target.value)} /></label>
-              <label>Department<select value={editForm.department || ""} onChange={(event) => editField("department", event.target.value)}><option value="">Select department</option>{DEPARTMENT_OPTIONS.map((option) => <option key={option}>{option}</option>)}</select></label>
-              <label>Status<select value={editForm.status || "Active"} onChange={(event) => editField("status", event.target.value)}>{SCHOOL_STATUS_OPTIONS.map((option) => <option key={option}>{option}</option>)}</select></label>
-              <fieldset><legend>Subjects</legend><div className="teacher-assignment-choices">{subjects.map((subject) => <label key={subject}><input type="checkbox" checked={editForm.subjects.includes(subject)} onChange={() => editField("subjects", editForm.subjects.includes(subject) ? editForm.subjects.filter((item) => item !== subject) : [...editForm.subjects, subject])} />{subject}</label>)}</div></fieldset>
-              <fieldset><legend>Assigned classes</legend><div className="teacher-assignment-choices">{classes.map((schoolClass) => <label key={schoolClass.id}><input type="checkbox" checked={editForm.classes.includes(schoolClass.id)} onChange={() => editField("classes", editForm.classes.includes(schoolClass.id) ? editForm.classes.filter((item) => item !== schoolClass.id) : [...editForm.classes, schoolClass.id])} />{schoolClass.label}</label>)}</div></fieldset>
-              <footer className="teacher-edit-actions"><button type="button" className="secondary-btn" onClick={() => { setEditingTeacher(null); setShowTeacherForm(false); setEditForm(emptyTeacher); setFormError(""); }}>Cancel</button><button type="submit" className="primary-btn">Save Teacher</button></footer>
-            </form>
-          </section>
-        </div>
-      )}
-    </section>
+    </div>
+  );
+}
+
+
+// REUSABLE DETAIL COMPONENT
+
+function TeacherDetail({ label, value, full = false }) {
+  return (
+    <div
+      className={`teacher-detail-item ${full ? "full-width" : ""}`}
+    >
+      <span>{label}</span>
+      <strong>{value || "Not Provided"}</strong>
+    </div>
   );
 }

@@ -1,172 +1,86 @@
-import React from "react";
-
-import { useClass } from "../../../context/ClassContext";
-import { useTeacher } from "../../../context/TeacherContext";
-import { useTimetable } from "../../../context/TimetableContext";
-import { DAY_OPTIONS, SUBJECT_OPTIONS } from "../shared/schoolOptions";
-import { schoolClassId } from "../shared/school";
+import React, { useState } from "react";
 import RecordManager from "./RecordManager";
+const CLASS_OPTIONS = [
+  "1-A", "1-B", "2-A", "2-B", "3-A", "3-B", "4-A", "4-B", "5-A", "5-B",
+  "6-A", "6-B", "7-A", "7-B", "8-A", "8-B", "9-A", "9-B", "10-A", "10-B",
+  "11-A", "11-B", "12-A", "12-B"
+];
+const SUBJECT_OPTIONS = [
+  "Mathematics", "English", "Science", "Physics", "Chemistry", "Biology", "Social Studies", "Hindi", "Computer Science", "Physical Education"
+];
 
-const LESSON_DAYS = DAY_OPTIONS.filter((day) => day !== "Sunday");
-const TIMETABLE_FILTER_DAYS = [...DAY_OPTIONS, "Sunday"];
+const LESSON_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-function overlaps(firstStart, firstEnd, secondStart, secondEnd) {
-  return firstStart < secondEnd && secondStart < firstEnd;
-}
-
-function teacherClasses(teacher) {
-  if (Array.isArray(teacher?.classes)) {
-    return teacher.classes.map(String);
-  }
-  return String(teacher?.classes || "")
-    .split(",")
-    .map((classId) => classId.trim())
-    .filter(Boolean);
-}
-
-function teacherSubjects(teacher) {
-  const subjects = Array.isArray(teacher?.subjects)
-    ? teacher.subjects
-    : String(teacher?.subject || "").split(",");
-  return subjects.map((subject) => String(subject).trim()).filter(Boolean);
-}
-
-function validatePeriod(form, periods, editingId, teachers, classes) {
-  if (!form.classId || !form.teacherId || !form.day || !form.subject) {
-    return "Choose a class, teacher, day, and subject.";
-  }
-  if (!LESSON_DAYS.includes(form.day)) {
-    return "Lessons can only be scheduled Monday through Saturday.";
-  }
-  if (!form.start || !form.end || form.start >= form.end) {
-    return "The end time must be later than the start time.";
-  }
-  if (!Number.isInteger(Number(form.period)) || Number(form.period) < 1) {
-    return "Enter a valid period number.";
-  }
-
-  const selectedTeacher = teachers.find(
-    (teacher) => String(teacher.id) === String(form.teacherId),
-  );
-  const selectedClass = classes.find(
-    (schoolClass) =>
-      String(schoolClassId(schoolClass)) === String(form.classId),
-  );
-
-  if (!selectedTeacher || !selectedClass) {
-    return "Choose an existing teacher and class.";
-  }
-  if (
-    !teacherClasses(selectedTeacher).includes(String(form.classId)) &&
-    String(selectedClass.teacherId) !== String(selectedTeacher.id)
-  ) {
-    return "This teacher is not assigned to the selected class.";
-  }
-  if (!teacherSubjects(selectedTeacher).includes(String(form.subject))) {
-    return "This teacher is not assigned to the selected subject.";
-  }
-
-  const conflict = periods.find(
-    (period) =>
-      String(period.id) !== String(editingId) &&
-      period.day === form.day &&
-      overlaps(form.start, form.end, period.start, period.end) &&
-      (String(period.teacherId) === String(form.teacherId) ||
-        String(period.classId) === String(form.classId)),
-  );
-
-  if (conflict) {
-    const sameTeacher =
-      String(conflict.teacherId) === String(form.teacherId);
-    return sameTeacher
-      ? "This teacher already has a lesson during that time."
-      : "This class already has a lesson during that time.";
-  }
-  return "";
-}
+const initialPeriods = [
+  { id: "tt-1", day: "Monday", period: 1, start: "08:30", end: "09:15", classId: "10-A", teacherName: "Dr. Rajesh Kumar", subject: "Physics", room: "Lab 2" },
+  { id: "tt-2", day: "Monday", period: 2, start: "09:15", end: "10:00", classId: "10-A", teacherName: "Ananya Gupta", subject: "Mathematics", room: "Room 201" },
+  { id: "tt-3", day: "Monday", period: 3, start: "10:15", end: "11:00", classId: "10-A", teacherName: "Sunita Mehra", subject: "English", room: "Room 201" },
+  { id: "tt-4", day: "Tuesday", period: 1, start: "08:30", end: "09:15", classId: "9-A", teacherName: "Ananya Gupta", subject: "Mathematics", room: "Room 105" },
+  { id: "tt-5", day: "Wednesday", period: 2, start: "09:15", end: "10:00", classId: "11-A", teacherName: "Dr. Rajesh Kumar", subject: "Physics", room: "Lab 3" },
+];
 
 export default function AdminTimetable() {
-  const timetable = useTimetable();
-  const { data: classes } = useClass();
-  const { data: teachers } = useTeacher();
-  const classOptions = classes.items.map((schoolClass) => ({
-    value: String(schoolClassId(schoolClass)),
-    label: String(schoolClassId(schoolClass)),
-  }));
-  const teacherOptions = teachers.items.map((teacher) => ({
-    value: String(teacher.id),
-    label: teacher.name,
-  }));
-  const subjects = [
-    ...new Set([
-      ...SUBJECT_OPTIONS,
-      ...timetable.data.items.map((period) => period.subject).filter(Boolean),
-    ]),
-  ];
+  const [periods, setPeriods] = useState(() => {
+    try {
+      const saved = localStorage.getItem("veda_admin_timetable");
+      return saved ? JSON.parse(saved) : initialPeriods;
+    } catch {
+      return initialPeriods;
+    }
+  });
+
+  const savePeriods = (updater) => {
+    setPeriods((prev) => {
+      const next = typeof updater === "function" ? updater(prev) : updater;
+      try {
+        localStorage.setItem("veda_admin_timetable", JSON.stringify(next));
+      } catch (e) {
+        console.error(e);
+      }
+      return next;
+    });
+  };
+
   const fields = [
-    { key: "day", label: "Day", type: "select", options: LESSON_DAYS },
-    {
-      key: "period",
-      label: "Period number",
-      type: "number",
-      min: 1,
-      required: true,
-    },
-    { key: "start", label: "Start time", type: "time", required: true },
-    { key: "end", label: "End time", type: "time", required: true },
-    {
-      key: "classId",
-      label: "Class",
-      type: "select",
-      options: classOptions,
-      required: true,
-      display: (value) => String(value || "—"),
-      emptyMessage: "Add a class before creating a timetable period.",
-    },
-    {
-      key: "teacherId",
-      label: "Teacher",
-      type: "select",
-      options: teacherOptions,
-      required: true,
-      display: (value) =>
-        teachers.items.find((teacher) => String(teacher.id) === String(value))
-          ?.name || String(value || "—"),
-      emptyMessage: "Add a teacher before creating a timetable period.",
-    },
-    {
-      key: "subject",
-      label: "Subject",
-      type: "select",
-      options: subjects,
-      required: true,
-    },
+    { key: "day", label: "Day", type: "select", options: LESSON_DAYS, required: true },
+    { key: "period", label: "Period Number", type: "number", min: 1, required: true },
+    { key: "start", label: "Start Time", type: "time", required: true },
+    { key: "end", label: "End Time", type: "time", required: true },
+    { key: "classId", label: "Class", type: "select", options: CLASS_OPTIONS, required: true },
+    { key: "teacherName", label: "Teacher Name", required: true },
+    { key: "subject", label: "Subject", type: "select", options: SUBJECT_OPTIONS, required: true },
+    { key: "room", label: "Room / Lab" },
+  ];
+
+  const data = {
+    items: periods,
+    add: (record) =>
+      savePeriods((prev) => [
+        { ...record, id: "tt-" + Date.now() },
+        ...prev,
+      ]),
+    update: (id, updateFields) =>
+      savePeriods((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, ...updateFields } : p)),
+      ),
+    remove: (id) =>
+      savePeriods((prev) => prev.filter((p) => p.id !== id)),
+  };
+
+  const filters = [
+    { key: "day", label: "Day", options: LESSON_DAYS },
+    { key: "classId", label: "Class", options: CLASS_OPTIONS },
+    { key: "subject", label: "Subject", options: SUBJECT_OPTIONS },
   ];
 
   return (
     <RecordManager
       title="Timetable Management"
-      description="Create and manage shared weekly teaching periods. Sunday is reserved as a holiday."
-      data={timetable.data}
+      description="Create, edit and manage weekly school teaching periods and classroom assignments."
+      data={data}
       fields={fields}
-      filters={[
-        { key: "day", label: "Day", options: TIMETABLE_FILTER_DAYS },
-        { key: "classId", label: "Class", options: classOptions },
-        { key: "teacherId", label: "Teacher", options: teacherOptions },
-        { key: "subject", label: "Subject", options: subjects },
-      ]}
-      getLabel={(period) =>
-        `${period.day} period ${period.period} (${period.classId})`
-      }
-      validate={(form, periods, editingId) =>
-        validatePeriod(
-          form,
-          periods,
-          editingId,
-          teachers.items,
-          classes.items,
-        )
-      }
+      filters={filters}
+      getLabel={(p) => `${p.day} Period ${p.period} - Class ${p.classId} (${p.subject})`}
     />
   );
 }

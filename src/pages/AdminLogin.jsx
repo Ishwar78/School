@@ -18,6 +18,7 @@ import {
   authenticateAdmin,
   DEFAULT_ADMIN,
 } from "../data/adminCredentials";
+import { loginAdminApi } from "../lib/api";
 import "./AdminLogin.css";
 
 export default function AdminLogin() {
@@ -35,27 +36,48 @@ export default function AdminLogin() {
     setErrorMessage("");
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
     setIsSubmitting(true);
 
     try {
-      const adminUser = authenticateAdmin(email, password);
+      // 1. First attempt authentication against MongoDB backend API
+      try {
+        const result = await loginAdminApi(email, password);
+        if (result && result.success && result.user) {
+          localStorage.setItem("eduflowUser", JSON.stringify(result.user));
+          navigate("/dashboard/admin", { replace: true });
+          return;
+        }
+      } catch (apiError) {
+        // If server explicitly returned 401 Unauthorized, reject login immediately
+        if (apiError.status === 401) {
+          setErrorMessage(
+            apiError.message || "Invalid administrator credentials. Access is restricted."
+          );
+          setIsSubmitting(false);
+          return;
+        }
 
-      if (!adminUser) {
+        // If backend server is unreachable/offline, fallback to verified local credentials
+        console.warn("[Admin Login] Backend API unreachable, falling back to local credentials:", apiError.message);
+        const fallbackAdmin = authenticateAdmin(email, password);
+        if (fallbackAdmin) {
+          localStorage.setItem("eduflowUser", JSON.stringify(fallbackAdmin));
+          navigate("/dashboard/admin", { replace: true });
+          return;
+        }
+
         setErrorMessage(
-          "Invalid administrator credentials. Access is restricted to authorized personnel."
+          apiError.message || "Invalid administrator credentials. Access is restricted to authorized personnel."
         );
         setIsSubmitting(false);
         return;
       }
 
-      // Store authenticated admin user
-      localStorage.setItem("eduflowUser", JSON.stringify(adminUser));
-
-      // Redirect to admin dashboard
-      navigate("/dashboard/admin", { replace: true });
+      setErrorMessage("Invalid administrator credentials. Access is restricted.");
+      setIsSubmitting(false);
     } catch (error) {
       console.error("Admin authentication error:", error);
       setErrorMessage("An unexpected authentication error occurred. Please try again.");
@@ -108,7 +130,7 @@ export default function AdminLogin() {
             <div className="admin-demo-info">
               <KeyRound size={15} className="admin-demo-key-icon" />
               <span>
-                Default Admin: <strong>{DEFAULT_ADMIN.email}</strong>
+                Admin: <strong>{DEFAULT_ADMIN.email}</strong>
               </span>
             </div>
             <button
@@ -138,7 +160,7 @@ export default function AdminLogin() {
                 <input
                   id="admin-email"
                   type="email"
-                  placeholder="admin@eduflow.com"
+                  placeholder="SchoolAdmin@gmail.com"
                   autoComplete="username"
                   required
                   value={email}
@@ -181,7 +203,7 @@ export default function AdminLogin() {
               disabled={isSubmitting}
             >
               <LockKeyhole size={18} />
-              <span>{isSubmitting ? "Authenticating..." : "Sign In to Admin Portal"}</span>
+              <span>{isSubmitting ? "Authenticating with Database..." : "Sign In to Admin Portal"}</span>
               <ArrowRight size={18} />
             </button>
           </form>
@@ -189,7 +211,7 @@ export default function AdminLogin() {
           {/* Security Notice Footer */}
           <div className="admin-security-footer">
             <CheckCircle2 size={15} />
-            <span>Authorized administrative personnel only. All access is audited.</span>
+            <span>Authorized administrative personnel only. Connected to Secure Database.</span>
           </div>
         </div>
 
@@ -201,4 +223,3 @@ export default function AdminLogin() {
     </div>
   );
 }
-
