@@ -16,10 +16,8 @@ The original accounts remain available:
 
 | Role | Email | Password |
 | --- | --- | --- |
-| Student | `student@eduflow.com` | `student123` |
-| Parent | `parent@eduflow.com` | `parent123` |
-| Teacher | `teacher@eduflow.com` | `teacher123` |
-| Admin | `admin@eduflow.com` | `admin123` |
+
+
 
 The other seeded teachers, students, and parents also have linked demo logins. Their emails are on their matching records in `src/data/demoSchoolRecords.js`; use the same role-specific demo password shown above. Seeded schedules, classes, assignments, submissions, attendance, results, fees, announcements, and reports use stable IDs to connect records across dashboards. Seed data is merged into existing browser records without replacing saved records with matching IDs.
 
