@@ -1,0 +1,922 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+.veda-faculty {
+  --fc-navy: #082b55;
+  --fc-deep: #061c36;
+  --fc-gold: #d7ad51;
+  --fc-ivory: #fbf8f1;
+  --fc-text: #183454;
+  --fc-muted: #68788c;
+  --fc-border: #e3e8ee;
+  --fc-focus: rgba(8, 43, 85, 0.18);
+
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  color: var(--fc-text);
+  font-family: "Inter", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.veda-faculty *,
+.veda-faculty *::before,
+.veda-faculty *::after {
+  box-sizing: border-box;
+}
+
+.fc-container {
+  width: calc(100% - 80px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.fc-section {
+  padding: 28px 0 30px;
+  background: #fff;
+}
+
+.fc-section-tint {
+  background: var(--fc-ivory);
+}
+
+.fc-heading {
+  margin-bottom: 27px;
+}
+
+.fc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #94702e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.fc-eyebrow > span {
+  width: 25px;
+  height: 2px;
+  flex: 0 0 auto;
+  border-radius: 2px;
+  background: var(--fc-gold);
+}
+
+.fc-heading h1,
+.fc-heading h2 {
+  margin: 0 0 12px;
+  color: var(--fc-navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(31px, 3.2vw, 43px);
+  font-weight: 500;
+  letter-spacing: -0.65px;
+  line-height: 1.18;
+}
+
+.fc-heading h1 em,
+.fc-heading h2 em {
+  color: #a77a2c;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.fc-lead {
+  max-width: 690px;
+  margin: 0;
+  color: var(--fc-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.fc-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.fc-search,
+.fc-sort {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  border: 1px solid var(--fc-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--fc-text);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.fc-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+  color: #78889a;
+}
+
+.fc-search svg {
+  flex: 0 0 auto;
+}
+
+.fc-search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--fc-navy);
+  font: inherit;
+  font-size: 13px;
+}
+
+.fc-search input::placeholder {
+  color: #8793a1;
+  opacity: 1;
+}
+
+.fc-search input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.fc-sort {
+  padding: 0 14px;
+  color: var(--fc-navy);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.fc-search:hover,
+.fc-sort:hover {
+  border-color: #c6d0dc;
+}
+
+.fc-search:focus-within,
+.fc-sort:focus-visible {
+  border-color: #8c7446;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(215, 173, 81, 0.18);
+}
+
+.fc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 17px;
+}
+
+.fc-filter {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  border: 1px solid #dfe5ec;
+  border-radius: 999px;
+  background: #fff;
+  color: #34506d;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.fc-filter:hover {
+  border-color: #c9ab6a;
+  background: #fffaf0;
+  color: var(--fc-navy);
+}
+
+.fc-filter:focus-visible,
+.fc-arrow:focus-visible {
+  outline: 3px solid rgba(183, 135, 47, 0.38);
+  outline-offset: 3px;
+}
+
+.fc-filter.is-active {
+  border-color: var(--fc-navy);
+  background: var(--fc-navy);
+  color: #fff;
+}
+
+.fc-filter.is-active:hover {
+  background: #123e70;
+}
+
+.fc-count {
+  margin: 0 0 12px;
+  color: #718094;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.fc-slider {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.fc-track {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  gap: 12px;
+  padding: 8px 0 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: #c8d0d9 transparent;
+  scrollbar-width: thin;
+  touch-action: pan-x;
+}
+
+.fc-track::-webkit-scrollbar {
+  height: 5px;
+}
+
+.fc-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fc-track::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #c8d0d9;
+}
+
+.fc-track:focus-visible {
+  outline: 2px solid rgba(183, 135, 47, 0.7);
+  outline-offset: 3px;
+}
+
+.fc-card {
+  display: flex;
+  flex: 0 0 calc((100% - 36px) / 4);
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e8ebef;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(6, 28, 54, 0.055);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.fc-card:hover {
+  border-color: #d9c99f;
+  box-shadow: 0 11px 26px rgba(6, 28, 54, 0.105);
+  transform: translateY(-3px);
+}
+
+.fc-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.04 / 1;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-bottom: 3px solid var(--fc-gold);
+  background: #edf0f3;
+}
+
+.fc-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  transition: transform 350ms ease;
+}
+
+.fc-card:hover .fc-photo img {
+  transform: scale(1.025);
+}
+
+.fc-photo-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: linear-gradient(145deg, #eef2f6, #dce4ec);
+  color: #47627e;
+}
+
+.fc-photo-placeholder svg {
+  opacity: 0.72;
+}
+
+.fc-photo-placeholder span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.fc-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px 16px 18px;
+}
+
+.fc-name {
+  margin: 0 0 10px;
+  color: var(--fc-navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 600;
+  letter-spacing: -0.15px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.fc-role {
+  margin: auto 0 0;
+  padding-left: 10px;
+  border-left: 2px solid var(--fc-gold);
+  color: #64758a;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.fc-arrow {
+  position: absolute;
+  top: 124px;
+  z-index: 2;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #e0e5eb;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--fc-navy);
+  box-shadow: 0 4px 14px rgba(6, 28, 54, 0.12);
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.fc-arrow-left {
+  left: -18px;
+}
+
+.fc-arrow-right {
+  right: -18px;
+}
+
+.fc-arrow:hover:not(:disabled) {
+  border-color: var(--fc-navy);
+  background: var(--fc-navy);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.fc-arrow:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.fc-empty {
+  width: 100%;
+  margin: 0;
+  padding: 38px 20px;
+  border: 1px dashed #d5dde6;
+  border-radius: 12px;
+  background: #fafbfd;
+  color: var(--fc-muted);
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.fc-stats {
+  margin-bottom: 44px;
+  padding: 40px 0;
+  border-top: 1px solid #eee6d7;
+  border-bottom: 1px solid #eee6d7;
+  background: #f9f6ef;
+}
+
+.fc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+}
+
+.fc-stat {
+  min-width: 0;
+  padding: 8px 22px;
+  text-align: center;
+}
+
+.fc-stat + .fc-stat {
+  border-left: 1px solid #e3dac8;
+}
+
+.fc-stat strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--fc-navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.fc-stat span {
+  display: block;
+  color: #687587;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  .fc-container {
+    width: calc(100% - 60px);
+  }
+
+  .fc-card {
+    flex-basis: calc((100% - 24px) / 3);
+  }
+}
+
+@media (max-width: 800px) {
+  .fc-container {
+    width: calc(100% - 44px);
+  }
+
+  .fc-section {
+    padding: 26px 0 28px;
+  }
+
+  .fc-card {
+    flex-basis: calc((100% - 12px) / 2);
+  }
+
+  .fc-tools {
+    grid-template-columns: minmax(0, 1fr) 190px;
+  }
+
+  .fc-arrow {
+    top: 116px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fc-container {
+    width: calc(100% - 32px);
+  }
+
+  .fc-section {
+    padding: 24px 0 26px;
+  }
+
+  .fc-heading {
+    margin-bottom: 22px;
+  }
+
+  .fc-heading h1,
+  .fc-heading h2 {
+    margin-bottom: 10px;
+    font-size: clamp(28px, 7vw, 32px);
+    line-height: 1.22;
+  }
+
+  .fc-eyebrow {
+    margin-bottom: 10px;
+    font-size: 10px;
+    letter-spacing: 1.6px;
+  }
+
+  .fc-lead {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .fc-tools {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    margin-bottom: 15px;
+  }
+
+  .fc-search,
+  .fc-sort {
+    height: 48px;
+  }
+
+  .fc-filters {
+    flex-wrap: nowrap;
+    gap: 7px;
+    margin-right: -16px;
+    margin-bottom: 15px;
+    padding: 2px 16px 9px 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #c8d0d9 transparent;
+    touch-action: pan-x;
+  }
+
+  .fc-filters::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .fc-filters::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #c8d0d9;
+  }
+
+  .fc-filter {
+    min-height: 42px;
+    flex: 0 0 auto;
+    padding: 8px 13px;
+    font-size: 12px;
+  }
+
+  .fc-count {
+    margin-bottom: 10px;
+  }
+
+  .fc-card {
+    flex-basis: 88%;
+  }
+
+  .fc-info {
+    padding: 15px 15px 17px;
+  }
+
+  .fc-name {
+    margin-bottom: 9px;
+    font-size: 18px;
+  }
+
+  .fc-role {
+    font-size: 12px;
+  }
+
+  .fc-arrow {
+    top: 112px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .fc-arrow-left {
+    left: -8px;
+  }
+
+  .fc-arrow-right {
+    right: -8px;
+  }
+
+  .fc-empty {
+    padding: 30px 16px;
+    font-size: 13px;
+  }
+
+  .fc-stats {
+    margin-bottom: 28px;
+    padding: 24px 0;
+  }
+
+  .fc-stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .fc-stat {
+    padding: 16px 12px;
+  }
+
+  .fc-stat + .fc-stat {
+    border-top: 1px solid #e3dac8;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .fc-container {
+    width: calc(100% - 24px);
+  }
+
+  .fc-section {
+    padding: 22px 0 24px;
+  }
+
+  .fc-card {
+    flex-basis: 90%;
+  }
+
+  .fc-info {
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .fc-arrow {
+    top: 103px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-faculty *,
+  .veda-faculty *::before,
+  .veda-faculty *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+/* =========================================
+   VEDA FACULTY: RESPONSIVE FIXES
+   Import this LAST in Faculty.jsx:
+
+     import "./Faculty.css";
+     import "./FacultyResponsive.css";
+
+   Cards visible before anyone has to scroll:
+     Laptop / desktop ....... 4 cards
+     Tablet and big phone ... 3 cards
+     Phone .................. 2.5 cards (the 3rd peeks in so
+                              people can see there is more)
+
+   Every rule starts with ".veda-faculty" so it wins over the
+   old media queries in Faculty.css.
+========================================= */
+
+
+/* =========================================
+   1. NOTHING MAY BE WIDER THAN THE SCREEN
+   (this is what pushed the heading, search box and
+   dropdown off the right edge)
+========================================= */
+
+.veda-faculty {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.veda-faculty .fc-section,
+.veda-faculty .fc-container,
+.veda-faculty .fc-heading,
+.veda-faculty .fc-tools,
+.veda-faculty .fc-filters,
+.veda-faculty .fc-slider {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.veda-faculty .fc-container {
+  width: min(1240px, calc(100% - 80px));
+}
+
+.veda-faculty .fc-lead,
+.veda-faculty .fc-heading h2 {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 1100px) {
+  .veda-faculty .fc-container {
+    width: min(1240px, calc(100% - 60px));
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-faculty .fc-container {
+    width: min(1240px, calc(100% - 36px));
+  }
+}
+
+@media (max-width: 360px) {
+  .veda-faculty .fc-container {
+    width: min(1240px, calc(100% - 28px));
+  }
+}
+
+
+/* =========================================
+   2. HEADING, SEARCH, SORT, FILTERS
+========================================= */
+
+@media (max-width: 800px) {
+  .veda-faculty .fc-tools {
+    grid-template-columns: minmax(0, 1fr) 190px;
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-faculty .fc-section {
+    padding: 30px 0 32px;
+  }
+
+  .veda-faculty .fc-heading {
+    margin-bottom: 20px;
+  }
+
+  .veda-faculty .fc-heading h2 {
+    font-size: clamp(28px, 7.6vw, 34px);
+  }
+
+  .veda-faculty .fc-eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+  }
+
+  .veda-faculty .fc-lead {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* Keep search and sort controls on one row. */
+  .veda-faculty .fc-tools {
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 0.65fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .veda-faculty .fc-search input,
+  .veda-faculty .fc-sort {
+    font-size: 13px;
+  }
+
+  /* Three filter buttons per row, with the final two centered. */
+  .veda-faculty .fc-filters {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 14px;
+    padding: 0;
+    overflow: visible;
+    justify-content: center;
+  }
+
+  .veda-faculty .fc-filter {
+    min-height: 40px;
+    flex: 0 0 calc((100% - 16px) / 3);
+    padding: 7px 6px;
+    font-size: 12px;
+    white-space: normal;
+  }
+
+  .veda-faculty .fc-count {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================
+   3. CARDS
+========================================= */
+
+/* Tablet and big phone: exactly 3 cards in view */
+@media (min-width: 601px) and (max-width: 1100px) {
+  .veda-faculty .fc-track {
+    gap: 12px;
+  }
+
+  .veda-faculty .fc-card {
+    flex-basis: calc((100% - 24px) / 3);
+  }
+
+  .veda-faculty .fc-info {
+    padding: 14px 13px 16px;
+  }
+
+  .veda-faculty .fc-name {
+    font-size: 16px;
+  }
+
+  .veda-faculty .fc-role {
+    font-size: 13px;
+  }
+}
+
+/* Phone: 2.5 cards in view, portrait photos so faces stay big */
+@media (max-width: 600px) {
+  .veda-faculty .fc-track {
+    gap: 10px;
+    padding: 6px 0 14px;
+  }
+
+  .veda-faculty .fc-card {
+    flex: 0 0 calc((100% - 20px) / 2.5);
+  }
+
+  .veda-faculty .fc-photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .veda-faculty .fc-photo img {
+    object-position: center 20%;
+  }
+
+  .veda-faculty .fc-photo-placeholder span {
+    font-size: 24px;
+  }
+
+  .veda-faculty .fc-info {
+    padding: 11px 10px 13px;
+  }
+
+  .veda-faculty .fc-name {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .veda-faculty .fc-role {
+    padding-left: 7px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+/* Arrows: centred on the cards, smaller on touch screens */
+@media (max-width: 1100px) {
+  .veda-faculty .fc-arrow {
+    top: 50%;
+    margin-top: -27px;
+  }
+
+  .veda-faculty .fc-arrow-left {
+    left: -10px;
+  }
+
+  .veda-faculty .fc-arrow-right {
+    right: -10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .veda-faculty .fc-arrow {
+    width: 34px;
+    height: 34px;
+    margin-top: -24px;
+  }
+
+  .veda-faculty .fc-arrow-left {
+    left: -4px;
+  }
+
+  .veda-faculty .fc-arrow-right {
+    right: -4px;
+  }
+}
+
+
+/* =========================================
+   4. NUMBERS BAND
+   3 across even on phones, so it stays short
+========================================= */
+
+@media (max-width: 600px) {
+  .veda-faculty .fc-stats {
+    margin-bottom: 28px;
+    padding: 24px 0;
+  }
+
+  .veda-faculty .fc-stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .veda-faculty .fc-stat {
+    padding: 6px 8px;
+  }
+
+  .veda-faculty .fc-stat + .fc-stat {
+    border-top: 0;
+    border-left: 1px solid #e3dac8;
+  }
+
+  .veda-faculty .fc-stat strong {
+    font-size: 28px;
+  }
+
+  .veda-faculty .fc-stat span {
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: normal;
+  }
+}

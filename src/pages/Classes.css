@@ -1,0 +1,370 @@
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL: CLASSES
+========================================= */
+
+.veda-classes {
+  --navy: #082b55;
+  --deep-navy: #061c36;
+  --gold: #e8b648;
+  --warm-gold: #b78324;
+  --ivory: #fcf8f0;
+  --muted: #586c81;
+
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--navy);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+}
+
+.veda-classes *,
+.veda-classes *::before,
+.veda-classes *::after {
+  box-sizing: border-box;
+}
+
+.veda-classes h2,
+.veda-classes h3,
+.veda-classes p {
+  margin-top: 0;
+}
+
+.veda-classes h2,
+.veda-classes h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.veda-classes a:focus-visible,
+.veda-classes button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.cl-container {
+  width: min(1240px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+/* ---------- Shared text styles ---------- */
+
+.cl-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 10px;
+  color: #9a6d21;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.cl-eyebrow > span {
+  width: 26px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.veda-classes h2 {
+  margin-bottom: 0;
+  color: var(--navy);
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.veda-classes h2 em {
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+.cl-heading {
+  margin-bottom: 20px;
+}
+
+.cl-lead {
+  max-width: 640px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* =========================================
+   CLASS-WISE INFORMATION
+========================================= */
+
+.cl-classes {
+  padding: 40px 0;
+  background:
+    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.07), transparent 28%),
+    #fff;
+}
+
+/* Stage filter */
+
+.cl-filters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cl-filter {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid rgba(8, 43, 85, 0.18);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.cl-filter:hover {
+  border-color: var(--gold);
+  background: #fff4d8;
+}
+
+.cl-filter.is-active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+
+/* Class cards */
+
+.cl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.cl-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px;
+  border-top: 3px solid var(--gold);
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(13, 43, 74, 0.09);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.cl-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(13, 43, 74, 0.13);
+}
+
+.cl-label {
+  color: #9a6d21;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.cl-card h3 {
+  margin: 4px 0 8px;
+  color: var(--navy);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.cl-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cl-meta svg,
+.cl-subjects-title svg {
+  color: var(--warm-gold);
+}
+
+.cl-subjects-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.cl-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.cl-subjects li {
+  padding: 6px 12px;
+  border: 1px solid rgba(8, 43, 85, 0.12);
+  border-radius: 999px;
+  background: #f6f8fa;
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cl-focus {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+  margin: auto 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(8, 43, 85, 0.1);
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.cl-focus svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--warm-gold);
+}
+
+/* =========================================
+   3. CALL TO ACTION
+========================================= */
+
+.cl-cta {
+  padding: 36px 0 40px;
+  background:
+    radial-gradient(ellipse at 5% 95%, rgba(232, 182, 72, 0.09), transparent 35%),
+    var(--ivory);
+}
+
+.cl-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.cl-cta p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.cl-btn {
+  display: inline-flex;
+  min-height: 48px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  border-radius: 6px;
+  background: #f0c252;
+  color: var(--deep-navy);
+  font-size: 16px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.cl-btn:hover {
+  transform: translateY(-2px);
+  background: #ffdb7a;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .cl-container {
+    width: calc(100% - 60px);
+  }
+}
+
+@media (max-width: 900px) {
+  .cl-container {
+    width: calc(100% - 48px);
+  }
+
+  .cl-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cl-filter {
+    flex: 0 0 calc((100% - 20px) / 3);
+    padding-inline: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cl-container {
+    width: calc(100% - 36px);
+  }
+
+  .cl-filters {
+    gap: 8px;
+  }
+
+  .cl-filter {
+    flex-basis: calc((100% - 16px) / 3);
+    padding-inline: 5px;
+    font-size: 12px;
+  }
+
+  .cl-classes {
+    padding: 32px 0;
+  }
+
+  .cl-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cl-card {
+    padding: 20px;
+  }
+
+  .cl-cta {
+    padding: 30px 0 34px;
+  }
+
+  .cl-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cl-btn {
+    width: 100%;
+  }
+}
+
+/* Calm motion for visitors who prefer it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-classes *,
+  .veda-classes *::before,
+  .veda-classes *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

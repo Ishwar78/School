@@ -1,0 +1,476 @@
+/* ===================================
+   VEDA INTERNATIONAL SCHOOL NAVBAR
+=================================== */
+
+/* ---------- TOP BAR ---------- */
+
+.veda-topbar {
+  background: linear-gradient(90deg, #061c36, #082b55);
+  color: #ffffff;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+}
+
+.veda-topbar-inner,
+.veda-navbar-inner {
+  width: min(1360px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+.veda-topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.veda-motto {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.veda-motto span {
+  margin: 0 7px;
+  color: #e8b746;
+}
+
+.veda-topbar-place {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.veda-topbar-place svg {
+  color: #e8b746;
+}
+
+/* ---------- MAIN NAVBAR ---------- */
+
+.veda-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.veda-navbar {
+  position: relative;
+  border-bottom: 1px solid #edf0f5;
+  box-shadow: 0 5px 18px rgba(8, 43, 85, 0.06);
+}
+
+.veda-navbar-inner {
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+/* ---------- BRAND ---------- */
+
+.veda-brand {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.veda-logo {
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
+}
+
+.veda-brand-text {
+  display: flex;
+  flex-direction: column;
+  color: #082b55;
+}
+
+.veda-brand-name {
+  font-family: Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.veda-brand-subtitle {
+  margin-top: 4px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.veda-brand-location {
+  margin-top: 3px;
+  color: #b88623;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+/* ---------- LINKS ---------- */
+
+.veda-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.veda-link {
+  position: relative;
+  color: #17345a;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+.veda-link::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #d9a329;
+  transition: width 0.25s ease;
+}
+
+.veda-link:hover,
+.veda-link.active {
+  color: #bb8520;
+}
+
+.veda-link:hover::after,
+.veda-link.active::after {
+  width: 100%;
+}
+
+/* ---------- DROPDOWN ---------- */
+
+.veda-dropdown {
+  position: relative;
+}
+
+.veda-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.veda-dropdown-toggle svg {
+  transition: transform 0.25s ease;
+}
+
+.veda-dropdown:hover .veda-dropdown-toggle svg,
+.veda-dropdown.is-open .veda-dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+
+.veda-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: -16px;
+  z-index: 10;
+  display: grid;
+  min-width: 220px;
+  gap: 2px;
+  padding: 8px;
+  border-top: 3px solid #e8b746;
+  border-radius: 0 0 12px 12px;
+  background: #ffffff;
+  box-shadow: 0 16px 34px rgba(8, 43, 85, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* Invisible bridge so the menu stays open while the mouse moves down. */
+.veda-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  right: 0;
+  left: 0;
+  height: 16px;
+}
+
+.veda-dropdown:hover .veda-dropdown-menu,
+.veda-dropdown.is-open .veda-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.veda-sub-link {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: #17345a;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.veda-sub-link:hover,
+.veda-sub-link.active {
+  background: #fff4d8;
+  color: #bb8520;
+}
+
+/* ---------- SCHOOL PORTAL BUTTON ---------- */
+
+.veda-login-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  background: #e8b746;
+  box-shadow: 0 5px 15px rgba(217, 163, 41, 0.2);
+  color: #082b55;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.veda-login-btn:hover {
+  transform: translateY(-2px);
+  background: #082b55;
+  color: #ffffff;
+}
+
+.veda-navbar a:focus-visible,
+.veda-navbar button:focus-visible {
+  outline: 3px solid #e8b746;
+  outline-offset: 4px;
+}
+
+/* ---------- MOBILE MENU BUTTON ---------- */
+
+.veda-mobile-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5eaf1;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #082b55;
+  cursor: pointer;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+/* Laptops: a little tighter so everything fits on one line */
+
+@media (max-width: 1400px) {
+  .veda-topbar-inner,
+  .veda-navbar-inner {
+    width: calc(100% - 64px);
+  }
+
+  .veda-nav-links {
+    gap: 18px;
+  }
+
+  .veda-link,
+  .veda-dropdown-toggle {
+    font-size: 15px;
+  }
+
+  .veda-brand-name {
+    font-size: 32px;
+  }
+
+  .veda-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .veda-login-btn {
+    padding: 11px 18px;
+    font-size: 14px;
+  }
+}
+
+/* Tablets and phones: menu opens as a panel */
+
+@media (max-width: 1240px) {
+  .veda-mobile-toggle {
+    display: flex;
+  }
+
+  .veda-nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: 100%;
+    max-height: calc(100vh - 120px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    overflow-y: auto;
+    padding: 6px 32px 20px;
+    border-top: 1px solid #edf0f5;
+    background: #ffffff;
+    box-shadow: 0 15px 25px rgba(8, 43, 85, 0.1);
+  }
+
+  .veda-nav-links.veda-nav-open {
+    display: flex;
+  }
+
+  .veda-link,
+  .veda-dropdown-toggle {
+    display: flex;
+    width: 100%;
+    min-height: 50px;
+    align-items: center;
+    border-bottom: 1px solid #edf0f5;
+    font-size: 17px;
+  }
+
+  .veda-link::after {
+    display: none;
+  }
+
+  /* Dropdown items are always visible, indented under "Our School" */
+
+  .veda-dropdown-toggle {
+    pointer-events: none;
+    color: #bb8520;
+    font-size: 14px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .veda-dropdown-toggle svg {
+    display: none;
+  }
+
+  .veda-dropdown-menu {
+    position: static;
+    min-width: 0;
+    padding: 0 0 0 16px;
+    border-top: 0;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .veda-dropdown-menu::before {
+    display: none;
+  }
+
+  .veda-sub-link {
+    display: flex;
+    min-height: 50px;
+    align-items: center;
+    padding: 0;
+    border-bottom: 1px solid #edf0f5;
+    border-radius: 0;
+    font-size: 17px;
+  }
+
+  .veda-sub-link:hover,
+  .veda-sub-link.active {
+    background: none;
+  }
+
+  .veda-login-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px 22px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .veda-topbar-inner,
+  .veda-navbar-inner {
+    width: calc(100% - 36px);
+  }
+
+  .veda-topbar-inner {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .veda-topbar-place {
+    display: none;
+  }
+
+  .veda-motto {
+    font-size: 12px;
+  }
+
+  .veda-navbar-inner {
+    min-height: 76px;
+  }
+
+  .veda-brand {
+    gap: 10px;
+  }
+
+  .veda-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .veda-brand-name {
+    font-size: 28px;
+  }
+
+  .veda-brand-subtitle {
+    font-size: 11px;
+  }
+
+  .veda-brand-location {
+    font-size: 11px;
+  }
+
+  .veda-nav-links {
+    padding: 4px 18px 18px;
+  }
+}
+
+/* Calm motion for visitors who prefer it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-header *,
+  .veda-header *::before,
+  .veda-header *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

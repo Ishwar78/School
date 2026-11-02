@@ -1,0 +1,728 @@
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL: FEE STRUCTURE
+========================================= */
+
+.veda-fees {
+  --navy: #082b55;
+  --deep-navy: #061c36;
+  --gold: #e8b648;
+  --warm-gold: #b78324;
+  --ivory: #fcf8f0;
+  --muted: #141414;
+  --text: #111111;
+  --line: rgba(8, 43, 85, 0.1);
+
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--text);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 17px;
+}
+
+.veda-fees *,
+.veda-fees *::before,
+.veda-fees *::after {
+  box-sizing: border-box;
+}
+
+.veda-fees h2,
+.veda-fees h3,
+.veda-fees p {
+  margin-top: 0;
+}
+
+.veda-fees h2,
+.veda-fees h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.veda-fees a:focus-visible,
+.veda-fees button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.fs-container {
+  width: min(1240px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+.fs-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Shared text styles ---------- */
+
+.fs-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 10px;
+  color: #9a6d21;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  line-height: 1.4;
+}
+
+.fs-eyebrow > span {
+  width: 26px;
+  height: 2px;
+  flex: 0 0 auto;
+  background: var(--gold);
+}
+
+.veda-fees h2 {
+  margin-bottom: 0;
+  color: var(--navy);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.veda-fees h2 em {
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+.fs-heading {
+  margin-bottom: 22px;
+}
+
+.fs-lead {
+  max-width: 680px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+/* =========================================
+   CLASS-WISE FEES
+========================================= */
+
+.fs-fees {
+  padding: 44px 0 48px;
+  background:
+    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.07), transparent 28%),
+    #fff;
+}
+
+/* Sample-figures note */
+
+.fs-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  background: #fff7e0;
+  color: var(--navy);
+}
+
+.fs-notice svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--warm-gold);
+}
+
+.fs-notice p {
+  margin: 0;
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+/* Stage filter */
+
+.fs-filters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fs-filter {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(8, 43, 85, 0.18);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.fs-filter:hover {
+  border-color: var(--gold);
+  background: #fff4d8;
+}
+
+.fs-filter.is-active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+
+/* Fee table */
+
+.fs-table-wrap {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 34px rgba(13, 43, 74, 0.12);
+}
+
+.fs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fs-table thead th {
+  padding: 22px 16px 20px;
+  border-bottom: 4px solid var(--gold);
+  background: linear-gradient(180deg, #0b3669, #082b55);
+  color: #fff;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.fs-table thead th + th {
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.fs-table thead small {
+  display: block;
+  margin-top: 6px;
+  color: #f6cf6a;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.fs-table tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background-color 160ms ease;
+}
+
+.fs-table tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.fs-table tbody tr:nth-child(even) {
+  background: #f6f9fc;
+}
+
+.fs-table tbody tr:hover {
+  background: #fff4d1;
+}
+
+.fs-table td,
+.fs-table tbody th {
+  padding: 22px 16px;
+  color: var(--text);
+  font-size: 21px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.fs-table td {
+  border-left: 1px solid rgba(8, 43, 85, 0.07);
+}
+
+.fs-table tbody th.fs-class {
+  width: 22%;
+  white-space: normal;
+}
+
+.fs-class-name {
+  display: block;
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.fs-class-stage {
+  display: block;
+  margin-top: 5px;
+  color: #9a6d21;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+}
+
+.fs-table td.fs-total {
+  background: rgba(240, 194, 82, 0.16);
+  color: var(--navy);
+  font-size: 23px;
+  font-weight: 800;
+}
+
+/* A gold line separates one stage from the next (desktop and tablet) */
+@media (min-width: 761px) {
+  .fs-table tbody tr.fs-stage-start {
+    border-top: 3px solid var(--gold);
+  }
+}
+
+.fs-formula {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 18px 20px;
+  border: 1px solid rgba(183, 131, 36, 0.24);
+  border-left: 4px solid var(--warm-gold);
+  border-radius: 10px;
+  background: linear-gradient(110deg, #fff8e9, #fffdf8);
+  box-shadow: 0 6px 18px rgba(13, 43, 74, 0.06);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+.fs-formula svg {
+  flex: 0 0 auto;
+  box-sizing: content-box;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+}
+
+/* =========================================
+   FEE GUIDELINES
+========================================= */
+
+.fs-guidelines {
+  padding: 44px 0 48px;
+  background:
+    radial-gradient(ellipse at 5% 95%, rgba(232, 182, 72, 0.09), transparent 35%),
+    var(--ivory);
+}
+
+.fs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.fs-card {
+  padding: 22px;
+  border-top: 3px solid var(--gold);
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(13, 43, 74, 0.08);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.fs-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(13, 43, 74, 0.13);
+}
+
+.fs-card-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 14px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff2d4;
+  color: var(--navy);
+}
+
+.fs-card h3 {
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.fs-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Not-included list */
+
+.fs-extra {
+  margin-top: 20px;
+  padding: 24px 26px;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #fff;
+}
+
+.fs-extra h3 {
+  margin-bottom: 14px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.fs-extra ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 28px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.fs-extra li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.fs-extra li svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #f0c252;
+}
+
+.fs-extra p {
+  margin: 0;
+  color: #cbd8e8;
+  font-size: 15px;
+}
+
+/* =========================================
+   CALL TO ACTION
+========================================= */
+
+.fs-cta {
+  padding: 38px 0 44px;
+  background: #fff;
+}
+
+.fs-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.fs-cta p {
+  max-width: 540px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.fs-cta-buttons {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.fs-btn {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  border: 2px solid #f0c252;
+  border-radius: 6px;
+  background: #f0c252;
+  color: var(--deep-navy);
+  font-size: 16px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.fs-btn:hover {
+  transform: translateY(-2px);
+  border-color: #ffdb7a;
+  background: #ffdb7a;
+}
+
+.fs-btn-outline {
+  border-color: var(--navy);
+  background: transparent;
+  color: var(--navy);
+}
+
+.fs-btn-outline:hover {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .fs-container {
+    width: calc(100% - 60px);
+  }
+
+  .fs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fs-table thead th {
+    padding: 18px 10px 16px;
+    font-size: 17px;
+  }
+
+  .fs-table td,
+  .fs-table tbody th {
+    padding: 18px 10px;
+    font-size: 19px;
+  }
+
+  .fs-class-name {
+    font-size: 23px;
+  }
+
+  .fs-table td.fs-total {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 900px) {
+  .fs-container {
+    width: calc(100% - 48px);
+  }
+
+  .fs-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+/* Phones and small tablets: each table row becomes its own card */
+
+@media (max-width: 760px) {
+  .fs-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .fs-filter {
+    flex: 0 0 calc((100% - 16px) / 3);
+    padding-inline: 8px;
+    font-size: 13px;
+  }
+
+  .fs-table-wrap {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .fs-table,
+  .fs-table tbody,
+  .fs-table tr,
+  .fs-table td,
+  .fs-table tbody th {
+    display: block;
+    width: 100%;
+  }
+
+  /* Header row is hidden visually; the labels move into each card */
+  .fs-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .fs-table tbody tr,
+  .fs-table tbody tr:nth-child(even) {
+    margin-bottom: 16px;
+    padding: 4px 18px 10px;
+    border: 0;
+    border-top: 4px solid var(--gold);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 26px rgba(13, 43, 74, 0.11);
+  }
+
+  .fs-table tbody tr:hover {
+    background: #fff;
+  }
+
+  .fs-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .fs-table tbody th.fs-class {
+    width: 100%;
+    padding: 16px 0 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fs-class-name {
+    font-size: 28px;
+  }
+
+  .fs-table td {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0;
+    border-left: 0;
+    border-bottom: 1px dashed rgba(8, 43, 85, 0.18);
+    font-size: 20px;
+    text-align: right;
+  }
+
+  .fs-table td::before {
+    content: attr(data-label);
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 500;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .fs-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .fs-table td.fs-total {
+    margin-top: 6px;
+    padding: 14px 16px;
+    border-bottom: 0;
+    border-radius: 9px;
+    background: #fff4d1;
+    font-size: 23px;
+  }
+
+  .fs-table td.fs-total::before {
+    color: var(--navy);
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 600px) {
+  .fs-container {
+    width: calc(100% - 36px);
+  }
+
+  .fs-fees,
+  .fs-guidelines {
+    padding: 34px 0 38px;
+  }
+
+  .fs-heading {
+    margin-bottom: 18px;
+  }
+
+  .fs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fs-card {
+    padding: 20px;
+  }
+
+  .fs-extra {
+    padding: 22px 20px;
+  }
+
+  .fs-extra ul {
+    grid-template-columns: 1fr;
+  }
+
+  .fs-filters {
+    gap: 8px;
+  }
+
+  .fs-filter {
+    padding-inline: 5px;
+    font-size: 12px;
+  }
+
+  .fs-cta {
+    padding: 30px 0 36px;
+  }
+
+  .fs-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .fs-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .fs-container {
+    width: calc(100% - 30px);
+  }
+
+  .fs-table td {
+    font-size: 18px;
+  }
+
+  .fs-table td::before {
+    font-size: 15px;
+  }
+}
+
+/* Calm motion for visitors who prefer it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-fees *,
+  .veda-fees *::before,
+  .veda-fees *::after {
+    transition-duration: 0.01ms !important;
+  }
+
+  .veda-fees .fs-card:hover,
+  .veda-fees .fs-btn:hover {
+    transform: none;
+  }
+}

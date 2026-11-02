@@ -1,0 +1,669 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL: CONTACT PAGE
+   (complete file: styles + responsive)
+   The banner is styled by PageBanner, not here.
+========================================= */
+
+.veda-contact {
+  --ct-navy: #082b55;
+  --ct-deep: #061c36;
+  --ct-gold: #e8b648;
+  --ct-gold-dark: #a8731c;
+  --ct-ivory: #fcf8f0;
+  --ct-text: #183454;
+  --ct-muted: #5d6f84;
+  --ct-border: #e3e8ee;
+
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  background: #fff;
+  color: var(--ct-text);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.veda-contact *,
+.veda-contact *::before,
+.veda-contact *::after {
+  box-sizing: border-box;
+}
+
+.veda-contact h2,
+.veda-contact h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.veda-contact p {
+  margin: 0;
+}
+
+.veda-contact a {
+  text-decoration: none;
+}
+
+.veda-contact a:focus-visible,
+.veda-contact button:focus-visible,
+.veda-contact input:focus-visible,
+.veda-contact select:focus-visible,
+.veda-contact textarea:focus-visible {
+  outline: 3px solid rgba(215, 173, 81, 0.6);
+  outline-offset: 3px;
+}
+
+.ct-container {
+  width: min(1240px, calc(100% - 80px));
+  min-width: 0;
+  margin-inline: auto;
+}
+
+/* ---------- Headings ---------- */
+
+.ct-heading {
+  margin-bottom: 28px;
+}
+
+.ct-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 13px;
+  color: var(--ct-gold-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.ct-eyebrow > span {
+  width: 26px;
+  height: 2px;
+  background: var(--ct-gold);
+}
+
+.ct-heading h2 {
+  color: var(--ct-navy);
+  font-size: clamp(30px, 3.2vw, 43px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ct-heading h2 em {
+  color: #bd8626;
+  font-style: normal;
+}
+
+.ct-lead {
+  max-width: 640px;
+  margin-top: 14px;
+  color: var(--ct-muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* ---------- Shared link + button ---------- */
+
+.ct-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ct-navy);
+  font-size: 15px;
+  font-weight: 800;
+  transition: color 180ms ease, gap 180ms ease;
+}
+
+.ct-text-link:hover {
+  gap: 10px;
+  color: #b78324;
+}
+
+.ct-btn {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 8px;
+  background: #f0c252;
+  box-shadow: 0 7px 18px rgba(8, 43, 85, 0.12);
+  color: var(--ct-deep);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.ct-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #ffdc83;
+  box-shadow: 0 11px 24px rgba(8, 43, 85, 0.16);
+}
+
+.ct-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* =========================================
+   CONTACT CARDS
+   Every card: icon, label, main line, supporting line,
+   then a footer row (separated by a thin line).
+========================================= */
+
+.ct-info {
+  padding: 44px 0 48px;
+  background: #fff;
+}
+
+.ct-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.ct-info-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 26px 24px 22px;
+  border: 1px solid rgba(8, 43, 85, 0.07);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(13, 43, 74, 0.075);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+/* thin gold line along the top edge */
+.ct-info-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ct-gold), rgba(232, 182, 72, 0.2));
+  content: "";
+}
+
+.ct-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(13, 43, 74, 0.13);
+}
+
+.ct-icon-circle {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: #fff1cf;
+  color: var(--ct-navy);
+}
+
+.ct-info-label {
+  margin-bottom: 8px;
+  color: var(--ct-gold-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.ct-info-value {
+  margin-bottom: 8px;
+  color: var(--ct-navy);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+}
+
+.ct-info-detail {
+  color: var(--ct-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.ct-info-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(8, 43, 85, 0.1);
+}
+
+/* the space above the footer row, so short cards still breathe */
+.ct-info-detail {
+  margin-bottom: 18px;
+}
+
+/* Social buttons: icon + name */
+.ct-social-link {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  border: 1px solid #dfe5ec;
+  border-radius: 999px;
+  background: #f6f8fb;
+  color: var(--ct-navy);
+  font-size: 13px;
+  font-weight: 700;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.ct-social-link:hover {
+  border-color: var(--ct-navy);
+  background: var(--ct-navy);
+  color: #fff;
+}
+
+/* Featured card: Admissions (the main action on this page) */
+.ct-info-card.featured {
+  border-color: transparent;
+  background: linear-gradient(150deg, #0b3769, var(--ct-deep));
+  box-shadow: 0 16px 36px rgba(8, 43, 85, 0.22);
+}
+
+.ct-info-card.featured .ct-icon-circle {
+  background: var(--ct-gold);
+  color: var(--ct-deep);
+}
+
+.ct-info-card.featured .ct-info-label {
+  color: #f2c55d;
+}
+
+.ct-info-card.featured .ct-info-value {
+  color: #fff;
+}
+
+.ct-info-card.featured .ct-info-detail {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.ct-info-card.featured .ct-info-footer {
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+
+.ct-info-card.featured .ct-text-link {
+  min-height: 44px;
+  justify-content: center;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #f0c252;
+  color: var(--ct-deep);
+}
+
+.ct-info-card.featured .ct-text-link:hover {
+  background: #ffdc83;
+  color: var(--ct-deep);
+}
+
+/* =========================================
+   FORM + MAP
+========================================= */
+
+.ct-main {
+  padding: 46px 0 52px;
+  background: var(--ct-ivory);
+  scroll-margin-top: 90px;
+}
+
+.ct-main-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 24px;
+}
+
+.ct-form-card,
+.ct-map-card {
+  min-width: 0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 38px rgba(13, 43, 74, 0.1);
+}
+
+.ct-form-card {
+  padding: 34px 34px 36px;
+  border-top: 4px solid var(--ct-gold);
+}
+
+.ct-form-card h3 {
+  color: var(--ct-navy);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ct-form-intro {
+  margin: 8px 0 22px;
+  color: var(--ct-muted);
+  font-size: 14px;
+}
+
+.ct-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ct-field {
+  min-width: 0;
+}
+
+.ct-field-wide {
+  grid-column: 1 / -1;
+}
+
+.ct-field label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--ct-navy);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ct-field input,
+.ct-field select,
+.ct-field textarea {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid var(--ct-border);
+  border-radius: 10px;
+  background: #fcfdff;
+  color: var(--ct-navy);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.ct-field textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.ct-field input:focus,
+.ct-field select:focus,
+.ct-field textarea:focus {
+  border-color: #8c7446;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(215, 173, 81, 0.22);
+}
+
+.ct-submit {
+  margin-top: 20px;
+}
+
+.ct-error {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid #f0c5c5;
+  border-radius: 8px;
+  background: #fff4f4;
+  color: #a33a3a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.ct-success {
+  display: flex;
+  min-height: 340px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  color: #18734f;
+}
+
+.ct-success h3 {
+  color: var(--ct-navy);
+  font-size: 26px;
+}
+
+.ct-success p {
+  margin-bottom: 8px;
+  color: var(--ct-muted);
+  font-size: 15px;
+}
+
+/* Map */
+
+.ct-map-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ct-map-frame {
+  position: relative;
+  min-height: 360px;
+  flex: 1 1 auto;
+  background: #e8edf2;
+}
+
+.ct-map-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ct-map-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border-top: 3px solid var(--ct-gold);
+}
+
+.ct-map-footer > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ct-map-footer strong {
+  color: var(--ct-navy);
+  font-size: 15px;
+}
+
+.ct-map-footer span {
+  color: var(--ct-muted);
+  font-size: 14px;
+}
+
+/* =========================================
+   RESPONSIVE
+   1100 laptop-small | 900 tablet | 600 phone | 380 tiny
+========================================= */
+
+@media (max-width: 1100px) {
+  .ct-container {
+    width: min(1240px, calc(100% - 60px));
+  }
+
+  /* 2 x 2 cards */
+  .ct-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .ct-container {
+    width: min(1240px, calc(100% - 48px));
+  }
+
+  .ct-info,
+  .ct-main {
+    padding-block: 38px;
+  }
+
+  .ct-main-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ct-map-frame {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ct-container {
+    width: min(1240px, calc(100% - 36px));
+  }
+
+  .ct-info,
+  .ct-main {
+    padding-block: 32px;
+  }
+
+  .ct-heading {
+    margin-bottom: 22px;
+  }
+
+  .ct-heading h2 {
+    font-size: clamp(28px, 7.6vw, 34px);
+  }
+
+  .ct-lead {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /*
+    Phone card layout:
+      Admissions (full width, first, it is the main action)
+      Visit | Call (side by side)
+      Social media (full width)
+  */
+  .ct-info-grid {
+    gap: 12px;
+  }
+
+  .ct-info-card {
+    padding: 18px 16px 16px;
+  }
+
+  .ct-info-card.featured {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+
+  .ct-info-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .ct-icon-circle {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 14px;
+  }
+
+  .ct-info-label {
+    font-size: 11px;
+  }
+
+  .ct-info-value {
+    font-size: 17px;
+  }
+
+  .ct-info-detail {
+    margin-bottom: 14px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .ct-info-footer {
+    padding-top: 13px;
+  }
+
+  .ct-text-link {
+    font-size: 14px;
+  }
+
+  .ct-social-link {
+    min-height: 36px;
+    padding: 0 11px;
+  }
+
+  /* form */
+  .ct-form-card {
+    padding: 24px 18px 26px;
+  }
+
+  .ct-form-card h3 {
+    font-size: 26px;
+  }
+
+  .ct-fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .ct-field input,
+  .ct-field select,
+  .ct-field textarea {
+    font-size: 16px; /* stops phones zooming in when a field is tapped */
+  }
+
+  .ct-submit {
+    width: 100%;
+  }
+
+  .ct-success {
+    min-height: 280px;
+  }
+
+  /* map */
+  .ct-map-frame {
+    min-height: 260px;
+  }
+
+  .ct-map-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .ct-container {
+    width: min(1240px, calc(100% - 28px));
+  }
+
+  /* very small phones: one card per row */
+  .ct-info-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ct-info-card:nth-child(3) {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-contact *,
+  .veda-contact *::before,
+  .veda-contact *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

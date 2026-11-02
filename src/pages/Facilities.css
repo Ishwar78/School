@@ -1,0 +1,1156 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL
+   FACILITIES PAGE
+========================================= */
+
+.veda-facilities {
+  --fa-navy: #082b55;
+  --fa-deep: #061c36;
+  --fa-gold: #e8b648;
+  --fa-ivory: #fcf8f0;
+  --fa-text: #183454;
+  --fa-muted: #68788c;
+  --fa-border: #e3e8ee;
+
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  color: var(--fa-text);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.veda-facilities *,
+.veda-facilities *::before,
+.veda-facilities *::after {
+  box-sizing: border-box;
+}
+
+.fa-container {
+  width: calc(100% - 80px);
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.fa-banner {
+  width: min(100%, 1600px);
+  margin: 0 auto;
+}
+
+.fa-banner-stage {
+  position: relative;
+  height: clamp(300px, calc(100vh - 200px), 600px);
+  height: clamp(300px, calc(100svh - 200px), 600px);
+  overflow: hidden;
+  background: var(--fa-deep);
+}
+
+.fa-image-holder {
+  position: relative;
+  overflow: hidden;
+  background: var(--fa-deep);
+}
+
+.fa-banner-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fa-image-holder img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+.fa-image-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(145deg, #123b68, var(--fa-deep));
+  color: #f2c55d;
+}
+
+.fa-image-placeholder span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.fa-tag {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background: rgba(6, 28, 54, 0.74);
+  box-shadow: 0 6px 18px rgba(2, 17, 33, 0.22);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1.1px;
+  line-height: 1.35;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.fa-tag svg {
+  flex: 0 0 auto;
+  color: #f2c55d;
+}
+
+.fa-tag-top-left {
+  top: 24px;
+  left: max(24px, calc((100% - 1320px) / 2));
+  border-left: 3px solid #f2c55d;
+}
+
+.fa-tag-top-right {
+  top: 24px;
+  right: max(24px, calc((100% - 1320px) / 2));
+  border-right: 3px solid #f2c55d;
+}
+
+.fa-tag-bottom-left {
+  bottom: 25px;
+  left: 24px;
+  gap: 7px;
+  border-left: 3px solid #f2c55d;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.fa-tag-bottom-left a {
+  color: #fff;
+}
+
+.fa-tag-bottom-left a:hover,
+.fa-tag-bottom-left span[aria-current="page"] {
+  color: #f2c55d;
+}
+
+.fa-tag-center {
+  bottom: 25px;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 40px);
+  flex-direction: column;
+  gap: 5px;
+  padding: 11px 23px;
+  border-bottom: 3px solid #f2c55d;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.fa-tag-center small {
+  color: #f2c55d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+}
+
+.fa-tag-center strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 1.8vw, 23px);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.fa-intro,
+.fa-main,
+.fa-other {
+  padding: 36px 0;
+}
+
+.fa-intro {
+  background: #fff;
+}
+
+.fa-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 80px);
+}
+
+.fa-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 13px;
+  color: #a8731c;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.fa-eyebrow > span {
+  width: 26px;
+  height: 2px;
+  background: var(--fa-gold);
+}
+
+.fa-intro h2,
+.fa-heading h2 {
+  margin: 0;
+  color: var(--fa-navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.2vw, 43px);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.fa-intro h2 em,
+.fa-heading h2 em {
+  color: #bd8626;
+  font-style: normal;
+}
+
+.fa-lead {
+  max-width: 680px;
+  margin: 16px 0 0;
+  color: var(--fa-muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.fa-intro-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 21px;
+  color: var(--fa-navy);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.fa-intro-link svg {
+  color: #b78324;
+  transition: transform 0.2s ease;
+}
+
+.fa-intro-link:hover svg {
+  transform: translateY(3px);
+}
+
+.fa-highlights {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #0b3769, var(--fa-deep));
+  box-shadow: 0 18px 42px rgba(8, 43, 85, 0.16);
+}
+
+.fa-highlight {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  align-items: start;
+  gap: 15px;
+  padding: 12px 0;
+  color: #fff;
+}
+
+.fa-highlight + .fa-highlight {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.fa-highlight-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(242, 197, 93, 0.36);
+  border-radius: 13px;
+  background: rgba(232, 182, 72, 0.12);
+  color: #f2c55d;
+}
+
+.fa-highlight-title {
+  margin: 0 0 5px;
+  color: #fff;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.fa-highlight p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.fa-main {
+  background: #f8fafc;
+}
+
+.fa-heading {
+  margin-bottom: 18px;
+}
+
+.fa-heading h2 {
+  font-size: clamp(29px, 3vw, 40px);
+}
+
+.fa-chips {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin-bottom: 22px;
+}
+
+.fa-chip {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 72px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e5e9ef;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #fff, #fbfaf7);
+  color: var(--fa-navy);
+  font-size: 13px;
+  font-weight: 750;
+  text-align: left;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(13, 43, 74, 0.045);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.fa-chip:hover {
+  border-color: #d4ae63;
+  box-shadow: 0 9px 22px rgba(8, 43, 85, 0.1);
+  transform: translateY(-2px);
+}
+
+.fa-chip:focus-visible {
+  outline: 3px solid rgba(184, 132, 38, 0.45);
+  outline-offset: 3px;
+}
+
+.fa-chip.is-active {
+  border-color: #b9852d;
+  background: linear-gradient(145deg, #103f70, #061c36);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(8, 43, 85, 0.2);
+}
+
+.fa-chip-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(184, 132, 38, 0.16);
+  border-radius: 11px;
+  background: #fff6e2;
+  color: #a8731c;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fa-chip.is-active .fa-chip-icon {
+  border-color: rgba(242, 197, 93, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  color: #f2c55d;
+}
+
+.fa-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 24px;
+  border-top: 4px solid #e8b648;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(13, 43, 74, 0.14);
+  animation: fa-detail-in 0.3s ease both;
+}
+
+@keyframes fa-detail-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fa-detail-info {
+  min-width: 0;
+}
+
+.fa-detail-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  background: #fff2d4;
+  color: #7a5415;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.fa-detail-label svg {
+  flex: 0 0 auto;
+}
+
+.fa-detail-title {
+  margin: 10px 0 8px;
+  color: var(--fa-navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.fa-detail-text {
+  margin: 0 0 14px;
+  color: #3d556f;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.fa-points {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fa-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fbf7ee;
+  color: #082b55;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.fa-points li svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: #b78324;
+}
+
+.fa-collage {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  height: 320px;
+  min-width: 0;
+}
+
+.fa-photo {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #e9eef4;
+}
+
+.fa-photo img,
+.fa-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.fa-photo img {
+  display: block;
+}
+
+.fa-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(145deg, #eef2f6, #dfe7ef);
+  color: #52708e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.fa-photo-1 {
+  grid-row: 1 / 3;
+}
+
+.fa-other {
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(232, 182, 72, 0.1), transparent 34%),
+    #fff;
+}
+
+.fa-other-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.fa-other-head .fa-heading {
+  margin-bottom: 0;
+}
+
+.fa-other-head .fa-lead {
+  margin-top: 10px;
+}
+
+.fa-arrows {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 9px;
+  padding-bottom: 5px;
+}
+
+.fa-arrow {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #dfe5ec;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--fa-navy);
+  box-shadow: 0 5px 14px rgba(13, 43, 74, 0.08);
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.fa-arrow:hover {
+  border-color: var(--fa-navy);
+  background: var(--fa-navy);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.fa-track {
+  display: flex;
+  gap: 16px;
+  padding: 8px 4px 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #c7d2df transparent;
+}
+
+.fa-track::-webkit-scrollbar {
+  height: 7px;
+}
+
+.fa-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fa-track::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #c7d2df;
+}
+
+.fa-track:focus-visible {
+  outline: 2px solid var(--fa-gold);
+  outline-offset: 3px;
+}
+
+.fa-other-card {
+  position: relative;
+  flex: 1 0 300px;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  border-top: none;
+  border-bottom: 4px solid #e8b648;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(13, 43, 74, 0.13);
+  scroll-snap-align: start;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.fa-other-card:hover {
+  box-shadow: 0 14px 32px rgba(13, 43, 74, 0.17);
+  transform: translateY(-3px);
+}
+
+.fa-other-media {
+  position: relative;
+}
+
+.fa-other-photo {
+  height: 200px;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.fa-other-photo img,
+.fa-other-photo .fa-photo-placeholder {
+  border-radius: 0;
+}
+
+.fa-other-photo .fa-photo-placeholder {
+  background: linear-gradient(145deg, #eaf0f6, #d8e2ec);
+}
+
+.fa-other-icon {
+  position: absolute;
+  bottom: -26px;
+  left: 22px;
+  z-index: 2;
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #e8b648;
+  color: #082b55;
+}
+
+.fa-other-body {
+  padding: 38px 22px 20px;
+}
+
+.fa-other-name {
+  margin: 0 0 8px;
+  color: var(--fa-navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.fa-other-text {
+  margin: 0;
+  color: #3d556f;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .fa-container {
+    width: calc(100% - 48px);
+  }
+
+  .fa-intro-grid,
+  .fa-detail {
+    grid-template-columns: 1fr;
+  }
+
+  .fa-intro-grid {
+    gap: 30px;
+  }
+
+  .fa-collage {
+    height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fa-container {
+    width: calc(100% - 32px);
+  }
+
+  .fa-banner-stage {
+    height: clamp(260px, 72vw, 380px);
+  }
+
+  .fa-tag {
+    padding: 8px 11px;
+    font-size: 10px;
+    letter-spacing: 0.85px;
+  }
+
+  .fa-tag-top-left {
+    top: 14px;
+    left: 14px;
+  }
+
+  .fa-tag-top-left svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .fa-tag-top-right {
+    display: none;
+  }
+
+  .fa-tag-center {
+    bottom: 14px;
+    max-width: calc(100% - 32px);
+    padding: 9px 15px;
+  }
+
+  .fa-tag-bottom-left {
+    bottom: 84px;
+    left: 14px;
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+
+  .fa-intro,
+  .fa-main,
+  .fa-other {
+    padding: 28px 0;
+  }
+
+  .fa-intro-grid {
+    gap: 24px;
+  }
+
+  .fa-highlights {
+    gap: 8px;
+    padding: 18px;
+  }
+
+  .fa-highlight {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px;
+    padding: 10px 0;
+  }
+
+  .fa-highlight-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .fa-highlight-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .fa-chips {
+    display: flex;
+    gap: 9px;
+    padding: 3px 2px 12px;
+    margin-right: -2px;
+    margin-left: -2px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: #c7d2df transparent;
+  }
+
+  .fa-chips::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .fa-chips::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #c7d2df;
+  }
+
+  .fa-chip {
+    flex: 0 0 168px;
+    min-height: 56px;
+    gap: 8px;
+    padding: 8px 10px;
+    font-size: 13px;
+    scroll-snap-align: start;
+  }
+
+  .fa-chip-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .fa-chip-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .fa-detail {
+    gap: 20px;
+    padding: 18px 16px;
+  }
+
+  .fa-detail-title {
+    font-size: 26px;
+  }
+
+  .fa-detail-text {
+    font-size: 16px;
+  }
+
+  .fa-points li {
+    gap: 9px;
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+
+  .fa-points li svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .fa-collage {
+    height: 260px;
+    gap: 8px;
+  }
+
+  .fa-other-head {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .fa-arrows {
+    gap: 6px;
+  }
+
+  .fa-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .fa-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .fa-track {
+    gap: 12px;
+  }
+
+  .fa-other-card {
+    flex-basis: 260px;
+  }
+
+  .fa-other-photo {
+    height: 185px;
+  }
+}
+
+@media (max-width: 380px) {
+  .fa-container {
+    width: calc(100% - 24px);
+  }
+
+  .fa-other-head {
+    align-items: flex-start;
+  }
+
+  .fa-other-head .fa-heading h2 {
+    font-size: 27px;
+  }
+
+  .fa-arrows {
+    padding-top: 7px;
+  }
+
+  .fa-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .fa-detail-label {
+    gap: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .fa-collage {
+    height: 230px;
+  }
+
+  .fa-other-card {
+    flex-basis: 250px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-detail {
+    animation: none;
+  }
+
+  .fa-chip,
+  .fa-intro-link svg,
+  .fa-arrow,
+  .fa-other-card {
+    transition: none;
+  }
+}
+/* =========================================
+   VEDA FACILITIES: RESPONSIVE FIXES
+   Import this LAST in Facilities.jsx:
+
+     import "./Facilities.css";
+     import "./FacilitiesResponsive.css";
+
+   What changes on smaller screens:
+     1. The navy highlights panel is hidden (tablet + phone)
+     2. The 6 facility options always show together, no scrolling
+     3. The 3 "other facilities" cards stay in ONE row, no scrolling
+
+   Every rule starts with ".veda-facilities" so it wins over
+   the old media queries in Facilities.css.
+========================================= */
+
+
+/* =========================================
+   1. INTRO: navy panel hidden on tablet and phone
+   (desktop keeps it on the right side, as designed)
+========================================= */
+
+@media (max-width: 900px) {
+  .veda-facilities .fa-highlights {
+    display: none;
+  }
+
+  .veda-facilities .fa-intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .veda-facilities .fa-intro,
+  .veda-facilities .fa-main,
+  .veda-facilities .fa-other {
+    padding: 34px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .veda-facilities .fa-container {
+    width: calc(100% - 36px);
+  }
+
+  .veda-facilities .fa-intro,
+  .veda-facilities .fa-main,
+  .veda-facilities .fa-other {
+    padding: 30px 0;
+  }
+
+  .veda-facilities .fa-intro h2,
+  .veda-facilities .fa-heading h2 {
+    font-size: clamp(27px, 7.4vw, 32px);
+  }
+
+  .veda-facilities .fa-lead {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .veda-facilities .fa-intro-link {
+    margin-top: 16px;
+  }
+}
+
+
+/* =========================================
+   2. FACILITY OPTIONS (Library, Laboratories ...)
+   Laptop: 6 in a row, icon above the name
+   Tablet and phone: 3 x 2 grid, no scrolling
+========================================= */
+
+@media (max-width: 1100px) {
+  .veda-facilities .fa-chip {
+    min-height: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 6px;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 900px) {
+  .veda-facilities .fa-chips {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 20px;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .veda-facilities .fa-chip {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .veda-facilities .fa-chips {
+    gap: 8px;
+  }
+
+  .veda-facilities .fa-chip {
+    gap: 7px;
+    padding: 11px 4px;
+    border-radius: 12px;
+    font-size: 12.5px;
+    line-height: 1.25;
+  }
+
+  .veda-facilities .fa-chip-icon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+/* =========================================
+   3. FACILITY DETAILS (photos + points)
+   small tidy-ups for tablet and phone
+========================================= */
+
+@media (max-width: 900px) {
+  .veda-facilities .fa-detail {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .veda-facilities .fa-detail {
+    padding: 18px 16px;
+  }
+
+  .veda-facilities .fa-collage {
+    height: 240px;
+  }
+}
+
+
+/* =========================================
+   4. OUR OTHER FACILITIES: always 3 in one row
+   No scrolling, no arrows, no auto-scroll
+   (the page code switches auto-scroll off by itself
+   because nothing is left to scroll)
+========================================= */
+
+.veda-facilities .fa-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 8px 0 16px;
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+.veda-facilities .fa-other-card {
+  flex: none;
+  width: auto;
+}
+
+.veda-facilities .fa-arrows {
+  display: none;
+}
+
+/* Tablet: same layout, a little smaller */
+@media (max-width: 900px) {
+  .veda-facilities .fa-track {
+    gap: 12px;
+  }
+
+  .veda-facilities .fa-other-photo {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .veda-facilities .fa-other-icon {
+    bottom: -22px;
+    left: 16px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .veda-facilities .fa-other-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .veda-facilities .fa-other-body {
+    padding: 32px 16px 18px;
+  }
+
+  .veda-facilities .fa-other-name {
+    font-size: 20px;
+  }
+
+  .veda-facilities .fa-other-text {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+}
+
+/* Phone: three narrow cards. Photo, icon and name only;
+   the short description is hidden because it would turn into
+   a very tall, thin column. */
+@media (max-width: 600px) {
+  .veda-facilities .fa-track {
+    gap: 8px;
+    padding: 6px 0 12px;
+  }
+
+  .veda-facilities .fa-other-card {
+    border-radius: 10px;
+    border-bottom-width: 3px;
+  }
+
+  .veda-facilities .fa-other-photo {
+    aspect-ratio: 1 / 1;
+  }
+
+  .veda-facilities .fa-other-icon {
+    bottom: -16px;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    border-width: 2px;
+    transform: translateX(-50%);
+  }
+
+  .veda-facilities .fa-other-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .veda-facilities .fa-other-body {
+    padding: 24px 6px 14px;
+    text-align: center;
+  }
+
+  .veda-facilities .fa-other-name {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .veda-facilities .fa-other-text {
+    display: none;
+  }
+}

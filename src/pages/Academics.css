@@ -1,0 +1,667 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL: ACADEMICS
+========================================= */
+
+.veda-academics {
+  --navy: #082b55;
+  --deep-navy: #061c36;
+  --gold: #e8b648;
+  --warm-gold: #b78324;
+  --ivory: #fcf8f0;
+  --muted: #000000;
+
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--navy);
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+}
+
+.veda-academics *,
+.veda-academics *::before,
+.veda-academics *::after {
+  box-sizing: border-box;
+}
+
+.veda-academics h1,
+.veda-academics h2,
+.veda-academics h3,
+.veda-academics p {
+  margin-top: 0;
+}
+
+.veda-academics a:focus-visible,
+.veda-academics button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.ac-container {
+  width: min(1240px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+/* ---------- Shared text styles ---------- */
+
+.ac-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 6px;
+  color: #9a6d21;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.ac-eyebrow > span {
+  width: 26px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.veda-academics h1,
+.veda-academics h2 {
+  margin-bottom: 0;
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.veda-academics h1 {
+  font-size: clamp(32px, 3.6vw, 46px);
+}
+
+.veda-academics h2 {
+  font-size: clamp(30px, 3vw, 40px);
+}
+
+.veda-academics h1 em,
+.veda-academics h2 em {
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+.ac-heading {
+  margin-bottom: 15px;
+}
+
+.ac-lead {
+  max-width: 640px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.ac-label {
+  color: #9a6d21;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+/* ---------- Filter buttons (used twice) ---------- */
+
+.ac-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ac-filter {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid rgba(8, 43, 85, 0.18);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.ac-filter:hover {
+  border-color: var(--gold);
+  background: #fff4d8;
+}
+
+.ac-filter.is-active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+
+/* =========================================
+   1. INTRODUCTION
+========================================= */
+
+.ac-intro {
+  padding: 40px 0;
+  background:
+    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.1), transparent 30%),
+    var(--ivory);
+}
+
+.ac-intro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.veda-academics .ac-intro-text h1 {
+  font-size: clamp(30px, 3.2vw, 40px);
+}
+
+.veda-academics p.ac-intro-description {
+  max-width: 600px;
+  margin: 10px 0 0;
+  padding-left: 16px;
+  border-left: 3px solid var(--warm-gold);
+  color: #000;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.ac-facts {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.ac-fact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(13, 43, 74, 0.07);
+}
+
+.ac-fact > svg {
+  flex: 0 0 auto;
+  color: var(--warm-gold);
+}
+
+.ac-fact strong {
+  display: block;
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.ac-fact span {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* Photo with a thin gold frame */
+
+.ac-photo {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--navy);
+  box-shadow: 0 18px 44px rgba(6, 28, 54, 0.14);
+}
+
+.ac-photo .local-image {
+  position: absolute;
+  inset: 0;
+}
+
+.ac-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(6, 28, 54, 0.55), transparent 55%);
+  pointer-events: none;
+}
+
+.ac-photo::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 2;
+  border: 1px solid rgba(232, 182, 72, 0.65);
+  border-radius: 11px;
+  pointer-events: none;
+}
+
+.ac-photo-label {
+  position: absolute;
+  z-index: 3;
+  bottom: 26px;
+  left: 26px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(6, 28, 54, 0.92);
+  color: var(--gold);
+}
+
+.ac-photo-label span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.ac-photo-label small {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   2. CURRICULUM
+========================================= */
+
+.ac-curriculum {
+  padding: 40px 0;
+  background:
+    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.07), transparent 28%),
+    #fff;
+}
+
+.ac-stage {
+  overflow: hidden;
+  border-top: 3px solid var(--gold);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(13, 43, 74, 0.1);
+}
+
+.ac-stage-top {
+  padding: 26px 28px;
+  background: var(--ivory);
+  border-bottom: 1px solid rgba(8, 43, 85, 0.08);
+}
+
+.ac-stage-top h3 {
+  margin: 4px 0 8px;
+  color: var(--navy);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.ac-stage-top p {
+  max-width: 720px;
+  margin: 0;
+  color: #000;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.ac-stage-body {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 0.8fr;
+  gap: 28px;
+  padding: 26px 28px 28px;
+}
+
+.ac-block-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 12px;
+  color: var(--navy);
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.ac-block-title svg {
+  color: var(--warm-gold);
+}
+
+.ac-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ac-subjects li {
+  padding: 7px 13px;
+  border: 1px solid rgba(8, 43, 85, 0.12);
+  border-radius: 999px;
+  background: #f6f8fa;
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ac-points {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ac-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.ac-points svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--warm-gold);
+}
+
+.ac-assessment p {
+  margin: 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   3. ACADEMIC APPROACH
+========================================= */
+
+.ac-approach {
+  padding: 40px 0;
+  background: var(--ivory);
+}
+
+.ac-approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ac-approach-card {
+  padding: 24px;
+  border-top: 3px solid var(--gold);
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(13, 43, 74, 0.09);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.ac-approach-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(13, 43, 74, 0.13);
+}
+
+.ac-icon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 14px;
+  border: 1px solid #ecd9ab;
+  border-radius: 12px;
+  background: #fff8e9;
+  color: var(--warm-gold);
+}
+
+.ac-approach-card h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.ac-approach-card p {
+  margin: 0;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* =========================================
+   4. ACADEMIC CALENDAR
+========================================= */
+
+.ac-calendar {
+  padding: 40px 0;
+  background: #fff;
+}
+
+.ac-month-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.ac-month {
+  padding: 22px;
+  border: 1px solid rgba(8, 43, 85, 0.1);
+  border-top: 3px solid var(--gold);
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgba(13, 43, 74, 0.07);
+}
+
+.ac-month h3 {
+  margin: 4px 0 12px;
+  color: var(--navy);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.ac-month ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ac-month li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ac-month li svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--warm-gold);
+}
+
+/* =========================================
+   5. CALL TO ACTION
+========================================= */
+
+.ac-cta {
+  padding: 36px 0 40px;
+  background:
+    radial-gradient(ellipse at 5% 95%, rgba(232, 182, 72, 0.09), transparent 35%),
+    var(--ivory);
+}
+
+.ac-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ac-cta p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ac-btn {
+  display: inline-flex;
+  min-height: 48px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  border-radius: 6px;
+  background: #f0c252;
+  color: var(--deep-navy);
+  font-size: 16px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.ac-btn:hover {
+  transform: translateY(-2px);
+  background: #ffdb7a;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .ac-container {
+    width: calc(100% - 60px);
+  }
+
+  .ac-stage-body {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ac-assessment {
+    grid-column: 1 / -1;
+  }
+
+  .ac-approach-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .ac-container {
+    width: calc(100% - 48px);
+  }
+
+  .ac-intro-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .ac-photo {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (max-width: 600px) {
+  .ac-container {
+    width: calc(100% - 36px);
+  }
+
+  .ac-intro,
+  .ac-curriculum,
+  .ac-approach,
+  .ac-calendar {
+    padding: 32px 0;
+  }
+
+  .ac-intro-description {
+    font-size: 16px;
+  }
+
+  .ac-photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .ac-photo-label {
+    bottom: 20px;
+    left: 20px;
+  }
+
+  /* filter buttons: two per row */
+  .ac-filter {
+    flex: 1 1 calc(50% - 10px);
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .ac-stage-top {
+    padding: 22px 20px;
+  }
+
+  .ac-stage-top h3 {
+    font-size: 28px;
+  }
+
+  .ac-stage-body {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 22px 20px;
+  }
+
+  .ac-approach-grid,
+  .ac-month-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ac-approach-card,
+  .ac-month {
+    padding: 20px;
+  }
+
+  .ac-cta {
+    padding: 30px 0 34px;
+  }
+
+  .ac-cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .ac-btn {
+    width: 100%;
+  }
+}
+
+/* Calm motion for visitors who prefer it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-academics *,
+  .veda-academics *::before,
+  .veda-academics *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,2098 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL — ABOUT
+========================================= */
+
+.veda-about {
+  --about-navy: #082b55;
+  --about-deep: #061c36;
+  --about-gold: #e8b648;
+  --about-gold-dark: #b78324;
+  --about-ivory: #fcf8f0;
+  --about-muted: #53677d;
+
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--about-navy);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.veda-about *,
+.veda-about *::before,
+.veda-about *::after {
+  box-sizing: border-box;
+}
+
+.about-container {
+  width: min(1320px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+.veda-about h1,
+.veda-about h2,
+.veda-about h3,
+.veda-about p {
+  margin-top: 0;
+}
+
+.veda-about h1,
+.veda-about h2,
+.veda-about h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.veda-about h2 {
+  margin-bottom: 17px;
+  font-size: clamp(34px, 3.2vw, 48px);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.7px;
+}
+
+.veda-about h2 em {
+  color: var(--about-gold-dark);
+  font-weight: 400;
+}
+
+.veda-about p {
+  color: var(--about-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.veda-about a:focus-visible {
+  outline: 3px solid var(--about-gold);
+  outline-offset: 4px;
+}
+
+.about-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--about-gold-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
+}
+
+.about-eyebrow > span {
+  width: 24px;
+  height: 2px;
+  flex: 0 0 auto;
+  background: var(--about-gold);
+}
+
+.about-eyebrow.light {
+  color: #fff;
+}
+
+.about-button {
+  display: inline-flex;
+  min-height: 49px;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 0 20px;
+  border-radius: 6px;
+  background: #f0c252;
+  box-shadow: 0 7px 18px rgba(8, 43, 85, 0.1);
+  color: var(--about-deep);
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease, transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.about-button:hover {
+  transform: translateY(-2px);
+  background: #ffdc83;
+  box-shadow: 0 10px 22px rgba(8, 43, 85, 0.14);
+}
+
+/* The shared clear image banner is styled in PageBanner.css. */
+
+/* 2. School introduction */
+
+.about-intro {
+  padding: 44px 0 46px;
+  background:
+    radial-gradient(ellipse at 92% 10%, rgba(232, 182, 72, 0.06), transparent 28%),
+    #fff;
+}
+
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  align-items: center;
+  gap: clamp(34px, 5vw, 68px);
+}
+
+.about-intro-content {
+  min-width: 0;
+}
+
+.about-intro-content h2 {
+  margin-bottom: 18px;
+  font-size: clamp(34px, 3.15vw, 46px);
+}
+
+.about-intro-content > p {
+  margin-bottom: 13px;
+}
+
+.about-intro-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 21px;
+}
+
+.about-intro-points {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.about-intro-points > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--about-navy);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.about-intro-points svg {
+  flex: 0 0 auto;
+  color: var(--about-gold-dark);
+}
+
+.about-intro-bottom > .about-button {
+  flex: 0 0 auto;
+}
+
+.about-intro-visual {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1.23;
+}
+
+.about-intro-main-image {
+  position: absolute;
+  inset: 2% 11% 11% 3%;
+  overflow: hidden;
+  border-radius: 78px 9px 9px 9px;
+  background: #e8edf2;
+}
+
+.about-intro-main-image img,
+.about-intro-small-image img {
+  object-fit: cover;
+}
+
+.about-intro-main-image > .local-image,
+.about-intro-small-image > .local-image {
+  width: 100%;
+  height: 100%;
+}
+
+.about-intro-main-image img {
+  object-position: center 52%;
+}
+
+.about-intro-small-image {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  width: 43%;
+  aspect-ratio: 1.25;
+  overflow: hidden;
+  border: 5px solid #fff;
+  border-radius: 8px;
+  background: #e8edf2;
+  box-shadow: 0 10px 25px rgba(6, 29, 57, 0.13);
+}
+
+.about-intro-small-image img {
+  object-position: center 48%;
+}
+
+.about-intro-image-label {
+  position: absolute;
+  z-index: 3;
+  bottom: 17%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 17px;
+  border-left: 3px solid var(--about-gold);
+  border-radius: 4px;
+  background: var(--about-navy);
+  box-shadow: 0 8px 20px rgba(6, 29, 57, 0.13);
+  color: #fff;
+}
+
+.about-intro-image-label span {
+  color: #f0c252;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.about-intro-image-label strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.about-intro-outline {
+  position: absolute;
+  inset: 0 9% 9% 0;
+  border: 1px solid rgba(209, 154, 45, 0.68);
+  border-radius: 88px 9px 9px 9px;
+  pointer-events: none;
+}
+
+/* History details remain an explicit school-supplied placeholder. */
+
+.about-history {
+  padding: 8px 0 46px;
+  background:
+    linear-gradient(180deg, #fff 0%, #fcf8f0 100%);
+}
+
+.about-history-panel {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.78fr) minmax(0, 1.22fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 54px);
+  padding: clamp(26px, 3.5vw, 42px);
+  border: 1px solid rgba(183, 131, 36, 0.2);
+  border-top: 3px solid var(--about-gold);
+  border-radius: 14px;
+  background: linear-gradient(120deg, #fcf8f0 0%, #fff 72%);
+  box-shadow: 0 14px 36px rgba(8, 43, 85, 0.08);
+}
+
+.about-history-panel h2 {
+  margin: 0;
+  font-size: clamp(29px, 3vw, 38px);
+  line-height: 1.16;
+}
+
+.about-history-panel > p {
+  max-width: 680px;
+  margin: 0;
+  padding-left: clamp(20px, 3vw, 36px);
+  border-left: 1px solid rgba(8, 43, 85, 0.14);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+/* 3. Principal's message */
+
+.about-principal {
+  padding: 44px 0 46px;
+  background:
+    radial-gradient(ellipse at 88% 15%, rgba(233, 190, 91, 0.12), transparent 32%),
+    var(--about-ivory);
+}
+
+.about-principal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  align-items: center;
+  gap: clamp(36px, 5vw, 70px);
+}
+
+.about-principal-content {
+  position: relative;
+  min-width: 0;
+}
+
+.about-principal-content h2 {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 17px;
+}
+
+.about-quote-mark {
+  position: absolute;
+  top: 25px;
+  right: 4%;
+  color: rgba(194, 142, 43, 0.1);
+  font-family: Georgia, serif;
+  font-size: 150px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.about-principal-content > p {
+  position: relative;
+  z-index: 1;
+  max-width: 660px;
+  margin-bottom: 13px;
+}
+
+.about-principal-signature {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 18px;
+}
+
+.about-principal-signature > span {
+  width: 28px;
+  height: 2px;
+  flex: 0 0 auto;
+  background: var(--about-gold);
+}
+
+.about-principal-signature div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.about-principal-signature strong {
+  font-size: 13px;
+}
+
+.about-principal-signature small {
+  color: var(--about-muted);
+  font-size: 12px;
+}
+
+.veda-about .about-content-note {
+  margin: 13px 0 0;
+  color: #806d51;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.about-principal-visual {
+  position: relative;
+  width: min(100%, 500px);
+  aspect-ratio: 1.27;
+  justify-self: end;
+}
+
+.about-principal-photo {
+  position: absolute;
+  inset: 3% 5% 5% 5%;
+  overflow: hidden;
+  border-radius: 9px 82px 9px 9px;
+  background: #e8edf2;
+}
+
+.about-principal-photo img {
+  object-position: center 43%;
+}
+
+.about-principal-photo > .local-image {
+  width: 100%;
+  height: 100%;
+}
+
+.about-principal-frame {
+  position: absolute;
+  inset: 0 2% 2% 2%;
+  border: 1px solid rgba(213, 161, 59, 0.75);
+  border-radius: 9px 91px 9px 9px;
+  pointer-events: none;
+}
+
+.about-principal-caption {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 17px;
+  border-radius: 5px;
+  background: var(--about-navy);
+  box-shadow: 0 8px 20px rgba(6, 29, 57, 0.14);
+  color: #fff;
+}
+
+.about-principal-caption span {
+  color: #f0c252;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+}
+
+.about-principal-caption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/* 4. Vision and mission */
+
+.about-purpose {
+  padding: 44px 0 46px;
+  background: #fff;
+}
+
+.about-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 34px;
+  margin-bottom: 28px;
+}
+
+.about-section-heading > p {
+  max-width: 440px;
+  margin-bottom: 3px;
+}
+
+.about-section-heading.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 31px;
+  text-align: center;
+}
+
+.about-section-heading.centered .about-eyebrow {
+  justify-content: center;
+}
+
+.about-section-heading.centered h2 {
+  margin-bottom: 11px;
+}
+
+.about-section-heading.centered > p {
+  max-width: 590px;
+  margin: 0;
+}
+
+.about-purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.about-purpose-item {
+  position: relative;
+  min-width: 0;
+  min-height: 250px;
+  overflow: hidden;
+  padding: 28px 30px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #f3f7fa, #f8fafc);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.about-purpose-item:nth-child(2) {
+  background: linear-gradient(135deg, #fff6e4, #fffbf4);
+}
+
+.about-purpose-item::after {
+  position: absolute;
+  right: -75px;
+  bottom: -112px;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(177, 129, 36, 0.13);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.about-purpose-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(8, 43, 85, 0.08);
+}
+
+.about-purpose-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #e4c277;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--about-gold-dark);
+}
+
+.about-purpose-number {
+  color: var(--about-gold-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+}
+
+.about-purpose-item h3 {
+  margin: 7px 0 9px;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.about-purpose-item p {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+/* 5. Core values */
+
+.about-values {
+  padding: 42px 0;
+  background: linear-gradient(130deg, #f1f6fb, #fbfdff);
+}
+
+.about-values-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 2.15fr);
+  align-items: center;
+  gap: 32px;
+}
+
+.about-values-intro {
+  max-width: 420px;
+}
+
+.about-values-intro h2 {
+  font-size: clamp(32px, 3vw, 43px);
+}
+
+.about-values-intro p {
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.about-value {
+  min-width: 0;
+  padding: 11px 14px;
+  text-align: center;
+}
+
+.about-value-icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  margin: 0 auto 13px;
+  border: 1px solid #dfb44e;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--about-gold-dark);
+  transition: transform 180ms ease, background-color 180ms ease,
+    color 180ms ease;
+}
+
+.about-value:hover .about-value-icon {
+  transform: translateY(-3px);
+  background: #f0c252;
+  color: var(--about-deep);
+}
+
+.about-value h3 {
+  margin-bottom: 7px;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.about-value p {
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* 6. Educational approach */
+
+.about-learning {
+  padding: 44px 0;
+  background: #fff;
+}
+
+.about-learning-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(38px, 5vw, 70px);
+}
+
+.about-learning-visual {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1.02;
+  justify-self: center;
+  overflow: hidden;
+  border-radius: 9px 86px 9px 9px;
+  background: #e8edf2;
+}
+
+.about-learning-visual > .local-image > img {
+  object-position: center 47%;
+}
+
+.about-learning-visual > .local-image {
+  width: 100%;
+  height: 100%;
+}
+
+.about-learning-visual::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(5, 27, 52, 0.72), transparent 46%);
+  content: "";
+  pointer-events: none;
+}
+
+.about-learning-visual-caption {
+  position: absolute;
+  z-index: 1;
+  right: 18px;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+}
+
+.about-learning-visual-caption > svg {
+  flex: 0 0 auto;
+  color: #f0c252;
+}
+
+.about-learning-visual-caption div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-learning-visual-caption span {
+  color: #f0c252;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+}
+
+.about-learning-visual-caption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.about-learning-content {
+  min-width: 0;
+}
+
+.about-learning-content h2 {
+  margin-bottom: 13px;
+}
+
+.about-learning-intro {
+  max-width: 600px;
+  margin-bottom: 18px;
+}
+
+.about-approach-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-approach-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(8, 43, 85, 0.1);
+}
+
+.about-approach-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff2d6;
+  color: var(--about-gold-dark);
+}
+
+.about-approach-item > div:last-child {
+  min-width: 0;
+}
+
+.about-approach-item > div:last-child > span {
+  color: var(--about-gold-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+}
+
+.about-approach-item h3 {
+  margin: 3px 0 5px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.about-approach-item p {
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* 7. Featured staff */
+
+.about-staff {
+  padding: 46px 0;
+  background: linear-gradient(135deg, #f8f5ee, #fff);
+}
+
+.about-staff .about-section-heading {
+  align-items: end;
+}
+
+.about-staff .about-section-heading h2 {
+  max-width: 700px;
+  margin-bottom: 0;
+}
+
+.about-staff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  justify-content: center;
+  gap: 18px;
+  margin-inline: auto;
+}
+
+.about-staff-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(8, 43, 85, 0.08);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(8, 43, 85, 0.07);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.about-staff-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 32px rgba(8, 43, 85, 0.12);
+}
+
+.about-staff-photo {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e8edf2;
+  border-bottom: 3px solid var(--about-gold);
+}
+
+.about-staff-photo > .local-image {
+  width: 100%;
+  height: 100%;
+}
+
+.about-staff-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-staff-info {
+  padding: 17px 16px 19px;
+}
+
+.about-staff-info h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+}
+
+.about-staff-info p {
+  margin: 0;
+  padding-left: 9px;
+  border-left: 3px solid var(--about-gold);
+  color: var(--about-muted);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .about-staff-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .about-staff-photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .about-staff-info {
+    padding: 14px 12px 16px;
+  }
+
+  .about-staff-info h3 {
+    font-size: 16px;
+  }
+
+  .about-staff-info p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .about-staff-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-staff-card {
+    width: min(100%, 280px);
+    justify-self: center;
+  }
+
+  .about-staff-info {
+    padding: 17px 16px 19px;
+  }
+
+  .about-staff-info h3 {
+    font-size: 18px;
+  }
+
+  .about-staff-info p {
+    font-size: 13px;
+  }
+}
+
+.about-staff-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  margin-bottom: 3px;
+  padding: 6px 7px 6px 18px;
+  border: 1px solid rgba(8, 43, 85, 0.12);
+  border-radius: 999px;
+  background: var(--about-navy);
+  box-shadow: 0 7px 18px rgba(8, 43, 85, 0.14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.about-staff-link svg {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  padding: 9px;
+  border-radius: 50%;
+  background: #f0c252;
+  color: var(--about-deep);
+  transition: transform 180ms ease;
+}
+
+.about-staff-link:hover {
+  transform: translateY(-2px);
+  background: #0c396b;
+  box-shadow: 0 10px 22px rgba(8, 43, 85, 0.2);
+}
+
+.about-staff-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* 8. Teachers and management */
+
+.about-people {
+  padding: 44px 0 46px;
+  background: #faf8f3;
+}
+
+.about-people .about-section-heading {
+  align-items: end;
+  margin-bottom: 25px;
+}
+
+.about-people .about-section-heading h2 {
+  margin-bottom: 0;
+}
+
+.about-people .about-section-heading > p {
+  max-width: 440px;
+  margin-bottom: 3px;
+}
+
+.about-people-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.about-person-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 7px 23px rgba(8, 43, 85, 0.065);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.about-person-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 30px rgba(8, 43, 85, 0.11);
+}
+
+.about-person-photo {
+  width: 100%;
+  max-height: 280px;
+  aspect-ratio: 1.6;
+  overflow: hidden;
+  background: #e8edf2;
+}
+
+.about-person-photo img {
+  transition: none;
+}
+
+.about-person-photo > .local-image {
+  width: 100%;
+  height: 100%;
+}
+
+.about-person-photo.teachers-photo img {
+  object-position: center 45%;
+}
+
+.about-person-photo.campus-photo img {
+  object-position: center 53%;
+}
+
+.about-person-info {
+  padding: 22px 25px 25px;
+}
+
+.about-person-info > span {
+  color: var(--about-gold-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+}
+
+.about-person-info h3 {
+  margin: 7px 0 8px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.about-person-info p {
+  max-width: 560px;
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+.veda-about .about-management-note {
+  margin: 15px 0 0;
+  color: #806d51;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* 9. Closing admission banner */
+
+.about-cta {
+  padding: 0 0 40px;
+  background: #faf8f3;
+}
+
+.about-cta-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--about-deep);
+  box-shadow: 0 14px 32px rgba(8, 43, 85, 0.11);
+}
+
+.about-cta-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 36px 40px;
+  background:
+    radial-gradient(circle at 20% 100%, rgba(29, 79, 120, 0.58), transparent 56%),
+    var(--about-deep);
+}
+
+.about-cta-content h2 {
+  margin-bottom: 14px;
+  color: #fff;
+  font-size: clamp(32px, 3.1vw, 45px);
+}
+
+.about-cta-content h2 em {
+  color: #f0c252;
+}
+
+.about-cta-content > p {
+  max-width: 510px;
+  margin-bottom: 20px;
+  color: #dbe6f2;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.about-cta-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.about-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 180ms ease, gap 180ms ease;
+}
+
+.about-cta-link:hover {
+  gap: 11px;
+  color: #f0c252;
+}
+
+.about-cta-photo {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.16;
+  overflow: hidden;
+  background: var(--about-deep);
+}
+
+.about-cta-photo img {
+  object-position: center 48%;
+}
+
+.about-cta-photo > .local-image {
+  width: 100%;
+  height: 100%;
+}
+.about-cta-photo::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--about-deep),
+    rgba(6, 29, 57, 0.28) 36%,
+    transparent 76%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+/* Tablet and compact laptop */
+
+@media (max-width: 1100px) {
+  .about-container {
+    width: calc(100% - 60px);
+  }
+
+  .about-intro-grid {
+    gap: 34px;
+  }
+
+  .about-intro-bottom {
+    flex-wrap: wrap;
+  }
+
+  .about-intro-bottom > .about-button {
+    margin-left: 0;
+  }
+
+  .about-values-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .about-values-intro {
+    max-width: 660px;
+  }
+
+  .about-learning-grid {
+    gap: 38px;
+  }
+
+  .about-history-panel {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .about-history-panel > p {
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(8, 43, 85, 0.14);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 850px) {
+  .about-container {
+    width: calc(100% - 48px);
+  }
+
+  .about-intro-grid,
+  .about-principal-grid,
+  .about-learning-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .about-intro-content {
+    max-width: 700px;
+  }
+
+  .about-intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 17px;
+  }
+
+  .about-intro-visual {
+    width: min(100%, 620px);
+    justify-self: center;
+  }
+
+  .about-principal-content {
+    max-width: 720px;
+  }
+
+  .about-principal-visual {
+    width: min(100%, 560px);
+    justify-self: center;
+  }
+
+  .about-purpose-grid {
+    gap: 16px;
+  }
+
+  .about-values-layout {
+    gap: 23px;
+  }
+
+  .about-learning-visual {
+    width: min(100%, 500px);
+  }
+
+  .about-learning-content {
+    width: 100%;
+  }
+
+  .about-cta-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+  }
+
+  .about-cta-content {
+    padding: 30px;
+  }
+}
+
+/* Phones */
+
+@media (max-width: 600px) {
+  .about-container {
+    width: calc(100% - 36px);
+  }
+
+  .veda-about h2 {
+    font-size: clamp(31px, 8vw, 39px);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .veda-about p {
+    font-size: 14px;
+    line-height: 1.72;
+  }
+
+  .about-eyebrow {
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 10px;
+    letter-spacing: 0.9px;
+  }
+
+  .about-button {
+    min-height: 48px;
+    gap: 11px;
+    padding-inline: 17px;
+  }
+
+  .about-intro,
+  .about-history,
+  .about-principal,
+  .about-purpose,
+  .about-values,
+  .about-learning,
+  .about-staff,
+  .about-people {
+    padding-block: 36px;
+  }
+
+  .about-intro-grid,
+  .about-principal-grid,
+  .about-learning-grid {
+    gap: 25px;
+  }
+
+  .about-intro-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+    margin-top: 18px;
+  }
+
+  .about-intro-points {
+    gap: 10px;
+  }
+
+  .about-intro-points > div {
+    font-size: 14px;
+  }
+
+  .about-intro-visual {
+    width: 100%;
+    aspect-ratio: 1.16;
+  }
+
+  .about-intro-main-image {
+    inset: 2% 10% 11% 3%;
+    border-top-left-radius: 62px;
+  }
+
+  .about-intro-small-image {
+    width: 44%;
+    border-width: 4px;
+  }
+
+  .about-intro-image-label {
+    bottom: 16%;
+    padding: 10px 13px;
+  }
+
+  .about-intro-image-label strong {
+    font-size: 17px;
+  }
+
+  .about-intro-outline {
+    border-top-left-radius: 68px;
+  }
+
+  .about-principal-visual {
+    width: min(100%, 480px);
+  }
+
+  .about-quote-mark {
+    top: 22px;
+    right: 1%;
+    font-size: 120px;
+  }
+
+  .about-principal-caption {
+    padding: 11px 13px;
+  }
+
+  .about-principal-caption strong {
+    font-size: 15px;
+  }
+
+  .about-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 11px;
+    margin-bottom: 23px;
+  }
+
+  .about-section-heading.centered {
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+
+  .about-section-heading > p {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+
+  .about-purpose-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .about-purpose-item {
+    min-height: 0;
+    padding: 22px 21px;
+  }
+
+  .about-purpose-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 13px;
+  }
+
+  .about-purpose-item h3 {
+    font-size: 24px;
+  }
+
+  .about-values-layout {
+    gap: 19px;
+  }
+
+  .about-values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 8px;
+  }
+
+  .about-value {
+    padding: 8px 9px;
+  }
+
+  .about-value-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 10px;
+  }
+
+  .about-value h3 {
+    font-size: 18px;
+  }
+
+  .about-value p {
+    font-size: 13px;
+  }
+
+  .about-learning-visual {
+    width: 100%;
+    max-width: 460px;
+    aspect-ratio: 1.05;
+  }
+
+  .about-learning-visual-caption {
+    right: 14px;
+    bottom: 16px;
+    left: 15px;
+  }
+
+  .about-learning-visual-caption strong {
+    font-size: 17px;
+  }
+
+  .about-approach-item {
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .about-approach-icon {
+    width: 41px;
+    height: 41px;
+  }
+
+  .about-approach-item p {
+    font-size: 14px;
+  }
+
+  .about-people-grid {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .about-staff-grid {
+    gap: 16px;
+  }
+
+  .about-staff-info {
+    padding: 18px 20px 20px;
+  }
+
+  .about-person-photo {
+    max-height: 240px;
+    aspect-ratio: 1.6;
+  }
+
+  .about-person-info {
+    padding: 19px 20px 21px;
+  }
+
+  .about-person-info h3 {
+    font-size: 22px;
+  }
+
+  .about-cta {
+    padding-bottom: 36px;
+  }
+
+  .about-cta-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-cta-photo {
+    order: -1;
+    min-height: 0;
+    aspect-ratio: 1.18;
+  }
+
+  .about-cta-photo::after {
+    background: linear-gradient(0deg, var(--about-deep), transparent 58%);
+  }
+
+  .about-cta-content {
+    padding: 25px 21px 27px;
+  }
+
+  .about-cta-content h2 {
+    font-size: clamp(30px, 8vw, 38px);
+  }
+
+  .about-cta-buttons {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .about-container {
+    width: calc(100% - 30px);
+  }
+
+  .about-intro-visual {
+    aspect-ratio: 1.08;
+  }
+
+  .about-intro-image-label {
+    bottom: 14%;
+    padding: 9px 11px;
+  }
+
+  .about-intro-image-label strong {
+    font-size: 15px;
+  }
+
+  .about-value {
+    padding-inline: 6px;
+  }
+
+  .about-cta-content {
+    padding-inline: 18px;
+  }
+
+  .about-cta-buttons {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-about *,
+  .veda-about *::before,
+  .veda-about *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+.veda-about p {
+  font-size: 16px;
+}
+
+.veda-about .about-eyebrow,
+.veda-about .about-intro-points > div {
+  font-size: 13px;
+}
+
+.veda-about .about-button {
+  font-size: 15px;
+}
+
+.veda-about .about-intro-image-label span,
+.veda-about .about-principal-caption span,
+.veda-about .about-purpose-number,
+.veda-about .about-approach-item > div:last-child > span,
+.veda-about .about-person-info > span {
+  font-size: 12px;
+}
+
+.veda-about .about-value p,
+.veda-about .about-management-note {
+  font-size: 14px;
+}
+/* =========================================
+   VEDA ABOUT: RESPONSIVE FIXES
+   Import this LAST in About.jsx:
+
+     import "./About.css";
+     import "./AboutResponsive.css";
+
+   Every rule starts with ".veda-about" so it wins over the
+   old media queries and the font-size rules at the bottom of
+   About.css. The banner is NOT touched (you fixed it already).
+
+   Breakpoints: 1100 laptop-small | 900 tablet | 700 phone | 480 small phone
+========================================= */
+
+
+/* =========================================
+   1. SHARED: spacing, headings, buttons
+========================================= */
+
+@media (max-width: 900px) {
+  .veda-about .about-container {
+    width: calc(100% - 48px);
+  }
+
+  .veda-about .about-intro,
+  .veda-about .about-principal,
+  .veda-about .about-purpose,
+  .veda-about .about-values,
+  .veda-about .about-learning,
+  .veda-about .about-staff,
+  .veda-about .about-people {
+    padding-block: 44px;
+  }
+
+  .veda-about .about-history {
+    padding-block: 8px 44px;
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-about .about-container {
+    width: calc(100% - 36px);
+  }
+
+  .veda-about .about-intro,
+  .veda-about .about-principal,
+  .veda-about .about-purpose,
+  .veda-about .about-values,
+  .veda-about .about-learning,
+  .veda-about .about-staff,
+  .veda-about .about-people {
+    padding-block: 38px;
+  }
+
+  .veda-about .about-history {
+    padding-block: 4px 38px;
+  }
+
+  .veda-about h2 {
+    font-size: clamp(28px, 7.4vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .veda-about p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .veda-about .about-eyebrow {
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* Buttons: full width, never dropping to a odd new line */
+  .veda-about .about-button {
+    width: 100%;
+    min-height: 50px;
+    justify-content: center;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .veda-about .about-container {
+    width: calc(100% - 28px);
+  }
+}
+
+
+/* =========================================
+   2. INTRO: simple, clean photo stack on phones
+   Big photo, small photo overlapping its corner,
+   "Life at VEDA" tag on the sky (not on the faces)
+========================================= */
+
+@media (max-width: 900px) {
+  .veda-about .about-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .veda-about .about-intro-content {
+    max-width: 100%;
+  }
+
+  .veda-about .about-intro-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .veda-about .about-intro-visual {
+    width: min(100%, 620px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-about .about-intro-visual {
+    width: 100%;
+    aspect-ratio: auto;
+    margin-bottom: 26px;
+  }
+
+  .veda-about .about-intro-main-image {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 54px 10px 10px 10px;
+  }
+
+  .veda-about .about-intro-main-image img {
+    object-position: center 40%;
+  }
+
+  .veda-about .about-intro-small-image {
+    right: 12px;
+    bottom: -26px;
+    width: 42%;
+    border-width: 4px;
+    box-shadow: 0 10px 24px rgba(6, 29, 57, 0.18);
+  }
+
+  .veda-about .about-intro-image-label {
+    top: 14px;
+    bottom: auto;
+    left: 14px;
+    padding: 9px 13px;
+  }
+
+  .veda-about .about-intro-image-label span {
+    font-size: 11px;
+  }
+
+  .veda-about .about-intro-image-label strong {
+    font-size: 16px;
+  }
+
+  /* the offset gold frame looks messy on small screens */
+  .veda-about .about-intro-outline {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   3. HISTORY
+========================================= */
+
+@media (max-width: 700px) {
+  .veda-about .about-history-panel {
+    gap: 14px;
+    padding: 24px 20px;
+  }
+
+  .veda-about .about-history-panel h2 {
+    font-size: clamp(26px, 7vw, 30px);
+  }
+
+  .veda-about .about-history-panel > p {
+    padding-top: 16px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+}
+
+
+/* =========================================
+   4. PRINCIPAL
+========================================= */
+
+@media (max-width: 900px) {
+  .veda-about .about-principal-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .veda-about .about-principal-content {
+    max-width: 100%;
+  }
+
+  .veda-about .about-principal-visual {
+    width: min(100%, 560px);
+    justify-self: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-about .about-quote-mark {
+    top: 34px;
+    right: 0;
+    font-size: 90px;
+  }
+
+  .veda-about .about-principal-visual {
+    width: 100%;
+    aspect-ratio: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .veda-about .about-principal-caption {
+    right: 6px;
+    padding: 10px 13px;
+  }
+
+  .veda-about .about-principal-caption span {
+    font-size: 11px;
+  }
+
+  .veda-about .about-principal-caption strong {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================
+   5. VISION + MISSION
+========================================= */
+
+@media (max-width: 700px) {
+  .veda-about .about-section-heading.centered {
+    margin-bottom: 24px;
+  }
+
+  .veda-about .about-purpose-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .veda-about .about-purpose-item {
+    min-height: 0;
+    padding: 22px 20px;
+  }
+
+  .veda-about .about-purpose-item h3 {
+    font-size: 24px;
+  }
+}
+
+
+/* =========================================
+   6. VALUES (2 x 2 on phones)
+========================================= */
+
+@media (max-width: 1100px) {
+  .veda-about .about-values-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .veda-about .about-values-intro {
+    max-width: 660px;
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-about .about-values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 10px;
+  }
+
+  .veda-about .about-value {
+    padding: 8px 6px;
+  }
+
+  .veda-about .about-value h3 {
+    font-size: 18px;
+  }
+
+  .veda-about .about-value p {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+}
+
+
+/* =========================================
+   7. LEARNING APPROACH
+========================================= */
+
+@media (max-width: 900px) {
+  .veda-about .about-learning-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .veda-about .about-learning-visual {
+    width: min(100%, 520px);
+  }
+}
+
+@media (max-width: 700px) {
+  .veda-about .about-learning-visual {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 4 / 3.4;
+    border-radius: 9px 56px 9px 9px;
+  }
+
+  .veda-about .about-learning-visual-caption strong {
+    font-size: 17px;
+  }
+
+  .veda-about .about-approach-item {
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .veda-about .about-approach-item p {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================
+   8. FEATURED STAFF
+   No scrolling anywhere: all 5 cards are always visible.
+   Laptop / tablet: 5 in one row, shrinking to fit
+   Phone: 2 per row, the 5th card centred underneath
+   The "Meet Our Faculty" button sits under the heading
+   on tablet and phone, full width.
+========================================= */
+
+.veda-about .about-staff-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 18px;
+  overflow: visible;
+}
+
+.veda-about .about-staff-card {
+  width: auto;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+@media (max-width: 1100px) {
+  .veda-about .about-staff-grid {
+    gap: 14px;
+  }
+
+  .veda-about .about-staff-info {
+    padding: 14px 12px 16px;
+  }
+
+  .veda-about .about-staff-info h3 {
+    font-size: 16px;
+  }
+
+  .veda-about .about-staff-info p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 900px) {
+  .veda-about .about-staff .about-section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .veda-about .about-staff .about-section-heading h2 {
+    max-width: 100%;
+  }
+
+  .veda-about .about-staff-link {
+    width: 100%;
+    margin-bottom: 0;
+    justify-content: space-between;
+  }
+
+  .veda-about .about-staff-grid {
+    gap: 10px;
+  }
+
+  .veda-about .about-staff-info {
+    padding: 11px 9px 13px;
+  }
+
+  .veda-about .about-staff-info h3 {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .veda-about .about-staff-info p {
+    padding-left: 7px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+/* Phones: 2 per row, last card centred */
+@media (max-width: 700px) {
+  .veda-about .about-staff-grid {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .veda-about .about-staff-card {
+    flex: 0 0 calc(50% - 7px);
+  }
+
+  .veda-about .about-staff-info {
+    padding: 13px 12px 15px;
+  }
+
+  .veda-about .about-staff-info h3 {
+    font-size: 16px;
+  }
+
+  .veda-about .about-staff-info p {
+    font-size: 13px;
+  }
+}
+
+/* Very small phones: slightly tighter so names still fit */
+@media (max-width: 360px) {
+  .veda-about .about-staff-grid {
+    gap: 10px;
+  }
+
+  .veda-about .about-staff-card {
+    flex-basis: calc(50% - 5px);
+  }
+
+  .veda-about .about-staff-info h3 {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================
+   9. PEOPLE (teachers + leadership)
+========================================= */
+
+@media (max-width: 700px) {
+  .veda-about .about-people .about-section-heading {
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .veda-about .about-people-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .veda-about .about-person-photo {
+    max-height: none;
+    aspect-ratio: 16 / 10;
+  }
+
+  .veda-about .about-person-info {
+    padding: 18px 18px 20px;
+  }
+
+  .veda-about .about-person-info h3 {
+    font-size: 22px;
+  }
+
+  .veda-about .about-person-info p {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================
+   10. CLOSING BANNER
+   Phones: photo on top fading into the navy text
+========================================= */
+
+@media (max-width: 700px) {
+  .veda-about .about-cta-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .veda-about .about-cta-photo {
+    order: -1;
+    aspect-ratio: 16 / 10;
+  }
+
+  .veda-about .about-cta-photo::after {
+    background: linear-gradient(180deg, transparent 45%, var(--about-deep));
+  }
+
+  .veda-about .about-cta-content {
+    padding: 6px 20px 28px;
+  }
+
+  .veda-about .about-cta-content h2 {
+    font-size: clamp(28px, 7.4vw, 34px);
+  }
+
+  .veda-about .about-cta-buttons {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    text-align: center;
+  }
+
+  .veda-about .about-cta-link {
+    justify-content: center;
+    font-size: 15px;
+  }
+}

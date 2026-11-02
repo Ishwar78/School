@@ -1,0 +1,626 @@
+
+/* PREMIUM SOLUTIONS PAGE REDESIGN */
+
+.solutions-page {
+  --solutions-blue: #285be7;
+  --solutions-navy: #102b53;
+  --solutions-muted: #687b96;
+  --solutions-border: #e3eaf7;
+  background: #f8faff;
+}
+
+.solutions-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 76px 0 68px;
+  background:
+    radial-gradient(ellipse at 90% 15%, #e1ebff 0, transparent 32%),
+    radial-gradient(ellipse at 55% 100%, #eef3ff 0, transparent 35%),
+    linear-gradient(135deg, #fff 0%, #f5f8ff 100%);
+}
+
+.solutions-hero::before {
+  position: absolute;
+  z-index: -1;
+  top: -130px;
+  right: -100px;
+  width: 410px;
+  height: 350px;
+  border: 1px solid #dce7ff;
+  border-radius: 41% 59% 67% 33% / 45% 38% 62% 55%;
+  background: #eaf1ff55;
+  content: "";
+  transform: rotate(-18deg);
+}
+
+.solutions-hero::after {
+  position: absolute;
+  z-index: -1;
+  bottom: -120px;
+  left: 25%;
+  width: 250px;
+  height: 180px;
+  border-radius: 58% 42% 35% 65%;
+  background: #e7efff60;
+  content: "";
+}
+
+.solutions-hero-grid {
+  gap: 34px;
+  min-height: 450px;
+}
+
+.solutions-eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  padding: 9px 14px;
+  border: 1px solid #dce7ff;
+  border-radius: 30px;
+  background: #edf3ff;
+  color: var(--solutions-blue);
+  font-size: 11px;
+  letter-spacing: 1.3px;
+}
+
+.solutions-eyebrow::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffc83d;
+  box-shadow: 0 0 0 4px #ffc83d30;
+}
+
+.solutions-hero-copy h1 {
+  margin-top: 24px;
+  font-size: clamp(38px, 4.1vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -2.5px;
+}
+
+.solutions-hero-copy h1 > span {
+  color: var(--solutions-blue);
+}
+
+.solutions-hero-copy p {
+  max-width: 470px;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.solutions-primary-btn,
+.solutions-bottom-btn {
+  border: 1px solid #ffd66b;
+  border-radius: 15px;
+  background: #ffcf4b;
+  box-shadow: 0 8px 20px #e9b82c24;
+  transition: transform .25s ease, box-shadow .25s ease,
+    background .25s ease;
+}
+
+.solutions-primary-btn:hover,
+.solutions-bottom-btn:hover {
+  transform: translateY(-3px);
+  background: #ffdc77;
+  box-shadow: 0 13px 27px #e9b82c35;
+}
+
+/* Organic hero composition */
+
+.solutions-hero-visual {
+  height: 440px;
+}
+
+.solutions-hero-photo {
+  inset: 15px 45px;
+  border: 7px solid #fff;
+  border-radius: 43% 57% 38% 62% / 39% 39% 61% 61%;
+  background: linear-gradient(145deg, #dbe7ff, #fff0bf);
+  box-shadow: 0 25px 60px #234c8c1c;
+  transform: rotate(2deg);
+  transition: transform .4s ease;
+}
+
+.solutions-hero-visual:hover .solutions-hero-photo {
+  transform: rotate(0deg);
+}
+
+.solutions-hero-photo::after {
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    #102b5320 100%
+  );
+}
+
+.solutions-hero-board {
+  left: 10%;
+  right: 10%;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 25px 65px #102b532b;
+  transform: translateY(-50%) rotate(-2deg);
+}
+
+.solutions-hero-board-header {
+  padding: 17px 19px;
+}
+
+.solutions-hero-board-content {
+  padding: 19px;
+}
+
+.solutions-hero-board-stats > div,
+.solutions-hero-board-progress {
+  border-radius: 14px;
+  background: #fff;
+}
+
+.solutions-floating-role {
+  border: 1px solid #e2eaff;
+  border-radius: 17px;
+  box-shadow: 0 15px 35px #193d7519;
+  animation: solutions-float 5s ease-in-out infinite;
+}
+
+.role-student,
+.role-admin {
+  animation-delay: -2.5s;
+}
+
+@keyframes solutions-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+/* Role showcase background */
+
+.solutions-list {
+  position: relative;
+  isolation: isolate;
+  padding: 34px 0 76px;
+  background:
+    radial-gradient(ellipse at 0% 15%, #eaf1ff 0, transparent 28%),
+    radial-gradient(ellipse at 100% 60%, #fff3d5 0, transparent 24%),
+    #f7f9ff;
+}
+
+.solutions-role-card {
+  position: relative;
+  grid-template-columns: 36% 35% 29%;
+  gap: 0;
+  min-height: 340px;
+  margin-bottom: 34px;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid #e5ebf6;
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 14px 38px #183c7010;
+  transition: transform .3s ease, box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+.solutions-role-card:hover {
+  transform: translateY(-5px);
+  border-color: #d2dfff;
+  box-shadow: 0 24px 55px #183c7018;
+}
+
+.solutions-role-card:nth-child(even) {
+  background: #fff;
+}
+
+.solutions-role-reverse {
+  grid-template-columns: 35% 29% 36%;
+}
+
+/* Replace plain colored image blocks with decorative artwork */
+
+.solutions-role-image {
+  position: relative;
+  align-self: stretch;
+  min-height: 320px;
+  overflow: visible;
+  background: transparent;
+}
+
+.solutions-role-image::before {
+  position: absolute;
+  inset: 18px 14px;
+  border-radius: 38% 62% 53% 47% / 44% 39% 61% 56%;
+  background: linear-gradient(145deg, #dce8ff, #cbdcff);
+  content: "";
+  transform: rotate(-4deg);
+  transition: transform .4s ease;
+}
+
+.solutions-role-card:nth-child(even) .solutions-role-image::before {
+  background: linear-gradient(145deg, #fff0bd, #ffedc0 60%, #fff9e8);
+  transform: rotate(4deg);
+}
+
+.role-art-parents.solutions-role-art,
+.solutions-role-image:has(.role-art-parents) {
+  --role-art-bg: #dff4e9;
+}
+
+.solutions-role-image:has(.role-art-administrators)::before {
+  background: linear-gradient(145deg, #e7e0ff, #d9d0ff);
+}
+
+.solutions-role-art {
+  position: absolute;
+  z-index: 1;
+  inset: 8px 8px 12px 10px;
+  overflow: hidden;
+  border: 5px solid #fff;
+  border-radius: 48% 52% 40% 60% / 41% 42% 58% 59%;
+  box-shadow: 0 18px 38px #193d751b;
+  transition: border-radius .4s ease, transform .4s ease;
+}
+
+.solutions-role-card:hover .solutions-role-art {
+  transform: scale(1.015);
+  border-radius: 43% 57% 49% 51% / 44% 48% 52% 56%;
+}
+
+.solutions-role-art-orbit {
+  width: 180px;
+  height: 180px;
+  border: 1px solid #ffffffc7;
+  box-shadow: 0 0 0 22px #ffffff50,
+    0 0 0 45px #ffffff32;
+}
+
+.solutions-role-art-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 30px;
+  background: #ffffffdf;
+  box-shadow: 0 16px 35px #174ea61a;
+  transition: transform .35s ease;
+}
+
+.solutions-role-card:hover .solutions-role-art-icon {
+  transform: translateY(-5px) rotate(-4deg);
+}
+
+.solutions-role-art-caption {
+  bottom: 24px;
+  left: 22px;
+  padding: 10px 14px;
+  border: 1px solid #ffffffd9;
+  border-radius: 30px;
+  background: #ffffffdf;
+  box-shadow: 0 7px 20px #102b5310;
+  backdrop-filter: blur(8px);
+}
+
+/* Role descriptions */
+
+.solutions-role-description {
+  align-self: center;
+  padding: 30px 25px;
+}
+
+.solutions-role-label {
+  gap: 12px;
+  color: #315bc1;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+}
+
+.solutions-role-icon {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #d8e4ff;
+  border-radius: 15px;
+  background: #edf3ff;
+  color: #315fe0;
+}
+
+.solutions-role-card:nth-child(even) .solutions-role-icon {
+  border-color: #ffe7a4;
+  border-radius: 15px;
+  background: #fff5d8;
+}
+
+.solutions-role-description h2 {
+  margin: 19px 0 12px;
+  font-size: clamp(25px, 2.25vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -1.2px;
+}
+
+.solutions-role-description h2 span {
+  color: #315fe0;
+}
+
+.solutions-role-description p {
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Benefits panel */
+
+.solutions-role-benefits {
+  align-self: center;
+  gap: 17px;
+  padding: 27px 22px;
+  border-left: 1px solid #edf1f8;
+}
+
+.solutions-role-benefits > div {
+  gap: 11px;
+  color: #506580;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.solutions-role-benefits > div svg {
+  box-sizing: content-box;
+  padding: 5px;
+  border-radius: 50%;
+  background: #fff3ce;
+  color: #bd8a0b;
+}
+
+.solutions-learn-link {
+  gap: 9px;
+  margin-top: 7px;
+  color: #285be7;
+}
+
+.solutions-learn-link:hover {
+  gap: 14px;
+}
+
+/* Dashboard previews */
+
+.solutions-preview {
+  width: min(58%, 235px);
+  min-height: 190px;
+  border: 1px solid #e5ebf6;
+  border-radius: 17px;
+  box-shadow: 0 22px 50px #102b5330;
+  transition: transform .3s ease;
+}
+
+.solutions-role-card:hover .solutions-preview {
+  transform: translateY(-50%) rotate(-1deg);
+}
+
+.solutions-role-reverse .solutions-preview {
+  left: 8px;
+}
+
+.solutions-preview-sidebar {
+  background: linear-gradient(180deg, #174ea6, #103a83);
+}
+
+.solutions-preview-content {
+  padding: 13px;
+}
+
+.solutions-preview-row {
+  padding: 8px 0;
+}
+
+.solutions-preview-stats > div {
+  border: 1px solid #e8eef8;
+  border-radius: 9px;
+  background: #f5f8ff;
+}
+
+/* Bottom call to action */
+
+.solutions-bottom {
+  padding: 10px 0 76px;
+  background: #f7f9ff;
+}
+
+.solutions-bottom-inner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 170px;
+  padding: 35px 40px;
+  border: 1px solid #285fc3;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 90% 0%, #477bd4 0, transparent 35%),
+    linear-gradient(120deg, #123b80, #1d50a4 65%, #17458d);
+  box-shadow: 0 22px 50px #174ea620;
+}
+
+.solutions-bottom-inner::after {
+  position: absolute;
+  z-index: -1;
+  top: -80px;
+  right: 15%;
+  width: 230px;
+  height: 230px;
+  border: 1px solid #ffffff25;
+  border-radius: 42% 58% 65% 35%;
+  box-shadow: 0 0 0 25px #ffffff08,
+    0 0 0 50px #ffffff06;
+  content: "";
+  transform: rotate(25deg);
+}
+
+.solutions-bottom h2 {
+  font-size: clamp(22px, 2.4vw, 29px);
+  line-height: 1.25;
+}
+
+.solutions-bottom p {
+  max-width: 310px;
+  line-height: 1.8;
+}
+
+.solutions-bottom-btn {
+  border-color: #ffdf8c;
+}
+
+/* Responsive refinements */
+
+@media (max-width: 1000px) {
+  .solutions-role-card,
+  .solutions-role-reverse {
+    grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+  }
+
+  .solutions-role-image,
+  .solutions-role-reverse .solutions-role-image {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .solutions-role-description,
+  .solutions-role-reverse .solutions-role-description {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .solutions-role-benefits,
+  .solutions-role-reverse .solutions-role-benefits {
+    grid-column: 2;
+    grid-row: 2;
+    border-left: 0;
+    border-top: 1px solid #edf1f8;
+    margin: 0 20px;
+    padding: 18px 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .solutions-hero {
+    padding: 54px 0 42px;
+  }
+
+  .solutions-hero-grid {
+    gap: 20px;
+  }
+
+  .solutions-hero-visual {
+    height: 360px;
+  }
+
+  .solutions-hero-photo {
+    inset: 12px 30px;
+  }
+
+  .solutions-list {
+    padding: 28px 0 45px;
+  }
+
+  .solutions-role-card,
+  .solutions-role-reverse {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 9px;
+    border-radius: 26px;
+  }
+
+  .solutions-role-image,
+  .solutions-role-reverse .solutions-role-image {
+    grid-column: 1;
+    grid-row: auto;
+    height: 290px;
+    min-height: 0;
+  }
+
+  .solutions-role-art {
+    inset: 8px 16px;
+  }
+
+  .solutions-role-description,
+  .solutions-role-reverse .solutions-role-description {
+    grid-column: 1;
+    grid-row: auto;
+    padding: 24px 18px 15px;
+  }
+
+  .solutions-role-benefits,
+  .solutions-role-reverse .solutions-role-benefits {
+    grid-column: 1;
+    grid-row: auto;
+    gap: 13px;
+    margin: 0 18px;
+    padding: 18px 0 22px;
+    border-top: 1px solid #edf1f8;
+  }
+
+  .solutions-preview {
+    right: 16px;
+    width: min(55%, 220px);
+  }
+
+  .solutions-role-reverse .solutions-preview {
+    right: 16px;
+    left: auto;
+  }
+
+  .solutions-bottom-inner {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 27px;
+  }
+}
+
+@media (max-width: 540px) {
+  .solutions-hero-visual {
+    height: 310px;
+  }
+
+  .solutions-role-image,
+  .solutions-role-reverse .solutions-role-image {
+    height: 245px;
+  }
+
+  .solutions-role-description h2 {
+    font-size: 27px;
+  }
+
+  .solutions-preview {
+    width: min(58%, 205px);
+  }
+
+  .solutions-bottom {
+    padding-bottom: 48px;
+  }
+
+  .solutions-bottom-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    border-radius: 23px;
+    padding: 25px;
+  }
+
+  .solutions-bottom p {
+    padding: 0;
+    border: 0;
+  }
+
+  .solutions-bottom-btn {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solutions-floating-role {
+    animation: none;
+  }
+
+  .solutions-page *,
+  .solutions-page *::before,
+  .solutions-page *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

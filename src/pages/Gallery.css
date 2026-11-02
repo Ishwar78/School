@@ -1,0 +1,711 @@
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL: GALLERY
+========================================= */
+
+.veda-gallery {
+  --navy: #082b55;
+  --deep-navy: #061c36;
+  --gold: #e8b648;
+  --warm-gold: #b78324;
+  --muted: #586c81;
+
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--navy);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.veda-gallery *,
+.veda-gallery *::before,
+.veda-gallery *::after {
+  box-sizing: border-box;
+}
+
+.veda-gallery h2,
+.veda-gallery h3,
+.veda-gallery p {
+  margin-top: 0;
+}
+
+.veda-gallery h2,
+.veda-gallery h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.veda-gallery a:focus-visible,
+.veda-gallery button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.gl-container {
+  width: min(1240px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+/* ---------- Shared text styles ---------- */
+
+.gl-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 12px;
+  color: #9a6d21;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.gl-eyebrow > span {
+  width: 25px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.veda-gallery h2 {
+  margin-bottom: 0;
+  color: var(--navy);
+  font-size: clamp(28px, 2.7vw, 36px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.veda-gallery h2 em {
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+.gl-intro {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---------- Images and fallback ---------- */
+
+.gl-image-holder {
+  position: relative;
+  overflow: hidden;
+  background: #e8edf2;
+}
+
+.gl-image-holder > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gl-image-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--navy);
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.gl-image-placeholder svg {
+  color: var(--gold);
+}
+
+/* =========================================
+   1. BANNER
+========================================= */
+
+.gl-banner {
+  --edge: max(40px, calc((100vw - 1240px) / 2));
+
+  background: var(--deep-navy);
+}
+
+.gl-banner-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, calc(100vh - 200px), 600px);
+  height: clamp(300px, calc(100svh - 200px), 600px);
+}
+
+.gl-banner-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.gl-banner-photo > img {
+  object-position: center 40%;
+}
+
+.gl-tag {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 15px;
+  border-radius: 4px;
+  background: rgba(6, 28, 54, 0.72);
+  box-shadow: 0 6px 18px rgba(2, 17, 33, 0.22);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1.1px;
+  line-height: 1.3;
+  backdrop-filter: blur(6px);
+}
+
+.gl-tag svg {
+  flex: 0 0 auto;
+  color: #f2c55d;
+}
+
+.gl-tag-top-left {
+  top: 22px;
+  left: 12px;
+  padding-inline: 10px;
+  border-left: 3px solid #f2c55d;
+}
+
+.gl-tag-top-right {
+  top: 22px;
+  right: var(--edge);
+  border-right: 3px solid #f2c55d;
+}
+
+.gl-tag-bottom-left {
+  bottom: 22px;
+  left: var(--edge);
+  gap: 7px;
+  border-left: 3px solid #f2c55d;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.gl-tag-bottom-left a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.gl-tag-bottom-left a:hover {
+  color: #f2c55d;
+}
+
+.gl-tag-bottom-left span {
+  color: #f2c55d;
+}
+
+.gl-tag-center {
+  bottom: 22px;
+  left: 50%;
+  flex-direction: column;
+  gap: 4px;
+  width: max-content;
+  max-width: calc(100% - 48px);
+  padding: 11px 24px;
+  border-bottom: 3px solid #f2c55d;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.gl-tag-center small {
+  color: #f2c55d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.gl-tag-center strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 1.7vw, 22px);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* =========================================
+   2. PHOTO GRID
+========================================= */
+
+.gl-gallery {
+  padding: 42px 0 44px;
+  background:
+    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.06), transparent 28%),
+    #fff;
+}
+
+.gl-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.gl-count {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Filter buttons */
+
+.gl-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin: 20px 0 22px;
+}
+
+.gl-filters button {
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 7px 15px;
+  border: 1px solid rgba(8, 43, 85, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.gl-filters button:hover {
+  border-color: var(--gold);
+}
+
+.gl-filters button.active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+
+/* Photo tiles */
+
+.gl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.gl-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 10px;
+  background: #e8edf2;
+  box-shadow: 0 6px 20px rgba(13, 43, 74, 0.09);
+  color: #fff;
+  text-align: left;
+  cursor: zoom-in;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.gl-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(13, 43, 74, 0.15);
+}
+
+.gl-tile-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.gl-tile-photo > img {
+  transition: transform 420ms ease;
+}
+
+.gl-tile:hover .gl-tile-photo > img {
+  transform: scale(1.05);
+}
+
+/* Dark fade at the bottom so the caption is easy to read */
+.gl-tile::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(4, 20, 39, 0.72), transparent 52%);
+  content: "";
+  pointer-events: none;
+}
+
+.gl-tile-zoom {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(6, 28, 54, 0.7);
+  color: #f2c55d;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.gl-tile:hover .gl-tile-zoom,
+.gl-tile:focus-visible .gl-tile-zoom {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.gl-tile-caption {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 14px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gl-tile-caption small {
+  color: #f2c55d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.gl-tile-caption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Closing strip */
+
+.gl-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 36px;
+  padding: 22px 28px;
+  border-radius: 11px;
+  background:
+    radial-gradient(circle at 15% 120%, rgba(28, 77, 116, 0.55), transparent 55%),
+    var(--deep-navy);
+  color: #fff;
+}
+
+.gl-cta h3 {
+  margin-bottom: 4px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.gl-cta p {
+  margin-bottom: 0;
+  color: #dbe6f2;
+  font-size: 13px;
+}
+
+.gl-cta-actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 20px;
+}
+
+.gl-btn {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-radius: 5px;
+  background: #f0c252;
+  color: var(--deep-navy);
+  font-size: 13px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.gl-btn:hover {
+  transform: translateY(-2px);
+  background: #ffdb7a;
+}
+
+.gl-cta-link {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.gl-cta-link:hover {
+  color: #f2c55d;
+}
+
+/* =========================================
+   3. LIGHTBOX
+========================================= */
+
+.gl-lightbox {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 24px 32px;
+  background: rgba(3, 14, 28, 0.92);
+  animation: gl-fade 200ms ease both;
+}
+
+@keyframes gl-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.gl-lightbox-dialog {
+  position: relative;
+  display: grid;
+  width: min(1100px, 100%);
+  grid-template-columns: 46px minmax(0, 1fr) 46px;
+  align-items: center;
+  gap: 14px;
+}
+
+.gl-lightbox-figure {
+  margin: 0;
+}
+
+.gl-lightbox-photo {
+  height: calc(100vh - 210px);
+  height: calc(100svh - 210px);
+  max-height: 680px;
+  background: transparent;
+}
+
+.gl-lightbox-photo > img {
+  object-fit: contain;
+}
+
+.gl-lightbox-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.gl-lightbox-figure figcaption strong {
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.gl-lightbox-figure figcaption span {
+  color: #b5c4d4;
+  font-size: 12px;
+}
+
+.gl-round-btn {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.gl-round-btn:hover {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--deep-navy);
+}
+
+.gl-lightbox-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .gl-container {
+    width: calc(100% - 60px);
+  }
+
+  .gl-banner {
+    --edge: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .gl-container {
+    width: calc(100% - 48px);
+  }
+
+  .gl-banner {
+    --edge: 24px;
+  }
+
+  .gl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .gl-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Lightbox: arrows sit on top of the photo */
+  .gl-lightbox {
+    padding: 56px 12px 24px;
+  }
+
+  .gl-lightbox-dialog {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gl-lightbox-prev,
+  .gl-lightbox-next {
+    position: absolute;
+    top: calc(50% - 44px);
+    z-index: 2;
+    background: rgba(6, 28, 54, 0.7);
+  }
+
+  .gl-lightbox-prev {
+    left: 8px;
+  }
+
+  .gl-lightbox-next {
+    right: 8px;
+  }
+
+  .gl-lightbox-photo {
+    height: calc(100svh - 200px);
+  }
+}
+
+@media (max-width: 600px) {
+  .gl-container {
+    width: calc(100% - 36px);
+  }
+
+  .gl-banner {
+    --edge: 18px;
+  }
+
+  .gl-banner-stage {
+    height: clamp(260px, 72vw, 380px);
+  }
+
+  .gl-tag {
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+
+  .gl-tag-top-left {
+    top: 14px;
+  }
+
+  .gl-tag-top-right,
+  .gl-tag-bottom-left {
+    display: none;
+  }
+
+  .gl-tag-center {
+    bottom: 14px;
+    padding: 10px 16px;
+  }
+
+  .gl-gallery {
+    padding: 34px 0 36px;
+  }
+
+  .gl-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .gl-cta {
+    padding: 20px;
+  }
+
+  .gl-cta-actions {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .gl-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Touch screens have no hover, so the zoom icon is always shown. */
+
+@media (hover: none) {
+  .gl-tile-zoom {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Calm motion for visitors who prefer it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-gallery *,
+  .veda-gallery *::before,
+  .veda-gallery *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.veda-gallery .gl-eyebrow,
+.veda-gallery .gl-tag-center small,
+.veda-gallery .gl-tile-caption small {
+  font-size: 12px;
+}
+
+.veda-gallery .gl-intro,
+.veda-gallery .gl-cta p,
+.veda-gallery .gl-cta-link,
+.veda-gallery .gl-btn,
+.veda-gallery .gl-count {
+  font-size: 15px;
+}
+
+.veda-gallery .gl-filters button {
+  padding-inline: clamp(4px, 1.2vw, 15px);
+  font-size: clamp(10px, 1.05vw, 12px);
+}

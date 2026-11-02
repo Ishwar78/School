@@ -1,0 +1,124 @@
+.page-banner {
+  position: relative;
+  width: min(100%, 1600px);
+  height: clamp(300px, calc(100vh - 200px), 600px);
+  height: clamp(300px, calc(100svh - 200px), 600px);
+  margin-inline: auto;
+  overflow: hidden;
+  background: #061c36;
+}
+
+.page-banner-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page-banner-photo > img {
+  object-position: center 45%;
+}
+
+.page-banner-tag {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background: rgba(6, 28, 54, 0.72);
+  box-shadow: 0 6px 18px rgba(2, 17, 33, 0.22);
+  color: #fff;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 1.1px;
+  line-height: 1.35;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.page-banner-tag svg {
+  flex: 0 0 auto;
+  color: #f2c55d;
+}
+
+.page-banner-tag-school {
+  top: 24px;
+  left: 12px;
+  padding-inline: 10px;
+  border-left: 3px solid #f2c55d;
+}
+
+.page-banner-tag-location {
+  top: 24px;
+  right: max(24px, calc((100% - 1320px) / 2));
+  border-right: 3px solid #f2c55d;
+}
+
+.page-banner-tag-caption {
+  bottom: 25px;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 40px);
+  flex-direction: column;
+  gap: 5px;
+  padding: 11px 23px;
+  border-bottom: 3px solid #f2c55d;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.page-banner-tag-caption small {
+  color: #f2c55d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.35px;
+}
+
+.page-banner-tag-caption strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 1.8vw, 23px);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.page-banner-breadcrumb {
+  bottom: 25px;
+  left: 24px;
+  gap: 7px;
+  border-left: 3px solid #f2c55d;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.page-banner-breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.page-banner-breadcrumb a:hover {
+  color: #f2c55d;
+}
+
+.page-banner-breadcrumb span[aria-current="page"] {
+  color: #f2c55d;
+}
+
+@media (max-width: 768px) {
+  .page-banner {
+    height: auto;
+    aspect-ratio: 1962 / 801;
+  }
+
+  .page-banner-tag {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-banner-tag {
+    animation: none;
+  }
+}

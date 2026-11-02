@@ -1,0 +1,844 @@
+/* =========================================
+   VEDA INTERNATIONAL SCHOOL: ADMISSIONS
+========================================= */
+
+.veda-admissions {
+  --navy: #082b55;
+  --deep-navy: #061c36;
+  --gold: #e8b648;
+  --warm-gold: #b78324;
+  --ivory: #fcf8f0;
+  --muted: #586c81;
+  --line: rgba(8, 43, 85, 0.1);
+
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--navy);
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+}
+
+.veda-admissions *,
+.veda-admissions *::before,
+.veda-admissions *::after {
+  box-sizing: border-box;
+}
+
+.veda-admissions h2,
+.veda-admissions h3,
+.veda-admissions p {
+  margin-top: 0;
+}
+
+.veda-admissions h2,
+.veda-admissions h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.veda-admissions a:focus-visible,
+.veda-admissions button:focus-visible,
+.veda-admissions input:focus-visible,
+.veda-admissions select:focus-visible,
+.veda-admissions textarea:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.ad-container {
+  width: min(1240px, calc(100% - 80px));
+  margin-inline: auto;
+}
+
+/* ---------- Shared text styles ---------- */
+
+.ad-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 12px;
+  color: #9a6d21;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.ad-eyebrow > span {
+  width: 26px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.ad-eyebrow.light {
+  color: #f2c55d;
+}
+
+.veda-admissions h2 {
+  margin-bottom: 0;
+  color: var(--navy);
+  font-size: clamp(30px, 3vw, 40px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.veda-admissions h2 em {
+  color: var(--warm-gold);
+  font-weight: 400;
+}
+
+.ad-heading {
+  margin-bottom: 28px;
+}
+
+.ad-lead {
+  max-width: 640px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.ad-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--navy);
+  font-size: 15px;
+  font-weight: 750;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.ad-text-link:hover {
+  color: var(--warm-gold);
+}
+
+.ad-btn {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 6px;
+  background: #f0c252;
+  color: var(--deep-navy);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 750;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.ad-btn:hover {
+  transform: translateY(-2px);
+  background: #ffdb7a;
+}
+
+.ad-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
+.ad-icon-circle {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff2d4;
+  color: var(--navy);
+}
+
+/* ---------- Images and fallback ---------- */
+
+.ad-image-holder {
+  position: relative;
+  overflow: hidden;
+  background: #e8edf2;
+}
+
+.ad-image-holder > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ad-image-placeholder {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--navy);
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.ad-image-placeholder svg {
+  color: var(--gold);
+}
+
+/* =========================================
+   1. BANNER
+========================================= */
+
+.ad-banner {
+  --edge: max(40px, calc((100vw - 1240px) / 2));
+
+  background: var(--deep-navy);
+}
+
+.ad-banner-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, calc(100vh - 200px), 600px);
+  height: clamp(300px, calc(100svh - 200px), 600px);
+}
+
+.ad-banner-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.ad-banner-photo > img {
+  object-position: center 40%;
+}
+
+.ad-tag {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: rgba(6, 28, 54, 0.74);
+  box-shadow: 0 6px 18px rgba(2, 17, 33, 0.22);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 1.1px;
+  line-height: 1.3;
+  backdrop-filter: blur(6px);
+}
+
+.ad-tag svg {
+  flex: 0 0 auto;
+  color: #f2c55d;
+}
+
+.ad-tag-top-left {
+  top: 22px;
+  left: 12px;
+  padding-inline: 10px;
+  border-left: 3px solid #f2c55d;
+}
+
+.ad-tag-top-right {
+  top: 22px;
+  right: var(--edge);
+  border-right: 3px solid #f2c55d;
+}
+
+.ad-tag-bottom-left {
+  bottom: 22px;
+  left: var(--edge);
+  gap: 7px;
+  border-left: 3px solid #f2c55d;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+.ad-tag-bottom-left a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.ad-tag-bottom-left a:hover {
+  color: #f2c55d;
+}
+
+.ad-tag-bottom-left span {
+  color: #f2c55d;
+}
+
+.ad-tag-center {
+  bottom: 22px;
+  left: 50%;
+  flex-direction: column;
+  gap: 4px;
+  width: max-content;
+  max-width: calc(100% - 48px);
+  padding: 12px 26px;
+  border-bottom: 3px solid #f2c55d;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.ad-tag-center small {
+  color: #f2c55d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.ad-tag-center strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 1.9vw, 24px);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* =========================================
+   2. INTRODUCTION AND QUICK LINKS
+========================================= */
+
+.ad-intro {
+  padding: 42px 0 38px;
+  background:
+    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.07), transparent 28%),
+    #fff;
+}
+
+.ad-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ad-quick-tile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(13, 43, 74, 0.08);
+  color: var(--navy);
+  text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.ad-quick-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 13px 28px rgba(13, 43, 74, 0.13);
+}
+
+.ad-quick-text {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ad-quick-text strong {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ad-quick-text small {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ad-quick-arrow {
+  flex: 0 0 auto;
+  color: #9daabb;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.ad-quick-tile:hover .ad-quick-arrow {
+  transform: translateX(2px);
+  color: var(--warm-gold);
+}
+
+/* =========================================
+   3. PROCESS
+========================================= */
+
+.ad-process {
+  padding: 42px 0;
+  background: linear-gradient(150deg, #f3f6f9, #fafbfd 72%);
+  scroll-margin-top: 90px;
+}
+
+.ad-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-step {
+  padding: 24px 22px 26px;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(13, 43, 74, 0.08);
+}
+
+.ad-step-number {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #f2c55d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+}
+
+.ad-step h3 {
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.ad-step p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   4. ELIGIBILITY AND DOCUMENTS
+========================================= */
+
+.ad-details {
+  padding: 42px 0;
+  background: #fff;
+}
+
+.ad-details-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.ad-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 30px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(13, 43, 74, 0.1);
+  scroll-margin-top: 90px;
+}
+
+.ad-card-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.ad-card-title h3 {
+  margin-bottom: 0;
+  color: var(--navy);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.ad-card > p {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.ad-note {
+  padding: 13px 16px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  background: #fff8e8;
+  color: #5b4a22;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.ad-card .ad-note {
+  margin-bottom: 0;
+}
+
+.ad-card-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.ad-checklist {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--navy);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ad-checklist li:first-child {
+  padding-top: 0;
+}
+
+.ad-check {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--deep-navy);
+}
+
+/* =========================================
+   5. ENQUIRY FORM
+========================================= */
+
+.ad-enquiry {
+  padding: 42px 0 48px;
+  background:
+    radial-gradient(ellipse at 5% 95%, rgba(232, 182, 72, 0.09), transparent 35%),
+    var(--ivory);
+  scroll-margin-top: 90px;
+}
+
+.ad-enquiry-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: stretch;
+  gap: 28px;
+}
+
+.ad-enquiry-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 20% 110%, rgba(28, 77, 116, 0.55), transparent 55%),
+    var(--deep-navy);
+  box-shadow: 0 14px 32px rgba(8, 43, 85, 0.14);
+  color: #fff;
+}
+
+.ad-enquiry-photo {
+  min-height: 200px;
+  flex: 1;
+}
+
+.ad-enquiry-info-body {
+  padding: 26px 28px 30px;
+}
+
+.ad-enquiry-info-body h2 {
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: clamp(26px, 2.4vw, 32px);
+}
+
+.ad-enquiry-info-body p {
+  margin-bottom: 16px;
+  color: #dbe6f2;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.ad-light-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #f2c55d;
+  font-size: 15px;
+  font-weight: 750;
+  text-decoration: none;
+  transition: gap 180ms ease;
+}
+
+.ad-light-link:hover {
+  gap: 10px;
+}
+
+.ad-form-card {
+  padding: 30px 32px 32px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(13, 43, 74, 0.1);
+}
+
+.ad-form-card h3 {
+  margin-bottom: 6px;
+  color: var(--navy);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.ad-form-intro {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.ad-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 18px;
+}
+
+.ad-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ad-field-wide {
+  grid-column: 1 / -1;
+}
+
+.ad-field label {
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.ad-field input,
+.ad-field select,
+.ad-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(8, 43, 85, 0.2);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--navy);
+  font: inherit;
+  font-size: 16px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.ad-field input,
+.ad-field select {
+  min-height: 48px;
+}
+
+.ad-field textarea {
+  resize: vertical;
+}
+
+.ad-field input:hover,
+.ad-field select:hover,
+.ad-field textarea:hover {
+  border-color: var(--gold);
+}
+
+.ad-field input:focus,
+.ad-field select:focus,
+.ad-field textarea:focus {
+  border-color: var(--warm-gold);
+}
+
+.ad-submit {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.ad-error {
+  margin: 16px 0 0;
+  color: #b3261e;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.ad-success {
+  display: flex;
+  min-height: 340px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.ad-success svg {
+  color: #1f7a4d;
+}
+
+.ad-success h3 {
+  margin-bottom: 0;
+}
+
+.ad-success p {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+  .ad-container {
+    width: calc(100% - 60px);
+  }
+
+  .ad-banner {
+    --edge: 30px;
+  }
+
+  .ad-quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .ad-container {
+    width: calc(100% - 48px);
+  }
+
+  .ad-banner {
+    --edge: 24px;
+  }
+
+  .ad-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ad-details-layout,
+  .ad-enquiry-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-enquiry-photo {
+    min-height: 0;
+    height: 220px;
+    flex: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .ad-container {
+    width: calc(100% - 36px);
+  }
+
+  .ad-banner {
+    --edge: 18px;
+  }
+
+  .ad-banner-stage {
+    height: clamp(260px, 72vw, 380px);
+  }
+
+  .ad-tag {
+    padding: 9px 13px;
+    font-size: 11px;
+  }
+
+  .ad-tag-top-left {
+    top: 14px;
+  }
+
+  .ad-tag-top-right,
+  .ad-tag-bottom-left {
+    display: none;
+  }
+
+  .ad-tag-center {
+    bottom: 14px;
+    padding: 10px 16px;
+  }
+
+  .ad-intro,
+  .ad-process,
+  .ad-details {
+    padding: 34px 0;
+  }
+
+  .ad-enquiry {
+    padding: 34px 0 38px;
+  }
+
+  .ad-steps,
+  .ad-quick-grid,
+  .ad-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .ad-card {
+    padding: 24px 22px;
+  }
+
+  .ad-form-card {
+    padding: 24px 20px 26px;
+  }
+
+  .ad-enquiry-info-body {
+    padding: 22px 22px 26px;
+  }
+}
+
+/* Calm motion for visitors who prefer it. */
+
+@media (prefers-reduced-motion: reduce) {
+  .veda-admissions *,
+  .veda-admissions *::before,
+  .veda-admissions *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.veda-admissions .ad-eyebrow {
+  font-size: 14px;
+}
+
+.veda-admissions .ad-field label {
+  font-size: 15px;
+}
+
+.veda-admissions .ad-tag,
+.veda-admissions .ad-tag-center small {
+  font-size: 13px;
+}
+
+.veda-admissions .ad-quick-text small,
+.veda-admissions .ad-note {
+  font-size: 15px;
+}
+
+.veda-admissions .ad-text-link,
+.veda-admissions .ad-btn {
+  font-size: 16px;
+}
