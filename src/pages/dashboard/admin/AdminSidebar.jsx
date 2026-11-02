@@ -141,7 +141,7 @@ export default function AdminSidebar({ page, setPage, open, setOpen }) {
           <button
             onClick={() => {
               localStorage.removeItem("eduflowUser");
-              navigate("/login", { replace: true });
+              navigate("/admin/login-school", { replace: true });
             }}
           >
             <LogOut size={18} /> Log Out

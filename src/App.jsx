@@ -24,6 +24,7 @@ import News from "./pages/News";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import AdminLogin from "./pages/AdminLogin";
 import { PrivacyPolicy, TermsConditions } from "./pages/Legal";
 
 // SHARED COMPONENTS
@@ -85,6 +86,11 @@ export default function App() {
           <Route path="/terms" element={<TermsConditions />} />
 
           <Route path="/login" element={<Login />} />
+
+          {/* DEDICATED ADMIN LOGIN */}
+          <Route path="/admin/login-school" element={<AdminLogin />} />
+          <Route path="/admin/login" element={<Navigate to="/admin/login-school" replace />} />
+          <Route path="/admin" element={<Navigate to="/admin/login-school" replace />} />
 
 
           {/* DASHBOARD REDIRECT */}

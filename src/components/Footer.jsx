@@ -114,6 +114,7 @@ function Footer() {
             <span className="vf-heading-line" />
 
             <Link to="/login">School Portal</Link>
+            <Link to="/admin/login-school">Admin Portal</Link>
             <Link to="/admissions">Admission Information</Link>
             <Link to="/blog-news">Latest Announcements</Link>
             <Link to="/gallery">School Activities</Link>

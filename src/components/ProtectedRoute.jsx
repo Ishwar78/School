@@ -16,6 +16,9 @@ export default function ProtectedRoute({ role, children }) {
     dashboardRoles.includes(userRole);
 
   if (!isAuthenticated) {
+    if (role === "admin") {
+      return <Navigate to="/admin/login-school" replace />;
+    }
     return <Navigate to="/login" replace />;
   }
 

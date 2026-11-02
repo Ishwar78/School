@@ -17,7 +17,7 @@ import {
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageBanner from "../components/PageBanner";
-import "./FeeStructure.css";
+import "./Feestructure.css";
 
 /* =====================================================
    EDIT HERE: all the text and amounts on this page live

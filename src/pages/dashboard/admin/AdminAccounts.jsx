@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { demoUsers } from "../../../data/demoUsers";
+import { DEFAULT_ADMIN } from "../../../data/adminCredentials";
 import {
   readAdditionalAccounts,
   saveAdditionalAccounts,
@@ -64,7 +65,7 @@ export default function AdminAccounts() {
     }
 
     const normalizedEmail = email.trim().toLowerCase();
-    const emailAlreadyUsed = [...demoUsers, ...accounts].some(
+    const emailAlreadyUsed = [DEFAULT_ADMIN, ...demoUsers, ...accounts].some(
       (account) => account.email.toLowerCase() === normalizedEmail,
     );
 

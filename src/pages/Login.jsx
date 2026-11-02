@@ -36,11 +36,6 @@ const roles = [
     name: "Parent",
     icon: Users,
     description: "Follow progress"
-  },
-  {
-    name: "Admin",
-    icon: Landmark,
-    description: "Manage school"
   }
 ];
 
@@ -338,6 +333,21 @@ export default function Login() {
                 </button>
 
               </form>
+
+              <div style={{ marginTop: "1rem", textAlign: "center" }}>
+                <span style={{ fontSize: "0.86rem", color: "#64748b" }}>School Administrator? </span>
+                <Link
+                  to="/admin/login-school"
+                  style={{
+                    fontSize: "0.86rem",
+                    fontWeight: "600",
+                    color: "#0f766e",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Admin Portal Login &rarr;
+                </Link>
+              </div>
 
               {/* EXPLORE */}
 

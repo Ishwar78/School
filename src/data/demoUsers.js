@@ -62,13 +62,6 @@ export const demoUsers = [
     recordId: "demo-teacher-ananya",
     classId: "10-A",
   },
-  {
-    id: 4,
-    name: "School Admin",
-    email: "admin@eduflow.com",
-    password: "admin123",
-    role: "admin",
-  },
   ...additionalStudentUsers,
   ...additionalParentUsers,
   ...additionalTeacherUsers,
