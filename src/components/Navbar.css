@@ -84,8 +84,8 @@
 }
 
 .veda-logo {
-  width: 66px;
-  height: 66px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
 }
 
@@ -130,8 +130,8 @@
 .veda-link {
   position: relative;
   color: #17345a;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.25s ease;
@@ -172,8 +172,8 @@
   border: 0;
   background: none;
   font: inherit;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -444,8 +444,8 @@
   }
 
   .veda-logo {
-    width: 54px;
-    height: 54px;
+    width: 74px;
+    height: 74px;
   }
 
   .veda-brand-name {
