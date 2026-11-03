@@ -12,7 +12,18 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background-color: #f8fafc; color: #1e293b;">
+                <div style="width: 48px; height: 48px; border: 4px solid #e2e8f0; border-top-color: #174ea6; border-radius: 50%; animation: vedaSpin 0.9s linear infinite; margin-bottom: 16px;"></div>
+                <div style="font-weight: 700; font-size: 1.1rem; color: #174ea6; letter-spacing: -0.3px;">VEDA INTERNATIONAL SCHOOL</div>
+                <div style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">Loading portal...</div>
+                <style>
+                    @keyframes vedaSpin {
+                        to { transform: rotate(360deg); }
+                    }
+                </style>
+            </div>
+        </div>
         <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>

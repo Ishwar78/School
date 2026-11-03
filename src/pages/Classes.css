@@ -1,21 +1,23 @@
+
 /* =========================================
-   VEDA INTERNATIONAL SCHOOL: CLASSES
+   VEDA INTERNATIONAL SCHOOL - CLASSES
+   NAVY BLUE + GOLD PREMIUM THEME
 ========================================= */
 
 .veda-classes {
   --navy: #082b55;
-  --deep-navy: #061c36;
-  --gold: #e8b648;
-  --warm-gold: #b78324;
-  --ivory: #fcf8f0;
-  --muted: #586c81;
+  --deep-navy: #061d3b;
+  --blue: #123c70;
+  --gold: #f1b832;
+  --gold-dark: #b77b16;
+  --ivory: #fff8e9;
+  --muted: #64758b;
 
   width: 100%;
   overflow: clip;
   background: #fff;
   color: var(--navy);
   font-family: "Inter", Arial, sans-serif;
-  font-size: 16px;
 }
 
 .veda-classes *,
@@ -24,278 +26,671 @@
   box-sizing: border-box;
 }
 
+.veda-classes h1,
 .veda-classes h2,
 .veda-classes h3,
 .veda-classes p {
   margin-top: 0;
 }
 
+.veda-classes h1,
 .veda-classes h2,
 .veda-classes h3 {
   font-family: Georgia, "Times New Roman", serif;
 }
 
-.veda-classes a:focus-visible,
-.veda-classes button:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 2px;
-}
-
 .cl-container {
-  width: min(1240px, calc(100% - 80px));
+  width: min(1400px, calc(100% - 100px));
   margin-inline: auto;
 }
 
-/* ---------- Shared text styles ---------- */
+.veda-classes button:focus-visible,
+.veda-classes a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* =========================================
+   HERO BANNER
+========================================= */
+
+.cl-hero {
+  position: relative;
+  min-height: 235px;
+  overflow: hidden;
+  background:
+    linear-gradient(100deg, rgba(5, 30, 63, 0.98), rgba(11, 53, 101, 0.94)),
+    url("/images/hero.png") center/cover no-repeat;
+}
+
+.cl-hero::before {
+  content: "";
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  left: -260px;
+  top: -250px;
+  border: 65px solid rgba(239, 187, 67, 0.08);
+  border-radius: 50%;
+}
+
+.cl-hero::after {
+  content: "";
+  position: absolute;
+  width: 440px;
+  height: 180px;
+  right: -100px;
+  bottom: -115px;
+  background: var(--gold);
+  border-radius: 50%;
+  transform: rotate(-15deg);
+  opacity: 0.95;
+}
+
+.cl-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 235px;
+  gap: 30px;
+}
+
+.cl-hero-content {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  padding: 28px 0;
+}
+
+.cl-hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 9px;
+  color: #ffd05e;
+  font-size: 15px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+
+.cl-hero-eyebrow span {
+  width: 32px;
+  height: 3px;
+  background: var(--gold);
+}
+
+.cl-hero h1 {
+  margin: 0 0 9px;
+  color: #fff;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.cl-hero h1 em {
+  color: #f3bd45;
+  font-weight: 500;
+}
+
+.cl-hero-content > p {
+  max-width: 720px;
+  margin-bottom: 14px;
+  color: #f0f4fa;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.cl-hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cl-hero-features > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 30px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(5px);
+}
+
+.cl-hero-features svg {
+  color: #ffc64b;
+  flex-shrink: 0;
+}
+
+/* Hero illustrations */
+
+.cl-hero-art {
+  position: relative;
+  width: 360px;
+  min-width: 310px;
+  height: 215px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cl-hero-glow {
+  position: absolute;
+  width: 250px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 198, 75, 0.13);
+  filter: blur(20px);
+}
+
+.cl-hero-book {
+  position: absolute;
+  left: 22px;
+  bottom: 18px;
+  font-size: 83px;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.25));
+  transform: rotate(-9deg);
+}
+
+.cl-hero-cap {
+  position: absolute;
+  top: 4px;
+  left: 128px;
+  z-index: 2;
+  font-size: 100px;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.25));
+  transform: rotate(7deg);
+}
+
+.cl-hero-globe {
+  position: absolute;
+  right: 2px;
+  bottom: 27px;
+  font-size: 78px;
+  filter: drop-shadow(0 7px 8px rgba(0, 0, 0, 0.2));
+}
+
+.cl-hero-pencil {
+  position: absolute;
+  right: 105px;
+  top: 10px;
+  font-size: 43px;
+  transform: rotate(25deg);
+}
+
+/* =========================================
+   CLASS SECTION
+========================================= */
+
+.cl-classes {
+  padding: 32px 0 55px;
+  background:
+    radial-gradient(ellipse at 95% 5%, rgba(241, 184, 50, 0.09), transparent 30%),
+    linear-gradient(180deg, #fff 0%, #fbfcff 100%);
+}
+
+.cl-heading {
+  margin-bottom: 22px;
+}
 
 .cl-eyebrow {
   display: flex;
   align-items: center;
-  gap: 11px;
-  margin-bottom: 10px;
-  color: #9a6d21;
+  gap: 12px;
+  margin-bottom: 9px;
+  color: #a36d15;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 850;
   letter-spacing: 1.4px;
 }
 
-.cl-eyebrow > span {
-  width: 26px;
-  height: 2px;
+.cl-eyebrow span {
+  width: 29px;
+  height: 3px;
   background: var(--gold);
 }
 
-.veda-classes h2 {
-  margin-bottom: 0;
+.cl-heading h2 {
+  margin-bottom: 7px;
   color: var(--navy);
-  font-size: clamp(30px, 3vw, 40px);
+  font-size: clamp(30px, 3.2vw, 43px);
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
 }
 
-.veda-classes h2 em {
-  color: var(--warm-gold);
-  font-weight: 400;
-}
-
-.cl-heading {
-  margin-bottom: 20px;
+.cl-heading h2 em {
+  color: var(--gold-dark);
+  font-weight: 500;
 }
 
 .cl-lead {
-  max-width: 640px;
-  margin: 10px 0 0;
+  max-width: 730px;
+  margin: 0;
   color: var(--muted);
   font-size: 16px;
   line-height: 1.65;
 }
 
 /* =========================================
-   CLASS-WISE INFORMATION
+   FILTER BUTTONS
 ========================================= */
-
-.cl-classes {
-  padding: 40px 0;
-  background:
-    radial-gradient(ellipse at 93% 6%, rgba(232, 182, 72, 0.07), transparent 28%),
-    #fff;
-}
-
-/* Stage filter */
 
 .cl-filters {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 13px;
+  margin-bottom: 28px;
 }
 
 .cl-filter {
-  width: 100%;
-  min-height: 42px;
-  padding: 0 18px;
-  border: 1px solid rgba(8, 43, 85, 0.18);
-  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+  min-height: 57px;
+  padding: 8px 13px;
+  border: 1px solid #d7dfeb;
+  border-radius: 40px;
   background: #fff;
   color: var(--navy);
-  font: inherit;
-  font-size: 15px;
-  font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
-  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+  box-shadow: 0 4px 10px rgba(8, 43, 85, 0.045);
+  transition: all 0.25s ease;
+}
+
+.cl-filter > svg {
+  color: var(--navy);
+  flex-shrink: 0;
+}
+
+.cl-filter span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.cl-filter strong {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cl-filter small {
+  font-size: 10px;
+  font-weight: 550;
+  color: var(--muted);
 }
 
 .cl-filter:hover {
   border-color: var(--gold);
-  background: #fff4d8;
+  background: #fff9ec;
+  transform: translateY(-2px);
 }
 
 .cl-filter.is-active {
   border-color: var(--navy);
-  background: var(--navy);
+  background: linear-gradient(120deg, #082b55, #16477e);
   color: #fff;
+  box-shadow: 0 8px 17px rgba(8, 43, 85, 0.19);
 }
 
-/* Class cards */
+.cl-filter.is-active > svg,
+.cl-filter.is-active small {
+  color: #ffd05e;
+}
+
+/* =========================================
+   CLASS CARDS GRID
+========================================= */
 
 .cl-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 23px 18px;
 }
 
 .cl-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 22px;
-  border-top: 3px solid var(--gold);
-  border-radius: 11px;
-  background: #fff;
-  box-shadow: 0 6px 22px rgba(13, 43, 74, 0.09);
-  transition: transform 200ms ease, box-shadow 200ms ease;
+  min-width: 0;
+  min-height: 345px;
+  padding: 21px 19px 18px;
+  overflow: hidden;
+  border: 1.5px solid #f1b832;
+  border-radius: 21px;
+  background: linear-gradient(145deg, #fff 65%, #fffaf0);
+  box-shadow: 0 8px 22px rgba(8, 43, 85, 0.07);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  animation: clCardAppear 0.45s ease both;
+  animation-delay: calc(var(--card-index, 0) * 45ms);
+}
+
+.cl-card::before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  right: -70px;
+  bottom: -75px;
+  border-radius: 50%;
+  background: rgba(241, 184, 50, 0.09);
+  transition: transform 0.35s ease;
 }
 
 .cl-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 30px rgba(13, 43, 74, 0.13);
+  transform: translateY(-7px);
+  border-color: #d89b20;
+  box-shadow: 0 16px 32px rgba(8, 43, 85, 0.13);
+}
+
+.cl-card:hover::before {
+  transform: scale(2.1);
+}
+
+@keyframes clCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card top */
+
+.cl-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 85px;
 }
 
 .cl-label {
-  color: #9a6d21;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-}
-
-.cl-card h3 {
-  margin: 4px 0 8px;
-  color: var(--navy);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.15;
-}
-
-.cl-meta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  color: var(--muted);
-  font-size: 16px;
-  font-weight: 600;
+  min-height: 27px;
+  padding: 5px 15px;
+  border-radius: 30px;
+  background: linear-gradient(120deg, #f5c75e, #ffdf8c);
+  color: #092d5b;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
-.cl-meta svg,
-.cl-subjects-title svg {
-  color: var(--warm-gold);
+.cl-card-illustration {
+  width: 94px;
+  height: 94px;
+  margin-top: -4px;
+  margin-right: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff3d9, #fffaf0);
+  transition: transform 0.3s ease;
 }
+
+.cl-card-illustration span {
+  font-size: 55px;
+  line-height: 1;
+  filter: drop-shadow(0 5px 3px rgba(10, 30, 60, 0.12));
+}
+
+.cl-card:hover .cl-card-illustration {
+  transform: scale(1.09) rotate(5deg);
+}
+
+/* Class title */
+
+.cl-card h3 {
+  position: relative;
+  z-index: 1;
+  margin: -4px 0 9px;
+  color: #092c59;
+  font-size: clamp(26px, 2.2vw, 34px);
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+/* Age */
+
+.cl-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 17px;
+  color: #526b89;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.cl-meta svg {
+  color: #c18b25;
+  flex-shrink: 0;
+}
+
+/* Subjects */
 
 .cl-subjects-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 9px;
+  margin-bottom: 10px;
   color: var(--navy);
-  font-size: 16px;
-  font-weight: 750;
+  font-size: 15px;
+}
+
+.cl-subjects-title svg {
+  color: #b47a19;
+}
+
+.cl-subjects-title strong {
+  font-weight: 850;
 }
 
 .cl-subjects {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 16px;
+  align-content: flex-start;
+  gap: 7px 8px;
+  width: 100%;
+  min-height: 65px;
+  margin: 0 0 15px;
   padding: 0;
   list-style: none;
 }
 
 .cl-subjects li {
-  padding: 6px 12px;
-  border: 1px solid rgba(8, 43, 85, 0.12);
-  border-radius: 999px;
-  background: #f6f8fa;
-  color: var(--navy);
-  font-size: 14px;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 5px 12px;
+  border: 1px solid #d5dfed;
+  border-radius: 30px;
+  background: #f5f8fc;
+  color: #12355f;
+  font-size: 12px;
+  font-weight: 750;
+  transition: all 0.2s ease;
 }
 
+.cl-subjects li:hover {
+  border-color: #e4b64c;
+  background: #fff3d8;
+}
+
+/* Focus area */
+
 .cl-focus {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-start;
-  gap: 9px;
+  gap: 10px;
   width: 100%;
+  min-height: 65px;
   margin: auto 0 0;
-  padding-top: 14px;
-  border-top: 1px solid rgba(8, 43, 85, 0.1);
-  color: var(--navy);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.45;
+  padding: 13px 12px;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #fff7e8, #fffaf1);
 }
 
 .cl-focus svg {
-  flex: 0 0 auto;
-  margin-top: 2px;
-  color: var(--warm-gold);
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #b77b16;
+}
+
+.cl-focus p {
+  margin: 0;
+  color: #12345e;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+/* Empty state */
+
+.cl-empty {
+  padding: 35px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed #d5dfed;
+  border-radius: 15px;
+  background: #fff;
 }
 
 /* =========================================
-   3. CALL TO ACTION
+   ADMISSION CTA
 ========================================= */
 
 .cl-cta {
-  padding: 36px 0 40px;
-  background:
-    radial-gradient(ellipse at 5% 95%, rgba(232, 182, 72, 0.09), transparent 35%),
-    var(--ivory);
+  position: relative;
+  padding: 40px 0;
+  overflow: hidden;
+  background: linear-gradient(115deg, #082b55, #123f74);
+}
+
+.cl-cta::after {
+  content: "";
+  position: absolute;
+  right: -90px;
+  top: -170px;
+  width: 360px;
+  height: 360px;
+  border: 45px solid rgba(241, 184, 50, 0.12);
+  border-radius: 50%;
 }
 
 .cl-cta-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 22px;
 }
 
-.cl-cta p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 16px;
+.cl-cta-icon {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 18px;
+  color: #ffd05e;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cl-cta-content {
+  flex: 1;
+}
+
+.cl-cta-content > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #ffd05e;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+
+.cl-cta-content h2 {
+  margin: 0 0 7px;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.cl-cta-content h2 em {
+  color: #f3bd45;
+}
+
+.cl-cta-content p {
+  margin: 0;
+  color: #dce7f4;
+  font-size: 14px;
   line-height: 1.6;
 }
 
 .cl-btn {
   display: inline-flex;
-  min-height: 48px;
-  flex: 0 0 auto;
+  min-height: 51px;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 0 24px;
-  border-radius: 6px;
-  background: #f0c252;
-  color: var(--deep-navy);
-  font-size: 16px;
-  font-weight: 750;
+  padding: 0 23px;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  background: linear-gradient(120deg, #f4bd43, #ffda77);
+  color: #082b55;
+  font-size: 14px;
+  font-weight: 850;
   text-decoration: none;
-  white-space: nowrap;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition: all 0.25s ease;
 }
 
 .cl-btn:hover {
-  transform: translateY(-2px);
-  background: #ffdb7a;
+  transform: translateY(-3px);
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
 }
 
 /* =========================================
    RESPONSIVE
 ========================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .cl-container {
-    width: calc(100% - 60px);
+    width: calc(100% - 65px);
+  }
+
+  .cl-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cl-filter {
+    gap: 7px;
+    padding-inline: 9px;
   }
 }
 
@@ -304,54 +699,144 @@
     width: calc(100% - 48px);
   }
 
+  .cl-hero-art {
+    width: 260px;
+    min-width: 240px;
+  }
+
+  .cl-hero-cap {
+    left: 80px;
+  }
+
+  .cl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .cl-filters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .cl-filter {
-    flex: 0 0 calc((100% - 20px) / 3);
-    padding-inline: 8px;
-    font-size: 13px;
+    min-height: 55px;
+  }
+
+  .cl-cta-inner {
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 600px) {
   .cl-container {
-    width: calc(100% - 36px);
+    width: calc(100% - 32px);
   }
 
-  .cl-filters {
+  .cl-hero,
+  .cl-hero-inner {
+    min-height: auto;
+  }
+
+  .cl-hero-inner {
+    padding-top: 28px;
+    padding-bottom: 25px;
+  }
+
+  .cl-hero-content {
+    padding: 0;
+  }
+
+  .cl-hero h1 {
+    font-size: 34px;
+  }
+
+  .cl-hero-content > p {
+    font-size: 14px;
+  }
+
+  .cl-hero-features {
     gap: 8px;
   }
 
-  .cl-filter {
-    flex-basis: calc((100% - 16px) / 3);
-    padding-inline: 5px;
-    font-size: 12px;
+  .cl-hero-features > div {
+    padding: 8px 11px;
+    font-size: 10px;
+  }
+
+  .cl-hero-art {
+    display: none;
   }
 
   .cl-classes {
-    padding: 32px 0;
+    padding: 30px 0 40px;
+  }
+
+  .cl-heading h2 {
+    font-size: 31px;
+  }
+
+  .cl-lead {
+    font-size: 13px;
+  }
+
+  .cl-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin-bottom: 20px;
+  }
+
+  .cl-filter {
+    min-height: 54px;
+    border-radius: 13px;
+    justify-content: flex-start;
+    padding: 8px 11px;
+  }
+
+  .cl-filter strong {
+    font-size: 11px;
+  }
+
+  .cl-filter small {
+    font-size: 9px;
   }
 
   .cl-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .cl-card {
-    padding: 20px;
+    min-height: 315px;
+    padding: 19px;
+  }
+
+  .cl-card h3 {
+    font-size: 30px;
+  }
+
+  .cl-card-illustration {
+    width: 85px;
+    height: 85px;
+  }
+
+  .cl-card-illustration span {
+    font-size: 49px;
+  }
+
+  .cl-subjects {
+    min-height: auto;
   }
 
   .cl-cta {
-    padding: 30px 0 34px;
+    padding: 32px 0;
   }
 
   .cl-cta-inner {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 15px;
+  }
+
+  .cl-cta-content h2 {
+    font-size: 27px;
   }
 
   .cl-btn {
@@ -359,12 +844,11 @@
   }
 }
 
-/* Calm motion for visitors who prefer it. */
-
 @media (prefers-reduced-motion: reduce) {
   .veda-classes *,
   .veda-classes *::before,
   .veda-classes *::after {
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

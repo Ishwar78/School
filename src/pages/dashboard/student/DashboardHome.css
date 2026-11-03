@@ -472,3 +472,141 @@
     flex-direction: column;
   }
 }
+
+
+/* Student Personal & Parent Details Summary */
+.student-profile-summary-section {
+  margin-bottom: 25px;
+}
+
+.student-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.student-summary-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 18px;
+}
+
+.summary-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.summary-icon.blue {
+  background: #eff6ff;
+  color: #174ea6;
+}
+
+.summary-icon.gold {
+  background: #fefce8;
+  color: #ca8a04;
+}
+
+.summary-card-header h4 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.summary-card-header small {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.summary-card-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summary-item.full-width {
+  grid-column: span 2;
+}
+
+.summary-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.summary-val {
+  font-size: 14px;
+  color: #1e293b;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.text-brand {
+  color: #174ea6 !important;
+}
+
+.text-success {
+  color: #059669 !important;
+}
+
+.contact-link {
+  color: #174ea6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contact-link:hover {
+  color: #0d3880;
+}
+
+.payment-badge {
+  display: inline-block;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+  color: #334155;
+}
+
+@media (max-width: 900px) {
+  .student-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-card-body {
+    grid-template-columns: 1fr;
+  }
+  .summary-item.full-width {
+    grid-column: span 1;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { getStudentProfileApi } from "../../../lib/api";
 import { useNavigate } from "react-router-dom";
 import {
   Menu,
@@ -66,7 +67,27 @@ export default function StudentDashboard() {
   const [activePage, setActivePage] = useState("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const student = getStudentData();
+  const [student, setStudent] = useState(getStudentData);
+
+  // Sync latest student profile from database
+  useEffect(() => {
+    async function loadFreshStudent() {
+      const current = getStudentData();
+      const identifier = current.mobile || current.phone || current.id || current._id || current.admission;
+      if (identifier) {
+        try {
+          const res = await getStudentProfileApi(identifier);
+          if (res?.success && res.student) {
+            setStudent(res.student);
+            localStorage.setItem("eduflowUser", JSON.stringify(res.student));
+          }
+        } catch (err) {
+          console.warn("Could not fetch fresh student profile:", err.message);
+        }
+      }
+    }
+    loadFreshStudent();
+  }, []);
 
   const studentName =
     student.name ||
@@ -147,8 +168,16 @@ export default function StudentDashboard() {
               <span>VEDA International School</span>
             </div>
 
-            <div className="student-topbar-avatar">
-              {studentName.charAt(0).toUpperCase()}
+            <div className="student-topbar-avatar" style={{ overflow: "hidden" }}>
+              {student.avatar || student.photoUrl ? (
+                <img
+                  src={(student.avatar || student.photoUrl).startsWith("http") ? (student.avatar || student.photoUrl) : `http://localhost:5075${student.avatar || student.photoUrl}`}
+                  alt={studentName}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                studentName.charAt(0).toUpperCase()
+              )}
             </div>
           </div>
         </header>

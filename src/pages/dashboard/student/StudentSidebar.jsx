@@ -77,8 +77,16 @@ const StudentSidebar = ({
         </div>
 
         <div className="student-sidebar-profile">
-          <div className="student-sidebar-avatar">
-            {studentName.charAt(0).toUpperCase()}
+          <div className="student-sidebar-avatar" style={{ overflow: "hidden" }}>
+            {student.avatar || student.photoUrl ? (
+              <img
+                src={(student.avatar || student.photoUrl).startsWith("http") ? (student.avatar || student.photoUrl) : `http://localhost:5075${student.avatar || student.photoUrl}`}
+                alt={studentName}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            ) : (
+              studentName.charAt(0).toUpperCase()
+            )}
           </div>
 
           <div className="student-sidebar-user-info">
