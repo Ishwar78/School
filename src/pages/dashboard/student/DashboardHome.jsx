@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   CalendarDays,
@@ -11,13 +10,21 @@ import {
   GraduationCap,
   FileText,
   CalendarCheck,
+  User,
+  Users,
+  Phone,
+  Mail,
+  MapPin,
+  Heart,
+  ShieldCheck,
+  IdCard,
 } from "lucide-react";
 
 import "./DashboardHome.css";
 
 const DashboardHome = ({ student = {} }) => {
   const studentName =
-    student.name || student.fullName || "Student";
+    student.name || student.fullName || student.studentName || "Student";
 
   const stats = [
     {
@@ -44,7 +51,7 @@ const DashboardHome = ({ student = {} }) => {
     {
       title: "Fee Status",
       value: "Paid",
-      subtitle: "Current fee status",
+      subtitle: "₹1,000 Verified",
       icon: Wallet,
       className: "fees",
     },
@@ -110,24 +117,45 @@ const DashboardHome = ({ student = {} }) => {
           </h2>
 
           <p>
-            Stay updated with your attendance, assignments,
-            examinations and school activities.
+            Stay updated with your attendance, assignments, examinations,
+            and personal academic records.
           </p>
 
           <div className="student-welcome-meta">
             <div>
-              <GraduationCap size={17} />
+              <GraduationCap size={16} />
               <span>
-                Class: {student.class || "Not Assigned"}
+                Class: {student.class || student.classId || "Not Assigned"}
               </span>
             </div>
 
             <div>
-              <CalendarCheck size={17} />
+              <CalendarCheck size={16} />
               <span>
-                Section: {student.section || "Not Assigned"}
+                Section: {student.section && student.section !== "Not Assigned" ? student.section : "Pending"}
               </span>
             </div>
+
+            {student.dob && (
+              <div>
+                <CalendarDays size={16} />
+                <span>D.O.B: {student.dob}</span>
+              </div>
+            )}
+
+            {student.gender && (
+              <div>
+                <User size={16} />
+                <span>Gender: {student.gender}</span>
+              </div>
+            )}
+
+            {(student.admission || student.registrationNumber) && (
+              <div>
+                <IdCard size={16} />
+                <span>Reg No: {student.admission || student.registrationNumber}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -162,7 +190,156 @@ const DashboardHome = ({ student = {} }) => {
         })}
       </section>
 
-      {/* Main Content */}
+      {/* STUDENT PROFILE & PARENT DETAILS CARDS */}
+      <section className="student-profile-summary-section">
+        <div className="student-summary-grid">
+          
+          {/* Card 1: Student Personal Details (D.O.B, Gender, etc.) */}
+          <div className="student-summary-card">
+            <div className="summary-card-header">
+              <div className="summary-icon blue">
+                <User size={20} />
+              </div>
+              <div>
+                <h4>Personal Information</h4>
+                <small>Identity & Academic Details</small>
+              </div>
+            </div>
+
+            <div className="summary-card-body">
+              <div className="summary-item">
+                <span className="summary-label"><CalendarDays size={14} /> Date of Birth (D.O.B)</span>
+                <strong className="summary-val">{student.dob || "—"}</strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><User size={14} /> Gender</span>
+                <strong className="summary-val">{student.gender || "—"}</strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><IdCard size={14} /> Admission / Reg No</span>
+                <strong className="summary-val text-brand">
+                  {student.admission || student.registrationNumber || "—"}
+                </strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><GraduationCap size={14} /> Enrolled Class</span>
+                <strong className="summary-val">
+                  {student.class || student.classId || "Not Assigned"}
+                  {student.section && student.section !== "Not Assigned" ? ` (Sec ${student.section})` : ""}
+                </strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><Phone size={14} /> Student Mobile</span>
+                <strong className="summary-val">{student.mobile || student.phone || "—"}</strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><Mail size={14} /> Email Address</span>
+                <strong className="summary-val">{student.email || "—"}</strong>
+              </div>
+
+              {student.aadhaar && (
+                <div className="summary-item">
+                  <span className="summary-label"><ShieldCheck size={14} /> Aadhaar Number</span>
+                  <strong className="summary-val">
+                    {student.aadhaar.replace(/(\d{4})(\d{4})(\d{4})/, "$1-$2-$3")}
+                  </strong>
+                </div>
+              )}
+
+              <div className="summary-item full-width">
+                <span className="summary-label"><MapPin size={14} /> Residential Address</span>
+                <strong className="summary-val">
+                  {student.address
+                    ? `${student.address}${student.city ? `, ${student.city}` : ""}${student.state ? `, ${student.state}` : ""}${student.pinCode ? ` - ${student.pinCode}` : ""}`
+                    : "Address on file"}
+                </strong>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Parent & Guardian Details */}
+          <div className="student-summary-card">
+            <div className="summary-card-header">
+              <div className="summary-icon gold">
+                <Users size={20} />
+              </div>
+              <div>
+                <h4>Parent & Guardian Details</h4>
+                <small>Family Information & Contacts</small>
+              </div>
+            </div>
+
+            <div className="summary-card-body">
+              <div className="summary-item">
+                <span className="summary-label"><Heart size={14} /> Father's Full Name</span>
+                <strong className="summary-val">{student.fatherName || "—"}</strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><Phone size={14} /> Father's Mobile</span>
+                <strong className="summary-val">
+                  {student.fatherMobile ? (
+                    <a href={`tel:${student.fatherMobile}`} className="contact-link">
+                      {student.fatherMobile}
+                    </a>
+                  ) : (
+                    "—"
+                  )}
+                </strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><Heart size={14} /> Mother's Full Name</span>
+                <strong className="summary-val">{student.motherName || "—"}</strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><Phone size={14} /> Mother's Mobile</span>
+                <strong className="summary-val">
+                  {student.motherMobile ? (
+                    <a href={`tel:${student.motherMobile}`} className="contact-link">
+                      {student.motherMobile}
+                    </a>
+                  ) : (
+                    "—"
+                  )}
+                </strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><GraduationCap size={14} /> Academic Session</span>
+                <strong className="summary-val">
+                  {student.academicSession || student.session || "2026-2027"}
+                </strong>
+              </div>
+
+              <div className="summary-item">
+                <span className="summary-label"><Wallet size={14} /> Registration Fee</span>
+                <strong className="summary-val text-success">
+                  ₹{student.feeAmount || 1000} (Paid via Razorpay)
+                </strong>
+              </div>
+
+              {student.razorpayPaymentId && (
+                <div className="summary-item full-width">
+                  <span className="summary-label"><ShieldCheck size={14} /> Payment Reference</span>
+                  <strong className="summary-val payment-badge">
+                    {student.razorpayPaymentId}
+                  </strong>
+                </div>
+              )}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Main Content: Routine & Notices */}
       <section className="student-home-content">
 
         {/* Today's Schedule */}
@@ -270,7 +447,17 @@ const DashboardHome = ({ student = {} }) => {
 
       {/* Bottom Information */}
       <section className="student-home-bottom">
-        <div className="student-bottom-info">
+        <div
+          className="student-bottom-info"
+          onClick={() =>
+            window.dispatchEvent(
+              new CustomEvent("student-menu-change", {
+                detail: "Homework & Assignments",
+              })
+            )
+          }
+          style={{ cursor: "pointer" }}
+        >
           <div className="student-bottom-icon">
             <BookOpen size={23} />
           </div>
@@ -283,7 +470,17 @@ const DashboardHome = ({ student = {} }) => {
           <ArrowRight size={20} />
         </div>
 
-        <div className="student-bottom-info">
+        <div
+          className="student-bottom-info"
+          onClick={() =>
+            window.dispatchEvent(
+              new CustomEvent("student-menu-change", {
+                detail: "Fee Status & Receipts",
+              })
+            )
+          }
+          style={{ cursor: "pointer" }}
+        >
           <div className="student-bottom-icon">
             <Wallet size={23} />
           </div>

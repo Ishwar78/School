@@ -26,12 +26,16 @@ const studentSchema = new mongoose.Schema(
     },
     section: {
       type: String,
-      required: [true, "Section is required"],
+      default: "Not Assigned",
       trim: true,
     },
     roll: {
       type: String,
       trim: true,
+      default: "",
+    },
+    avatar: {
+      type: String,
       default: "",
     },
     dob: {

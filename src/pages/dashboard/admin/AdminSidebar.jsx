@@ -27,6 +27,7 @@ const menu = [
     children: [
       { title: "Student Info", page: "students" },
       { title: "Student Attendance", page: "studentAttendance" },
+      { title: "Student Registration", page: "registeredStudents" },
     ],
   },
   {

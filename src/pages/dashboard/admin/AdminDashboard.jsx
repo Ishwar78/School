@@ -3,6 +3,7 @@ import { Menu, Bell } from "lucide-react";
 import AdminSidebar from "./AdminSidebar";
 import AdminOverview from "./AdminOverview";
 import StudentInfo from "./StudentInfo";
+import RegisteredStudents from "./RegisteredStudents";
 import TeacherInfo from "./TeacherInfo";
 import ParentInfo from "./ParentInfo";
 import LinkedStudents from "./LinkedStudents";
@@ -22,6 +23,7 @@ import "./Admin.css";
 const pages = {
   overview: ["Admin Overview", AdminOverview],
   students: ["Student Information", StudentInfo],
+  registeredStudents: ["Student Registrations", RegisteredStudents],
   studentAttendance: ["Student Attendance", StudentAttendance],
   teachers: ["Teacher Information", TeacherInfo],
   teacherAttendance: ["Teacher Attendance", TeacherAttendance],

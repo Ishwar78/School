@@ -1,4 +1,5 @@
 const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -13,6 +14,7 @@ const connectDB = require("./config/db.js");
 const { seedAdminUser } = require("./config/seedAdmin.js");
 const adminRoutes = require("./routes/adminRoutes.js");
 const studentRoutes = require("./routes/studentRoutes.js");
+const registrationRoutes = require("./routes/registrationRoutes.js");
 
 const app = express();
 const PORT = process.env.PORT || 5075;
@@ -20,6 +22,14 @@ const PORT = process.env.PORT || 5075;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Ensure uploads folder exists and serve statically
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+app.use("/uploads", express.static(uploadsDir));
 
 // Routes
 app.use("/api/admin", adminRoutes);
@@ -27,6 +37,10 @@ app.use("/admin", adminRoutes); // Also support direct route
 
 app.use("/api/students", studentRoutes);
 app.use("/students", studentRoutes); // Also support direct route
+
+app.use("/api/student-registration", registrationRoutes);
+app.use("/api/payment", registrationRoutes);
+app.use("/api/auth", registrationRoutes);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
@@ -57,4 +71,3 @@ const startServer = async () => {
 };
 
 startServer();
-

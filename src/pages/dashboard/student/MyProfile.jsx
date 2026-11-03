@@ -140,8 +140,16 @@ const MyProfile = ({ student = {} }) => {
 
       <div className="profile-main-card">
 
-        <div className="profile-avatar-large">
-          {initials}
+        <div className="profile-avatar-large" style={{ overflow: "hidden" }}>
+          {student.avatar || student.photoUrl ? (
+            <img
+              src={(student.avatar || student.photoUrl).startsWith("http") ? (student.avatar || student.photoUrl) : `http://localhost:5075${student.avatar || student.photoUrl}`}
+              alt={studentName}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          ) : (
+            initials
+          )}
         </div>
 
         <div className="profile-main-info">
