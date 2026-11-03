@@ -12,6 +12,7 @@ if (!process.env.MONGODB_URI) {
 const connectDB = require("./config/db.js");
 const { seedAdminUser } = require("./config/seedAdmin.js");
 const adminRoutes = require("./routes/adminRoutes.js");
+const studentRoutes = require("./routes/studentRoutes.js");
 
 const app = express();
 const PORT = process.env.PORT || 5075;
@@ -23,6 +24,9 @@ app.use(express.json());
 // Routes
 app.use("/api/admin", adminRoutes);
 app.use("/admin", adminRoutes); // Also support direct route
+
+app.use("/api/students", studentRoutes);
+app.use("/students", studentRoutes); // Also support direct route
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({

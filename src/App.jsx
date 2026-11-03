@@ -23,6 +23,9 @@ import { PrivacyPolicy, TermsConditions } from "./pages/Legal";
 import ScrollToTop from "./components/ScrollToTop";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
+import StudentDashboard from "./pages/dashboard/student/StudentDashboard";
+
 // ADMIN DASHBOARD ONLY
 import AdminDashboard from "./pages/dashboard/admin/AdminDashboard";
 
@@ -48,6 +51,15 @@ export default function App() {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsConditions />} />
         <Route path="/login" element={<Login />} />
+
+
+
+<Route
+  path="/dashboard/student"
+  element={<StudentDashboard />}
+/>
+
+
 
         {/* DEDICATED ADMIN LOGIN */}
         <Route path="/admin/login-school" element={<AdminLogin />} />

@@ -65,10 +65,79 @@ export async function checkServerHealth() {
   });
 }
 
+/**
+ * Student API endpoints connected to MongoDB Atlas
+ */
+
+/**
+ * Fetch all students from database with optional filters
+ * @param {object} params - { classId, status, search }
+ */
+export async function getStudentsApi(params = {}) {
+  const query = new URLSearchParams();
+  if (params.classId) query.append("classId", params.classId);
+  if (params.status) query.append("status", params.status);
+  if (params.search) query.append("search", params.search);
+
+  const queryString = query.toString();
+  const endpoint = `/api/students${queryString ? `?${queryString}` : ""}`;
+  return await apiRequest(endpoint, {
+    method: "GET",
+  });
+}
+
+/**
+ * Fetch a single student by MongoDB ID
+ * @param {string} id
+ */
+export async function getStudentByIdApi(id) {
+  return await apiRequest(`/api/students/${id}`, {
+    method: "GET",
+  });
+}
+
+/**
+ * Create a new student record in database
+ * @param {object} studentData
+ */
+export async function createStudentApi(studentData) {
+  return await apiRequest("/api/students", {
+    method: "POST",
+    body: studentData,
+  });
+}
+
+/**
+ * Update an existing student record in database
+ * @param {string} id
+ * @param {object} studentData
+ */
+export async function updateStudentApi(id, studentData) {
+  return await apiRequest(`/api/students/${id}`, {
+    method: "PUT",
+    body: studentData,
+  });
+}
+
+/**
+ * Delete a student record from database
+ * @param {string} id
+ */
+export async function deleteStudentApi(id) {
+  return await apiRequest(`/api/students/${id}`, {
+    method: "DELETE",
+  });
+}
+
 export default {
   API_BASE_URL,
   apiRequest,
   loginAdminApi,
   checkServerHealth,
+  getStudentsApi,
+  getStudentByIdApi,
+  createStudentApi,
+  updateStudentApi,
+  deleteStudentApi,
 };
 

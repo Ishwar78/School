@@ -1,0 +1,132 @@
+/* =========================================
+   VEDA STUDENT PORTAL — MARKS & RESULTS
+========================================= */
+
+.student-results-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.results-header-info span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #b78324;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.results-header-info h2 {
+  font-size: 24px;
+  color: #082b55;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+
+.results-header-info p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.results-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.result-card {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.result-card span {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.result-card h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: #082b55;
+}
+
+.results-table-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.results-table th {
+  padding: 14px 16px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.results-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #1e293b;
+}
+
+.grade-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  display: inline-block;
+}
+
+.grade-badge.a1 {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.grade-badge.a2 {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.grade-badge.b1 {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+@media (max-width: 850px) {
+  .results-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

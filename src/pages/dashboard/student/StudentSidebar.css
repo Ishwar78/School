@@ -1,0 +1,257 @@
+
+.student-sidebar {
+  width: 294px;
+  height: 100vh;
+  background: #122d50;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.student-sidebar-brand {
+  min-height: 116px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.student-brand-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(255, 190, 65, 0.12);
+  border: 1px solid rgba(255, 190, 65, 0.3);
+  color: #ffbd43;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-brand-text h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 29px;
+  letter-spacing: 1px;
+}
+
+.student-brand-text span {
+  display: block;
+  color: #ffbd43;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  margin-top: 2px;
+}
+
+.student-sidebar-close {
+  display: none;
+}
+
+.student-sidebar-profile {
+  margin: 17px 16px;
+  padding: 18px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+.student-sidebar-avatar {
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #092448;
+  color: #ffbd43;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  font-weight: 800;
+}
+
+.student-sidebar-user-info {
+  min-width: 0;
+}
+
+.student-sidebar-user-info h4 {
+  font-size: 13px;
+  margin: 0 0 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.student-sidebar-user-info p {
+  color: #ffbd43;
+  font-size: 11px;
+  margin: 0;
+}
+
+.student-menu-heading {
+  padding: 10px 28px;
+  color: #ffbd43;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.student-sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 7px 14px 15px;
+}
+
+.student-sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.student-sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 189, 67, 0.5);
+  border-radius: 10px;
+}
+
+.student-menu-item {
+  width: 100%;
+  min-height: 49px;
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: #d0d9e7;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.student-menu-item svg {
+  color: #ffbd43;
+  flex-shrink: 0;
+}
+
+.student-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.student-menu-item.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 189, 67, 0.25);
+  color: #fff;
+  position: relative;
+}
+
+.student-menu-item.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background: #ffbd43;
+  border-radius: 5px 0 0 5px;
+}
+
+.student-sidebar-bottom {
+  padding: 15px 16px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.student-portal-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.student-portal-info svg {
+  color: #ffbd43;
+}
+
+.student-portal-info h4 {
+  margin: 0 0 4px;
+  font-size: 12px;
+}
+
+.student-portal-info p {
+  margin: 0;
+  color: #aebdd0;
+  font-size: 10px;
+}
+
+.student-logout-btn {
+  width: 100%;
+  min-height: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9px;
+  color: #ffc1c1;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.student-logout-btn:hover {
+  background: rgba(220, 70, 70, 0.18);
+}
+
+.student-sidebar-overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .student-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .student-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .student-sidebar-overlay.show {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .student-sidebar-close {
+    display: flex;
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 380px) {
+  .student-sidebar {
+    width: 280px;
+  }
+}

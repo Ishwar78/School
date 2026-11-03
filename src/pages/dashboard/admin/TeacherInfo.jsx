@@ -123,7 +123,11 @@ export default function TeacherInfo() {
   const [teachers, setTeachers] = useState(() => {
     try {
       const saved = localStorage.getItem("veda_admin_teachers");
-      return saved ? JSON.parse(saved) : initialTeachers;
+      if (!saved) return initialTeachers;
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) return parsed;
+      if (parsed && Array.isArray(parsed.items)) return parsed.items;
+      return initialTeachers;
     } catch {
       return initialTeachers;
     }
@@ -159,33 +163,37 @@ export default function TeacherInfo() {
 
   // DASHBOARD COUNTS
 
-  const totalTeachers = teachers.length;
+  const safeTeachers = Array.isArray(teachers) ? teachers : [];
+  const totalTeachers = safeTeachers.length;
 
-  const activeTeachers = teachers.filter(
-    (teacher) => (teacher.status || "Active") === "Active"
+  const activeTeachers = safeTeachers.filter(
+    (teacher) => teacher && (teacher.status || "Active") === "Active"
   ).length;
 
-  const inactiveTeachers = teachers.filter(
-    (teacher) => teacher.status === "Inactive"
+  const inactiveTeachers = safeTeachers.filter(
+    (teacher) => teacher && teacher.status === "Inactive"
   ).length;
 
   // SEARCH AND FILTER
 
   const filteredTeachers = useMemo(() => {
+    if (!Array.isArray(teachers)) return [];
     return teachers.filter((teacher) => {
-      const searchText = search.toLowerCase();
+      if (!teacher) return false;
+      const searchText = (search || "").toLowerCase().trim();
 
       const matchesSearch =
+        !searchText ||
         (teacher.name || "").toLowerCase().includes(searchText) ||
         (teacher.email || "").toLowerCase().includes(searchText) ||
         (teacher.employee || "").toLowerCase().includes(searchText) ||
-        (teacher.phone || "").includes(searchText) ||
-        getTeacherSubjects(teacher).join(" ").toLowerCase().includes(searchText) ||
-        getTeacherClasses(teacher).join(" ").toLowerCase().includes(searchText);
+        String(teacher.phone || "").includes(searchText) ||
+        (Array.isArray(getTeacherSubjects(teacher)) ? getTeacherSubjects(teacher) : []).join(" ").toLowerCase().includes(searchText) ||
+        (Array.isArray(getTeacherClasses(teacher)) ? getTeacherClasses(teacher) : []).join(" ").toLowerCase().includes(searchText);
 
       const matchesClass =
         !filterClass ||
-        getTeacherClasses(teacher).includes(filterClass);
+        (Array.isArray(getTeacherClasses(teacher)) ? getTeacherClasses(teacher) : []).includes(filterClass);
 
       const matchesDepartment =
         !filterDepartment ||

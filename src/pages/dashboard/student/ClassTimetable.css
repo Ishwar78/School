@@ -1,0 +1,215 @@
+/* =========================================
+   VEDA STUDENT PORTAL — CLASS TIMETABLE
+========================================= */
+
+.student-timetable-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.timetable-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.timetable-header-info span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #b78324;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.timetable-header-info h2 {
+  font-size: 24px;
+  color: #082b55;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+
+.timetable-header-info p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.timetable-meta-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.timetable-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  color: #082b55;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.timetable-days-nav {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.timetable-day-btn {
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.timetable-day-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.timetable-day-btn.active {
+  background: #082b55;
+  color: #ffffff;
+  border-color: #082b55;
+  box-shadow: 0 4px 14px rgba(8, 43, 85, 0.2);
+}
+
+.timetable-schedule-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.timetable-day-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.timetable-day-title h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #082b55;
+  font-weight: 700;
+}
+
+.timetable-day-title span {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.timetable-periods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timetable-period-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 180px 140px;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  transition: all 0.2s ease;
+}
+
+.timetable-period-row:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+.timetable-period-row.recess {
+  background: #fffbeb;
+  border-color: #fde68a;
+  grid-template-columns: 160px 1fr;
+}
+
+.period-time {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.period-time strong {
+  font-size: 13px;
+  color: #082b55;
+}
+
+.period-time small {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.period-subject h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.period-subject p {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.period-teacher {
+  font-size: 13px;
+  color: #334155;
+  font-weight: 600;
+}
+
+.period-room {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 700;
+  color: #0284c7;
+  background: #e0f2fe;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  justify-self: end;
+}
+
+@media (max-width: 768px) {
+  .timetable-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .timetable-period-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .period-room {
+    justify-self: start;
+  }
+}
+

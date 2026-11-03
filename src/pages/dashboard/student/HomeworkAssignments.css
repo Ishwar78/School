@@ -1,0 +1,161 @@
+/* =========================================
+   VEDA STUDENT PORTAL — HOMEWORK & ASSIGNMENTS
+========================================= */
+
+.student-assignments-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.assignments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.assignments-header-info span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #b78324;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.assignments-header-info h2 {
+  font-size: 24px;
+  color: #082b55;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+
+.assignments-header-info p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.assignment-filter-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-tab-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-tab-btn.active {
+  background: #082b55;
+  color: #ffffff;
+  border-color: #082b55;
+}
+
+.assignments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.assignment-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.assignment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(8, 43, 85, 0.08);
+}
+
+.assignment-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.subject-tag {
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.assignment-status-tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.assignment-status-tag.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.assignment-status-tag.submitted {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.assignment-status-tag.graded {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.assignment-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+  color: #0f172a;
+}
+
+.assignment-card p {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.assignment-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.assignment-meta-row strong {
+  color: #0f172a;
+}
+
+@media (max-width: 850px) {
+  .assignments-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

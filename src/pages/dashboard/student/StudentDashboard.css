@@ -1,0 +1,1364 @@
+
+/* ============================================
+   VEDA INTERNATIONAL SCHOOL
+   STUDENT DASHBOARD
+   PREMIUM NAVY BLUE & GOLD THEME
+============================================ */
+
+.student-dashboard-layout {
+  --student-navy: #102b50;
+  --student-navy-light: #193d68;
+  --student-gold: #edb83f;
+  --student-gold-dark: #bd851d;
+  --student-text: #263c59;
+  --student-muted: #8491a3;
+  --student-border: #e9edf3;
+  --student-background: #f7f8fb;
+
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--student-background);
+  color: var(--student-text);
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+}
+
+.student-dashboard-layout * {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   SIDEBAR
+============================================ */
+
+.student-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+
+  width: 265px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #102b50;
+  color: #ffffff;
+
+  box-shadow: 5px 0 25px rgba(16, 43, 80, 0.08);
+
+  transition: transform 0.3s ease;
+}
+
+/* ============================================
+   SIDEBAR BRAND
+============================================ */
+
+.student-sidebar-brand {
+  min-height: 88px;
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.student-brand-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(237, 184, 63, 0.15);
+  border: 1px solid rgba(237, 184, 63, 0.3);
+
+  color: var(--student-gold);
+}
+
+.student-sidebar-brand h2 {
+  margin: 0;
+  color: #ffffff;
+
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.student-sidebar-brand span {
+  display: block;
+  margin-top: 3px;
+
+  color: #d6b66d;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  white-space: nowrap;
+}
+
+.student-sidebar-close {
+  display: none;
+
+  margin-left: auto;
+  padding: 5px;
+
+  border: none;
+  background: transparent;
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+/* ============================================
+   STUDENT SIDEBAR PROFILE
+============================================ */
+
+.student-sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 20px 18px;
+
+  margin: 15px 14px 18px;
+
+  background: rgba(255, 255, 255, 0.075);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
+}
+
+.student-profile-avatar {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #edb83f, #f6d887);
+  color: #102b50;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.student-sidebar-profile strong {
+  display: block;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 155px;
+}
+
+.student-sidebar-profile span {
+  display: block;
+  margin-top: 5px;
+
+  color: #d6b66d;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ============================================
+   SIDEBAR MENU
+============================================ */
+
+.student-sidebar-menu {
+  flex: 1;
+  min-height: 0;
+
+  padding: 0 13px 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.student-sidebar-menu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.student-sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.student-sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(237, 184, 63, 0.35);
+  border-radius: 10px;
+}
+
+.student-sidebar-label {
+  padding: 7px 12px 12px;
+
+  color: #c9a75c;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+/* SIDEBAR BUTTON */
+
+.student-sidebar-link {
+  position: relative;
+
+  width: 100%;
+  min-height: 45px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 11px 13px;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #d3dceb;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.student-sidebar-link svg {
+  flex-shrink: 0;
+  color: #d5bd83;
+  transition: 0.25s;
+}
+
+.student-sidebar-link span:not(.student-active-indicator) {
+  flex: 1;
+}
+
+.student-sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.student-sidebar-link:hover svg {
+  color: var(--student-gold);
+}
+
+/* ACTIVE MENU */
+
+.student-sidebar-link.active {
+  background: linear-gradient(
+    100deg,
+    rgba(237, 184, 63, 0.19),
+    rgba(237, 184, 63, 0.07)
+  );
+
+  border-color: rgba(237, 184, 63, 0.23);
+
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.student-sidebar-link.active svg {
+  color: var(--student-gold);
+}
+
+.student-active-indicator {
+  position: absolute;
+  right: -1px;
+  top: 9px;
+  bottom: 9px;
+
+  width: 3px;
+
+  background: var(--student-gold);
+  border-radius: 5px 0 0 5px;
+}
+
+/* ============================================
+   SIDEBAR FOOTER
+============================================ */
+
+.student-sidebar-footer {
+  padding: 15px 14px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.student-sidebar-help {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px;
+
+  margin-bottom: 12px;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.student-sidebar-help > svg {
+  color: var(--student-gold);
+}
+
+.student-sidebar-help strong {
+  display: block;
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.student-sidebar-help span {
+  display: block;
+  margin-top: 4px;
+  color: #b7c4d7;
+  font-size: 9px;
+}
+
+.student-logout-btn {
+  width: 100%;
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 7px;
+
+  color: #f3c9c9;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.student-logout-btn:hover {
+  background: #a83c3c;
+  border-color: #a83c3c;
+  color: #ffffff;
+}
+
+/* ============================================
+   MAIN DASHBOARD AREA
+============================================ */
+
+.student-dashboard-main {
+  width: calc(100% - 265px);
+  min-height: 100vh;
+
+  margin-left: 265px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #f7f8fb;
+}
+
+/* ============================================
+   TOPBAR
+============================================ */
+
+.student-dashboard-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+
+  width: 100%;
+  min-height: 83px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 15px 32px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #edf0f5;
+
+  box-shadow: 0 3px 12px rgba(16, 43, 80, 0.025);
+}
+
+.student-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.student-topbar-left > div > span {
+  display: block;
+  color: var(--student-gold-dark);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+}
+
+.student-topbar-left h2 {
+  margin: 0;
+
+  color: var(--student-navy);
+
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.student-menu-toggle {
+  display: none;
+
+  width: 40px;
+  height: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e9edf3;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: var(--student-navy);
+
+  cursor: pointer;
+}
+
+.student-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.student-topbar-school {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #65758a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.student-topbar-school svg {
+  color: var(--student-gold-dark);
+}
+
+.student-topbar-avatar {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #fff3d8;
+  border: 1px solid #efd49a;
+
+  color: var(--student-navy);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* ============================================
+   PAGE CONTENT
+============================================ */
+
+.student-dashboard-page-content {
+  flex: 1;
+  width: 100%;
+
+  padding: 29px 32px 25px;
+}
+
+/* ============================================
+   WELCOME BANNER
+============================================ */
+
+.student-welcome-card {
+  position: relative;
+
+  width: 100%;
+  min-height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 34px 38px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      110deg,
+      #102b50 0%,
+      #173b67 65%,
+      #234c78 100%
+    );
+
+  border-radius: 13px;
+
+  box-shadow: 0 9px 25px rgba(16, 43, 80, 0.11);
+
+  margin-bottom: 25px;
+}
+
+.student-welcome-card::before {
+  content: "";
+
+  position: absolute;
+  width: 320px;
+  height: 320px;
+
+  right: -70px;
+  top: -150px;
+
+  border: 1px solid rgba(237, 184, 63, 0.18);
+  border-radius: 50%;
+}
+
+.student-welcome-card::after {
+  content: "";
+
+  position: absolute;
+  width: 240px;
+  height: 240px;
+
+  right: 55px;
+  bottom: -160px;
+
+  border: 1px solid rgba(237, 184, 63, 0.16);
+  border-radius: 50%;
+}
+
+.student-welcome-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.student-dashboard-eyebrow {
+  display: inline-block;
+
+  color: var(--student-gold-dark);
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+
+  margin-bottom: 10px;
+}
+
+.student-welcome-card .student-dashboard-eyebrow {
+  color: #edc76e;
+}
+
+.student-welcome-card h2 {
+  color: #ffffff;
+
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: 500;
+
+  line-height: 1.3;
+
+  margin: 0 0 11px;
+}
+
+.student-welcome-card p {
+  max-width: 550px;
+
+  color: #d5deeb;
+  font-size: 11px;
+  line-height: 1.9;
+
+  margin: 0;
+}
+
+.student-welcome-details {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 11px;
+
+  margin-top: 22px;
+}
+
+.student-welcome-details span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 12px;
+
+  border: 1px solid rgba(237, 184, 63, 0.23);
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  color: #f1dba9;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.student-welcome-details svg {
+  color: var(--student-gold);
+}
+
+.student-welcome-icon {
+  position: relative;
+  z-index: 2;
+
+  width: 125px;
+  height: 125px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(237, 184, 63, 0.25);
+  border-radius: 50%;
+
+  background: rgba(237, 184, 63, 0.09);
+
+  color: #edc76e;
+}
+
+/* ============================================
+   STATISTICS CARDS
+============================================ */
+
+.student-dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+
+  margin-bottom: 25px;
+}
+
+.student-stat-card {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 19px;
+
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 11px;
+
+  box-shadow: 0 3px 15px rgba(16, 43, 80, 0.035);
+
+  transition: 0.25s;
+}
+
+.student-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(16, 43, 80, 0.07);
+}
+
+.student-stat-icon {
+  width: 47px;
+  height: 47px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+}
+
+.student-stat-icon.attendance {
+  background: #eaf1fb;
+  color: #285d9b;
+}
+
+.student-stat-icon.assignments {
+  background: #fff4df;
+  color: #bd851d;
+}
+
+.student-stat-icon.results {
+  background: #e7f6ee;
+  color: #249665;
+}
+
+.student-stat-icon.fees {
+  background: #f1ecfc;
+  color: #8161b4;
+}
+
+.student-stat-card span {
+  display: block;
+
+  color: #728197;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.student-stat-card h3 {
+  color: var(--student-navy);
+
+  font-size: 24px;
+  font-weight: 800;
+
+  margin: 5px 0 4px;
+}
+
+.student-stat-card small {
+  color: #a1aab8;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* ============================================
+   DASHBOARD CONTENT GRID
+============================================ */
+
+.student-dashboard-content-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
+
+  margin-bottom: 23px;
+}
+
+.student-dashboard-panel {
+  min-width: 0;
+
+  padding: 24px;
+
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 11px;
+
+  box-shadow: 0 4px 16px rgba(16, 43, 80, 0.035);
+}
+
+/* PANEL HEADING */
+
+.student-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 17px;
+  margin-bottom: 18px;
+
+  border-bottom: 1px solid #edf0f5;
+}
+
+.student-panel-heading h3 {
+  color: var(--student-navy);
+
+  font-family: Georgia, serif;
+  font-size: 21px;
+  font-weight: 600;
+
+  margin: 0;
+}
+
+.student-panel-heading > svg {
+  color: var(--student-gold-dark);
+}
+
+/* ============================================
+   QUICK ACCESS
+============================================ */
+
+.student-quick-access {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+}
+
+.student-quick-item {
+  width: 100%;
+  min-height: 65px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px;
+
+  border: 1px solid #edf0f5;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: var(--student-text);
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 700;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.student-quick-item:hover {
+  border-color: #e5c47d;
+  background: #fffbf2;
+  transform: translateY(-2px);
+}
+
+.student-quick-item > span {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.student-quick-item > svg {
+  color: #b5bdc8;
+  flex-shrink: 0;
+}
+
+.student-quick-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #fff5df;
+  color: #bd851d;
+}
+
+/* ============================================
+   STUDENT OVERVIEW
+============================================ */
+
+.student-overview-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-overview-details > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #f0f1f4;
+}
+
+.student-overview-details > div span {
+  color: #8793a5;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.student-overview-details > div strong {
+  color: var(--student-navy);
+  font-size: 10px;
+  font-weight: 800;
+
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* PROFILE BUTTON */
+
+.student-view-profile-btn {
+  width: 100%;
+  min-height: 41px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  margin-top: 17px;
+  padding: 10px;
+
+  background: #102b50;
+  border: none;
+  border-radius: 6px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.student-view-profile-btn:hover {
+  background: #bd851d;
+  color: #ffffff;
+}
+
+/* ============================================
+   BOTTOM INFORMATION CARD
+============================================ */
+
+.student-dashboard-bottom-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 19px 22px;
+
+  background: linear-gradient(
+    110deg,
+    #fff9eb,
+    #ffffff
+  );
+
+  border: 1px solid #f0e3c6;
+  border-left: 4px solid var(--student-gold);
+
+  border-radius: 9px;
+}
+
+.student-bottom-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff0cf;
+  color: #bd851d;
+
+  border-radius: 9px;
+}
+
+.student-dashboard-bottom-card h3 {
+  color: var(--student-navy);
+
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  margin: 0 0 6px;
+}
+
+.student-dashboard-bottom-card p {
+  color: #7d8a9b;
+
+  font-size: 10px;
+  line-height: 1.8;
+
+  margin: 0;
+}
+
+/* ============================================
+   MODULE PLACEHOLDER
+============================================ */
+
+.student-module-placeholder {
+  min-height: 450px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  border-radius: 12px;
+
+  text-align: center;
+}
+
+.student-placeholder-icon {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  background: #fff4df;
+  border: 1px solid #f0dfb9;
+  border-radius: 20px;
+
+  color: #bd851d;
+}
+
+.student-module-placeholder h2 {
+  color: var(--student-navy);
+
+  font-family: Georgia, serif;
+  font-size: 29px;
+  font-weight: 600;
+
+  margin: 0 0 10px;
+}
+
+.student-module-placeholder p {
+  color: #8995a7;
+  font-size: 12px;
+}
+
+/* ============================================
+   FOOTER
+============================================ */
+
+.student-dashboard-footer {
+  width: 100%;
+
+  padding: 19px 30px;
+
+  background: #ffffff;
+  border-top: 1px solid #edf0f5;
+
+  color: #929dac;
+
+  font-size: 10px;
+  font-weight: 500;
+
+  text-align: center;
+}
+
+/* ============================================
+   MOBILE SIDEBAR OVERLAY
+============================================ */
+
+.student-sidebar-overlay {
+  display: none;
+}
+
+/* ============================================
+   TABLET RESPONSIVE
+============================================ */
+
+@media (max-width: 1200px) {
+
+  .student-dashboard-page-content {
+    padding: 25px 22px;
+  }
+
+  .student-dashboard-topbar {
+    padding: 15px 22px;
+  }
+
+  .student-dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .student-dashboard-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-welcome-card {
+    padding: 28px;
+  }
+
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+============================================ */
+
+@media (max-width: 768px) {
+
+  .student-sidebar {
+    width: 275px;
+    max-width: 85vw;
+
+    transform: translateX(-105%);
+  }
+
+  .student-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .student-sidebar-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .student-sidebar-overlay {
+    display: block;
+
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+
+    background: rgba(8, 20, 37, 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  .student-dashboard-main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .student-dashboard-topbar {
+    min-height: 72px;
+    padding: 12px 16px;
+  }
+
+  .student-menu-toggle {
+    display: flex;
+  }
+
+  .student-topbar-left h2 {
+    font-size: 19px;
+  }
+
+  .student-topbar-school span {
+    display: none;
+  }
+
+  .student-topbar-right {
+    gap: 10px;
+  }
+
+  .student-dashboard-page-content {
+    padding: 20px 16px;
+  }
+
+  .student-welcome-card {
+    min-height: 210px;
+    padding: 26px 22px;
+  }
+
+  .student-welcome-card h2 {
+    font-size: 25px;
+  }
+
+  .student-welcome-card p {
+    font-size: 10px;
+  }
+
+  .student-welcome-icon {
+    width: 85px;
+    height: 85px;
+  }
+
+  .student-welcome-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .student-dashboard-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ============================================
+   SMALL MOBILE
+============================================ */
+
+@media (max-width: 520px) {
+
+  .student-dashboard-topbar {
+    min-height: 68px;
+    padding: 10px 13px;
+  }
+
+  .student-topbar-left {
+    gap: 9px;
+  }
+
+  .student-topbar-left h2 {
+    font-size: 17px;
+  }
+
+  .student-topbar-left > div > span {
+    font-size: 8px;
+  }
+
+  .student-topbar-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .student-dashboard-page-content {
+    padding: 15px 12px;
+  }
+
+  .student-welcome-card {
+    min-height: auto;
+    padding: 23px 18px;
+  }
+
+  .student-welcome-card h2 {
+    font-size: 23px;
+  }
+
+  .student-welcome-card p {
+    max-width: 100%;
+    font-size: 10px;
+  }
+
+  .student-welcome-icon {
+    display: none;
+  }
+
+  .student-welcome-details {
+    gap: 8px;
+    margin-top: 17px;
+  }
+
+  .student-welcome-details span {
+    font-size: 9px;
+    padding: 7px 9px;
+  }
+
+  .student-dashboard-stats {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .student-stat-card {
+    padding: 15px;
+  }
+
+  .student-dashboard-panel {
+    padding: 17px;
+  }
+
+  .student-panel-heading h3 {
+    font-size: 19px;
+  }
+
+  .student-quick-access {
+    grid-template-columns: 1fr;
+  }
+
+  .student-quick-item {
+    min-height: 57px;
+  }
+
+  .student-overview-details > div {
+    align-items: flex-start;
+  }
+
+  .student-overview-details > div strong {
+    max-width: 60%;
+  }
+
+  .student-dashboard-bottom-card {
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .student-dashboard-bottom-card h3 {
+    font-size: 14px;
+  }
+
+  .student-dashboard-footer {
+    padding: 16px 12px;
+    font-size: 9px;
+  }
+
+}
+
+/* ============================================
+   VERY SMALL MOBILE
+============================================ */
+
+@media (max-width: 360px) {
+
+  .student-sidebar {
+    width: 260px;
+  }
+
+  .student-dashboard-page-content {
+    padding: 12px 10px;
+  }
+
+  .student-welcome-card h2 {
+    font-size: 20px;
+  }
+
+  .student-welcome-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .student-stat-card h3 {
+    font-size: 21px;
+  }
+
+  .student-dashboard-panel {
+    padding: 14px;
+  }
+
+}
+
+/* ============================================
+   ACCESSIBILITY
+============================================ */
+
+.student-sidebar-link:focus-visible,
+.student-logout-btn:focus-visible,
+.student-quick-item:focus-visible,
+.student-view-profile-btn:focus-visible,
+.student-menu-toggle:focus-visible {
+  outline: 3px solid rgba(237, 184, 63, 0.55);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   REDUCED MOTION
+============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .student-dashboard-layout *,
+  .student-dashboard-layout *::before,
+  .student-dashboard-layout *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+}

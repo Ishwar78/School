@@ -1,0 +1,474 @@
+
+.student-home-page {
+  width: 100%;
+  padding: 26px;
+  color: #142d50;
+}
+
+/* Welcome Banner */
+
+.student-welcome-banner {
+  min-height: 205px;
+  padding: 30px 35px;
+  background: linear-gradient(110deg, #122d50, #1c426d);
+  border-radius: 16px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.student-welcome-banner::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  right: 65px;
+  top: -120px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 50%;
+}
+
+.student-welcome-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.student-welcome-content > span {
+  color: #ffc04c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.student-welcome-content h2 {
+  font-family: Georgia, serif;
+  font-size: 31px;
+  margin: 12px 0;
+  color: #fff;
+}
+
+.student-welcome-content p {
+  color: #d1dbea;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 530px;
+  margin-bottom: 18px;
+}
+
+.student-welcome-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.student-welcome-meta div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #ffcd70;
+}
+
+.student-welcome-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffca65;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 35px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Statistics Cards */
+
+.student-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.student-stat-card {
+  background: #fff;
+  border: 1px solid #e9edf3;
+  border-radius: 13px;
+  padding: 21px;
+  box-shadow: 0 4px 15px rgba(20, 45, 80, 0.035);
+  transition: 0.25s ease;
+}
+
+.student-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(20, 45, 80, 0.08);
+}
+
+.student-stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.student-stat-top > span {
+  color: #78879c;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.student-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-stat-card.attendance .student-stat-icon {
+  background: #e7f5ec;
+  color: #27975a;
+}
+
+.student-stat-card.assignments .student-stat-icon {
+  background: #fff1df;
+  color: #ce8a24;
+}
+
+.student-stat-card.exams .student-stat-icon {
+  background: #e9efff;
+  color: #526fca;
+}
+
+.student-stat-card.fees .student-stat-icon {
+  background: #f4eaff;
+  color: #9861c7;
+}
+
+.student-stat-card h3 {
+  font-size: 29px;
+  color: #142d50;
+  margin: 17px 0 5px;
+  font-weight: 800;
+}
+
+.student-stat-card p {
+  margin: 0;
+  font-size: 11px;
+  color: #96a0af;
+}
+
+/* Main Content */
+
+.student-home-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.student-home-card {
+  background: #fff;
+  border: 1px solid #e9edf3;
+  border-radius: 14px;
+  padding: 23px;
+  min-width: 0;
+  box-shadow: 0 4px 15px rgba(20, 45, 80, 0.035);
+}
+
+.student-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.student-section-label {
+  color: #c18a25;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.student-card-heading h3 {
+  color: #142d50;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  margin: 6px 0 0;
+}
+
+.student-card-heading-icon {
+  width: 42px;
+  height: 42px;
+  background: #fff4df;
+  color: #c18a25;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Schedule */
+
+.student-schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eef1f5;
+}
+
+.student-schedule-time {
+  min-width: 118px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #bd8626;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.student-schedule-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-schedule-info h4 {
+  font-size: 13px;
+  color: #142d50;
+  margin: 0 0 4px;
+}
+
+.student-schedule-info p {
+  font-size: 11px;
+  color: #929dad;
+  margin: 0;
+}
+
+.student-period-number {
+  color: #c5ccd6;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Notices */
+
+.student-notice-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #eef1f5;
+}
+
+.student-notice-icon {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  background: #fff4df;
+  color: #bd8626;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-notice-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-notice-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.student-notice-title h4 {
+  color: #142d50;
+  font-size: 12px;
+  margin: 0;
+}
+
+.student-notice-title span {
+  font-size: 9px;
+  color: #bd8626;
+  background: #fff5e4;
+  border-radius: 20px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+.student-notice-content p {
+  font-size: 11px;
+  line-height: 1.6;
+  color: #8491a5;
+  margin: 7px 0;
+}
+
+.student-notice-content small {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #a0a9b6;
+  font-size: 10px;
+}
+
+/* View All Button */
+
+.student-view-all-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: #b7801d;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 18px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.student-view-all-btn:hover {
+  color: #142d50;
+}
+
+/* Bottom Information */
+
+.student-home-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.student-bottom-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid #e9edf3;
+  border-radius: 12px;
+  padding: 18px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.student-bottom-info:hover {
+  border-color: #e5bf75;
+  transform: translateY(-2px);
+}
+
+.student-bottom-icon {
+  width: 43px;
+  height: 43px;
+  background: #fff4df;
+  color: #bd8626;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.student-bottom-info div:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-bottom-info h4 {
+  font-size: 13px;
+  margin: 0 0 5px;
+  color: #142d50;
+}
+
+.student-bottom-info p {
+  font-size: 10px;
+  margin: 0;
+  color: #929dad;
+  line-height: 1.5;
+}
+
+.student-bottom-info > svg {
+  color: #bd8626;
+  flex-shrink: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .student-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .student-home-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .student-home-page {
+    padding: 16px;
+  }
+
+  .student-welcome-banner {
+    padding: 24px 20px;
+    min-height: 190px;
+  }
+
+  .student-welcome-content h2 {
+    font-size: 24px;
+  }
+
+  .student-welcome-icon {
+    display: none;
+  }
+
+  .student-stats-grid {
+    gap: 12px;
+  }
+
+  .student-stat-card {
+    padding: 15px;
+  }
+
+  .student-stat-card h3 {
+    font-size: 24px;
+  }
+
+  .student-home-card {
+    padding: 17px;
+  }
+
+  .student-home-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .student-schedule-time {
+    min-width: 105px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 380px) {
+  .student-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-welcome-meta {
+    gap: 10px;
+    flex-direction: column;
+  }
+}

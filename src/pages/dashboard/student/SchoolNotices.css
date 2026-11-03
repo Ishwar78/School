@@ -1,0 +1,122 @@
+/* =========================================
+   VEDA STUDENT PORTAL — SCHOOL NOTICES
+========================================= */
+
+.student-notices-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.notices-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.notices-header-info span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #b78324;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.notices-header-info h2 {
+  font-size: 24px;
+  color: #082b55;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+
+.notices-header-info p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.notices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notice-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+  border-left: 5px solid #082b55;
+  transition: all 0.2s ease;
+}
+
+.notice-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 24px rgba(8, 43, 85, 0.08);
+}
+
+.notice-card.urgent {
+  border-left-color: #dc2626;
+}
+
+.notice-card.event {
+  border-left-color: #059669;
+}
+
+.notice-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.notice-category-badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.notice-date {
+  font-size: 13px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.notice-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.notice-card p {
+  margin: 0 0 16px 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.notice-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 12px;
+  color: #64748b;
+}
+

@@ -1,0 +1,154 @@
+/* =========================================
+   VEDA STUDENT PORTAL — REPORT CARD
+========================================= */
+
+.student-report-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #eef2f6;
+}
+
+.report-header-info span {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #b78324;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.report-header-info h2 {
+  font-size: 24px;
+  color: #082b55;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+
+.report-header-info p {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0;
+}
+
+.report-sheet-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.06);
+  border: 2px solid #e2e8f0;
+  position: relative;
+}
+
+.report-sheet-brand {
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 2px solid #082b55;
+  margin-bottom: 24px;
+}
+
+.report-sheet-brand h1 {
+  font-size: 26px;
+  color: #082b55;
+  margin: 0 0 4px 0;
+  letter-spacing: 1px;
+}
+
+.report-sheet-brand p {
+  margin: 0 0 8px 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.report-sheet-brand span {
+  display: inline-block;
+  background: #082b55;
+  color: #ffffff;
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.report-student-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  background: #f8fafc;
+  padding: 18px 24px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.report-meta-item small {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.report-meta-item strong {
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+}
+
+.report-table th {
+  background: #f1f5f9;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.report-signatures {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px dashed #cbd5e1;
+}
+
+.signature-box {
+  text-align: center;
+  width: 180px;
+}
+
+.signature-line {
+  height: 1px;
+  background: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.signature-box span {
+  font-size: 12px;
+  color: #475569;
+  font-weight: 600;
+}
+

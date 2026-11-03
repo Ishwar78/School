@@ -1,5 +1,11 @@
 
 import React, { useEffect, useMemo, useState } from "react";
+import {
+  getStudentsApi,
+  createStudentApi,
+  updateStudentApi,
+  deleteStudentApi
+} from "../../../lib/api";
 import "./StudentInfo.css";
 
 const CLASS_OPTIONS = [
@@ -47,7 +53,11 @@ export default function StudentInfo() {
   const [items, setItems] = useState(() => {
     try {
       const saved = localStorage.getItem("veda_admin_students");
-      return saved ? JSON.parse(saved) : initialStudents;
+      if (!saved) return initialStudents;
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) return parsed;
+      if (parsed && Array.isArray(parsed.items)) return parsed.items;
+      return initialStudents;
     } catch {
       return initialStudents;
     }
@@ -61,29 +71,69 @@ export default function StudentInfo() {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [apiMessage, setApiMessage] = useState("");
+
+  // DYNAMIC FETCH FROM DATABASE ON MOUNT
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadStudents() {
+      try {
+        setLoading(true);
+        const res = await getStudentsApi();
+        if (isMounted && res && res.success && Array.isArray(res.data)) {
+          setItems(res.data);
+          try {
+            localStorage.setItem("veda_admin_students", JSON.stringify(res.data));
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      } catch (err) {
+        console.warn("Unable to fetch students from API, using cached records:", err.message);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    }
+
+    loadStudents();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem(
-      "veda_admin_students",
-      JSON.stringify(items)
-    );
+    try {
+      localStorage.setItem(
+        "veda_admin_students",
+        JSON.stringify(items)
+      );
+    } catch (e) {
+      console.error(e);
+    }
   }, [items]);
 
   const filteredStudents = useMemo(() => {
+    if (!Array.isArray(items)) return [];
     return items.filter((student) => {
-      const searchValue = search.toLowerCase();
+      if (!student) return false;
+      const searchValue = (search || "").toLowerCase().trim();
 
-      const matchesSearch =
-        student.name?.toLowerCase().includes(searchValue) ||
-        student.admission?.toLowerCase().includes(searchValue) ||
-        student.roll?.toLowerCase().includes(searchValue) ||
-        student.phone?.includes(searchValue);
+      const nameMatch = String(student.name || "").toLowerCase().includes(searchValue);
+      const admissionMatch = String(student.admission || "").toLowerCase().includes(searchValue);
+      const rollMatch = String(student.roll || "").toLowerCase().includes(searchValue);
+      const phoneMatch = String(student.phone || "").includes(searchValue);
+
+      const matchesSearch = !searchValue || nameMatch || admissionMatch || rollMatch || phoneMatch;
 
       const matchesClass =
-        !filterClass || student.classId === filterClass;
+        !filterClass || String(student.classId || "") === String(filterClass);
 
       const matchesStatus =
-        !filterStatus || student.status === filterStatus;
+        !filterStatus || (student.status || "Active") === filterStatus;
 
       return matchesSearch && matchesClass && matchesStatus;
     });
@@ -108,7 +158,7 @@ export default function StudentInfo() {
     setSelectedStudent(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -157,35 +207,51 @@ export default function StudentInfo() {
       return;
     }
 
-    const studentData = {
-      ...form,
-      id: editingId || "std-" + Date.now(),
-      createdAt: editingId
-        ? items.find((s) => s.id === editingId)?.createdAt
-        : new Date().toISOString()
-    };
-
-    // Password is not saved in localStorage.
-    // Send it securely to your backend API for account creation.
-    delete studentData.password;
-    delete studentData.confirmPassword;
-
-    if (editingId) {
-      setItems((prev) =>
-        prev.map((student) =>
-          student.id === editingId
-            ? studentData
-            : student
-        )
-      );
-    } else {
-      setItems((prev) => [studentData, ...prev]);
+    const studentPayload = { ...form };
+    if (!studentPayload.password) {
+      delete studentPayload.password;
     }
+    delete studentPayload.confirmPassword;
 
-    setForm(emptyForm);
-    setEditingId(null);
-    setShowForm(false);
-    setError("");
+    try {
+      setSubmitting(true);
+
+      if (editingId) {
+        const response = await updateStudentApi(editingId, studentPayload);
+        const updated = response?.data || { ...studentPayload, id: editingId };
+
+        setItems((prev) =>
+          prev.map((student) =>
+            (student.id === editingId || student._id === editingId)
+              ? updated
+              : student
+          )
+        );
+
+        setApiMessage("Student updated successfully in database!");
+      } else {
+        const response = await createStudentApi(studentPayload);
+        const created = response?.data || {
+          ...studentPayload,
+          id: "std-" + Date.now(),
+          createdAt: new Date().toISOString()
+        };
+
+        setItems((prev) => [created, ...prev]);
+        setApiMessage("Student record added successfully to database!");
+      }
+
+      setForm(emptyForm);
+      setEditingId(null);
+      setShowForm(false);
+      setError("");
+      setTimeout(() => setApiMessage(""), 4000);
+    } catch (err) {
+      console.error("Failed to save student:", err);
+      setError(err?.message || "Failed to save student to database. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleEdit = (student) => {
@@ -196,7 +262,7 @@ export default function StudentInfo() {
       confirmPassword: ""
     });
 
-    setEditingId(student.id);
+    setEditingId(student.id || student._id);
     setShowForm(true);
     setSelectedStudent(null);
     setError("");
@@ -207,18 +273,25 @@ export default function StudentInfo() {
     });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this student?"
+      "Are you sure you want to delete this student from the database?"
     );
 
     if (!confirmDelete) return;
 
-    setItems((prev) =>
-      prev.filter((student) => student.id !== id)
-    );
-
-    setSelectedStudent(null);
+    try {
+      await deleteStudentApi(id);
+      setItems((prev) =>
+        prev.filter((student) => student.id !== id && student._id !== id)
+      );
+      setSelectedStudent(null);
+      setApiMessage("Student deleted successfully from database.");
+      setTimeout(() => setApiMessage(""), 3000);
+    } catch (err) {
+      console.error("Delete student error:", err);
+      alert("Failed to delete student from database: " + (err.message || "Server error"));
+    }
   };
 
   const totalStudents = items.length;
@@ -313,7 +386,7 @@ export default function StudentInfo() {
           <h1>Student Information</h1>
 
           <p>
-            Register, manage and maintain complete student records.
+            Register, manage and maintain complete student records connected to database.
           </p>
         </div>
 
@@ -326,6 +399,24 @@ export default function StudentInfo() {
           </button>
         )}
       </div>
+
+      {apiMessage && (
+        <div style={{
+          padding: "12px 18px",
+          backgroundColor: "#ecfdf5",
+          border: "1px solid #a7f3d0",
+          borderRadius: "8px",
+          color: "#065f46",
+          fontWeight: "600",
+          fontSize: "14px",
+          marginBottom: "20px",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px"
+        }}>
+          <span>✓</span> {apiMessage}
+        </div>
+      )}
 
       {/* DASHBOARD CARDS */}
 
@@ -617,6 +708,7 @@ export default function StudentInfo() {
                 type="button"
                 className="student-cancel-btn"
                 onClick={closeForm}
+                disabled={submitting}
               >
                 Cancel
               </button>
@@ -624,8 +716,13 @@ export default function StudentInfo() {
               <button
                 type="submit"
                 className="student-primary-btn"
+                disabled={submitting}
               >
-                {editingId ? "Update Student" : "Save Student"}
+                {submitting
+                  ? "Saving to Database..."
+                  : editingId
+                  ? "Update Student"
+                  : "Save Student"}
                 <span> →</span>
               </button>
 
@@ -717,10 +814,18 @@ export default function StudentInfo() {
 
             <tbody>
 
-              {filteredStudents.length > 0 ? (
+              {loading && items.length === 0 ? (
+                <tr>
+                  <td colSpan="7" style={{ textAlign: "center", padding: "32px", color: "#64748b" }}>
+                    <div style={{ display: "inline-block", fontSize: "16px", fontWeight: "600" }}>
+                      Fetching students from database...
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredStudents.length > 0 ? (
                 filteredStudents.map((student) => (
 
-                  <tr key={student.id}>
+                  <tr key={student.id || student._id || student.admission}>
 
                     <td>
                       <div className="student-name-cell">
@@ -777,7 +882,7 @@ export default function StudentInfo() {
                         <button
                           title="Delete Student"
                           className="delete-action"
-                          onClick={() => handleDelete(student.id)}
+                          onClick={() => handleDelete(student.id || student._id)}
                         >
                           Delete
                         </button>
